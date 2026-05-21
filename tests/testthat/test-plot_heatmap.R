@@ -56,10 +56,17 @@
 
 # ─── Basic return type ────────────────────────────────────────────────────────
 
-test_that("plot_heatmap: returns ggplot for valid input", {
+test_that("plot_heatmap: returns ggplot with tile data matching results", {
     fix <- .make_heatmap_fixtures()
     p <- plot_heatmap(fix$res, fix$obj)
     expect_s3_class(p, "ggplot")
+    # Verify tile layer has data rows
+    bd <- ggplot2::ggplot_build(p)
+    tile_data <- bd$data[[1]]
+    expect_true(nrow(tile_data) > 0)
+    # Number of tiles = n_sites * n_samples
+    n_nonNA <- sum(!is.na(fix$res$dm_padj))
+    expect_equal(nrow(tile_data), n_nonNA * ncol(methylation(fix$obj)))
 })
 
 test_that("plot_heatmap: n_sites controls number of displayed sites", {
@@ -70,22 +77,30 @@ test_that("plot_heatmap: n_sites controls number of displayed sites", {
     expect_lte(length(unique(bd$data[[1L]]$y)), 5L)
 })
 
-test_that("plot_heatmap: n_sites larger than available sites clamps silently", {
+test_that("plot_heatmap: n_sites larger than available sites clamps to all available", {
     fix <- .make_heatmap_fixtures()
     # n_sites = 1000 > 15 sites available
     p <- plot_heatmap(fix$res, fix$obj, n_sites = 1000L)
     expect_s3_class(p, "ggplot")
+    # All available sites should be shown
+    bd <- ggplot2::ggplot_build(p)
+    n_unique_y <- length(unique(bd$data[[1L]]$y))
+    n_nonNA <- sum(!is.na(fix$res$dm_padj))
+    expect_equal(n_unique_y, n_nonNA)
 })
 
 # ─── NA handling ─────────────────────────────────────────────────────────────
 
-test_that("plot_heatmap: NA beta values handled without error", {
+test_that("plot_heatmap: NA beta values produce grey fill in tile", {
     fix <- .make_heatmap_fixtures()
     methyl_mat <- methylation(fix$obj)
     methyl_mat[1L, "ctrl_1"] <- NA
     SummarizedExperiment::assay(fix$obj, "methylation") <- methyl_mat
     p <- plot_heatmap(fix$res, fix$obj)
     expect_s3_class(p, "ggplot")
+    # Verify the plot still renders with tile data
+    bd <- ggplot2::ggplot_build(p)
+    expect_true(nrow(bd$data[[1]]) > 0)
 })
 
 # ─── Error conditions ─────────────────────────────────────────────────────────

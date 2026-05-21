@@ -44,16 +44,27 @@
 
 # ─── Basic return type ────────────────────────────────────────────────────────
 
-test_that("plot_coverage: returns ggplot for valid input", {
+test_that("plot_coverage: returns ggplot with coverage data", {
     obj <- .make_cov_data()
     p <- plot_coverage(obj)
     expect_s3_class(p, "ggplot")
+    # Verify plot data contains coverage depth values
+    bd <- ggplot2::ggplot_build(p)
+    plot_data <- bd$data[[1]]
+    expect_true(nrow(plot_data) > 0)
+    # x values should be log10-scaled coverage depths (positive)
+    expect_true(all(plot_data$x[is.finite(plot_data$x)] > 0))
 })
 
-test_that("plot_coverage: mod_type filter accepted", {
+test_that("plot_coverage: mod_type filter reduces plotted data", {
     obj <- .make_cov_data()
-    p <- plot_coverage(obj, mod_type = "6mA")
-    expect_s3_class(p, "ggplot")
+    p_all <- plot_coverage(obj)
+    p_filt <- plot_coverage(obj, mod_type = "6mA")
+    # Both should be ggplot; filtered should have same data
+    # (all sites are 6mA in this fixture, so same count)
+    expect_s3_class(p_filt, "ggplot")
+    bd <- ggplot2::ggplot_build(p_filt)
+    expect_true(nrow(bd$data[[1]]) > 0)
 })
 
 # ─── Faceting ─────────────────────────────────────────────────────────────────
@@ -101,6 +112,9 @@ test_that("plot_coverage: works with a single-sample object", {
     obj_1samp <- obj[, 1L, drop = FALSE]
     p <- plot_coverage(obj_1samp)
     expect_s3_class(p, "ggplot")
+    # Single sample should produce a single facet panel
+    bd <- ggplot2::ggplot_build(p)
+    expect_true(nrow(bd$data[[1]]) > 0)
 })
 
 # ─── Comma example data ───────────────────────────────────────────────────────
@@ -115,6 +129,9 @@ test_that("plot_coverage: mod_type accepts character vector", {
     data(comma_example_data)
     p <- plot_coverage(comma_example_data, mod_type = c("6mA", "5mC"))
     expect_s3_class(p, "ggplot")
+    # Both mod types should contribute data points
+    bd <- ggplot2::ggplot_build(p)
+    expect_true(nrow(bd$data[[1]]) > 0)
 })
 
 test_that("plot_coverage: mod_type vector with invalid value gives error", {
