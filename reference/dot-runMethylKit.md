@@ -8,7 +8,14 @@ when `method = "methylkit"`.
 ## Usage
 
 ``` r
-.runMethylKit(methyl_mat, coverage_mat, coldata, formula, ref_level = NULL)
+.runMethylKit(
+  methyl_mat,
+  coverage_mat,
+  site_df,
+  coldata,
+  formula,
+  ref_level = NULL
+)
 ```
 
 ## Arguments
@@ -20,6 +27,11 @@ when `method = "methylkit"`.
 - coverage_mat:
 
   Integer matrix (sites × samples) of read depths.
+
+- site_df:
+
+  Data frame with columns `chrom`, `position`, `strand`, `mod_type`,
+  `motif` — one row per site.
 
 - coldata:
 

@@ -27,8 +27,8 @@ varianceByDepth(object, coverage_bins = NULL, mod_type = NULL, motif = NULL)
 
 - mod_type:
 
-  Character string or `NULL`. If provided, only sites of the specified
-  modification type are included. Default: `NULL` (all types).
+  Character vector or `NULL`. If provided, only sites of the specified
+  modification type(s) are included. Default: `NULL` (all types).
 
 - motif:
 

@@ -13,7 +13,7 @@ tabular reporting."></head><body>
 
     <a class="navbar-brand me-2" href="../index.html">comma</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.0.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -65,10 +65,10 @@ tabular reporting.</p>
 
 
 <dt id="arg-mod-type">mod_type<a class="anchor" aria-label="anchor" href="#arg-mod-type"></a></dt>
-<dd><p>Character string or <code>NULL</code>. If provided, only sites
-of the specified modification type (e.g., <code>"6mA"</code>) are included in
-the summary. If <code>NULL</code> (default), all modification types are
-summarized together.</p></dd>
+<dd><p>Character vector or <code>NULL</code>. If provided, only sites
+of the specified modification type(s) (e.g., <code>"6mA"</code>,
+<code>c("6mA", "5mC")</code>) are included in the summary. If <code>NULL</code>
+(default), all modification types are summarized together.</p></dd>
 
 
 <dt id="arg-motif">motif<a class="anchor" aria-label="anchor" href="#arg-motif"></a></dt>
@@ -123,9 +123,11 @@ sites.</p></dd>
 (including sites below the <code>min_coverage</code> threshold, which have
 coverage stored as 0 or their raw depth).</p></dd>
 
-<dt><code>median_coverage</code></dt>
-<dd><p>Median sequencing depth.</p></dd>
-
+\item\codemedian_coverageMedian sequencing depth.
+\item\codecallerMethylation caller that produced the data
+(e.g., \code\"modkit\"), or \codeNA if not stored.
+\item\codemin_coverageMinimum coverage threshold applied at
+construction, or \codeNA if not stored.
 
 </dl></div>
     <div class="section level2">
@@ -146,13 +148,13 @@ coverage stored as 0 or their raw depth).</p></dd>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 4     treat_1 treatment      all     588       588 0.8357998   0.8864176</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 5     treat_2 treatment      all     588       588 0.8369054   0.8893089</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 6     treat_3 treatment      all     588       588 0.8388398   0.8866568</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      sd_beta frac_methylated mean_coverage median_coverage</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 0.10704958       0.9897959      79.25340            79.0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2 0.09647906       0.9948980      79.83333            81.0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3 0.10609612       0.9897959      82.67347            83.0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4 0.17009987       0.9421769      76.49490            76.5</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5 0.16870207       0.9404762      78.44218            78.0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6 0.16809920       0.9455782      79.17517            76.5</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      sd_beta frac_methylated mean_coverage median_coverage caller min_coverage</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 0.10704958       0.9897959      79.25340            79.0 modkit            5</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2 0.09647906       0.9948980      79.83333            81.0 modkit            5</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3 0.10609612       0.9897959      82.67347            83.0 modkit            5</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4 0.17009987       0.9421769      76.49490            76.5 modkit            5</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5 0.16870207       0.9404762      78.44218            78.0 modkit            5</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6 0.16809920       0.9455782      79.17517            76.5 modkit            5</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Summarize only 6mA sites</span></span></span>
 <span class="r-in"><span><span class="va">ms_6mA</span> <span class="op">&lt;-</span> <span class="fu">methylomeSummary</span><span class="op">(</span><span class="va">comma_example_data</span>, mod_type <span class="op">=</span> <span class="st">"6mA"</span><span class="op">)</span></span></span>

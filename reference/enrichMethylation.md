@@ -155,7 +155,7 @@ enrichMethylation(
 
 - mod_type:
 
-  Character string or `NULL`; modification-type filter passed to
+  Character vector or `NULL`; modification-type filter passed to
   [`results`](https://carl-stone.github.io/comma/reference/results.md).
   Ignored when `object` is a `data.frame`.
 

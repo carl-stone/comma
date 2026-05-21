@@ -64,7 +64,9 @@ comma_example_data
 #> conditions: control, treatment 
 #> genome: 1 chromosome (100,000 bp total) 
 #> annotation: 5 features 
-#> motif sites: none
+#> motif sites: none 
+#> caller: modkit 
+#> min_coverage: 5
 ```
 
 ``` r
@@ -285,7 +287,9 @@ cd_dm
 #> conditions: control, treatment 
 #> genome: 1 chromosome (100,000 bp total) 
 #> annotation: 5 features 
-#> motif sites: none
+#> motif sites: none 
+#> caller: modkit 
+#> min_coverage: 5
 ```
 
 Extract the results as a tidy data frame:
@@ -296,13 +300,13 @@ res <- results(cd_dm)
 # Top sites by adjusted p-value
 head(res[order(res$dm_padj),
          c("chrom", "position", "mod_type", "dm_delta_beta", "dm_padj")])
-#>                            chrom position mod_type dm_delta_beta      dm_padj
-#> chr_sim:50176:-:6mA:GATC chr_sim    50176      6mA    -0.7336497 1.849154e-75
-#> chr_sim:70003:-:6mA:GATC chr_sim    70003      6mA    -0.7050844 3.896483e-68
-#> chr_sim:63550:+:6mA:GATC chr_sim    63550      6mA    -0.7799241 5.006897e-66
-#> chr_sim:61440:+:6mA:GATC chr_sim    61440      6mA    -0.7090099 1.178364e-64
-#> chr_sim:86016:+:6mA:GATC chr_sim    86016      6mA    -0.6743832 3.661541e-62
-#> chr_sim:2180:-:6mA:GATC  chr_sim     2180      6mA    -0.7543758 4.024452e-60
+#>       chrom position mod_type dm_delta_beta      dm_padj
+#> 196 chr_sim    50176      6mA    -0.7336497 1.849154e-75
+#> 287 chr_sim    70003      6mA    -0.7050844 3.896483e-68
+#> 260 chr_sim    63550      6mA    -0.7799241 5.006897e-66
+#> 249 chr_sim    61440      6mA    -0.7090099 1.178364e-64
+#> 347 chr_sim    86016      6mA    -0.6743832 3.661541e-62
+#> 9   chr_sim     2180      6mA    -0.7543758 4.024452e-60
 ```
 
 Filter to significant sites (padj \< 0.05, \|Δβ\| ≥ 0.2):
@@ -446,7 +450,7 @@ sessionInfo()
 #> [1] stats     graphics  grDevices datasets  utils     methods   base     
 #> 
 #> other attached packages:
-#> [1] comma_0.1.0.9000 BiocStyle_2.38.0
+#> [1] comma_0.2.0      BiocStyle_2.38.0
 #> 
 #> loaded via a namespace (and not attached):
 #>   [1] bitops_1.0-9                rlang_1.2.0                

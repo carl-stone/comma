@@ -14,6 +14,9 @@
 - [`buildKEGGTermGene()`](https://carl-stone.github.io/comma/reference/buildKEGGTermGene.md)
   : Build a KEGG term-to-gene mapping for use with enrichMethylation()
 
+- [`caller()`](https://carl-stone.github.io/comma/reference/caller.md) :
+  Accessor for the methylation caller
+
 - [`comma-package`](https://carl-stone.github.io/comma/reference/comma-package.md)
   [`comma`](https://carl-stone.github.io/comma/reference/comma-package.md)
   :
@@ -61,6 +64,9 @@
 
 - [`methylomeSummary()`](https://carl-stone.github.io/comma/reference/methylomeSummary.md)
   : Summarize per-sample methylation and coverage distributions
+
+- [`minCoverage()`](https://carl-stone.github.io/comma/reference/minCoverage.md)
+  : Accessor for the minimum coverage threshold
 
 - [`modContexts()`](https://carl-stone.github.io/comma/reference/modContexts.md)
   : Return the modification contexts present in a commaData object

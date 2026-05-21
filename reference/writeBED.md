@@ -40,9 +40,9 @@ writeBED(
 
 - mod_type:
 
-  Character string or `NULL`. If provided, only sites of the specified
-  modification type are written (e.g., `"6mA"`). If `NULL` (default),
-  all sites are written.
+  Character vector or `NULL`. If provided, only sites of the specified
+  modification type(s) are written (e.g., `"6mA"`, `c("6mA", "5mC")`).
+  If `NULL` (default), all sites are written.
 
 - rgb_scale:
 

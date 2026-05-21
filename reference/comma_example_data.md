@@ -31,21 +31,20 @@ A `commaData` object with:
 
   :   Integer read depth (10–50 per site).
 
-- **rowData**:
+- **rowRanges**:
 
-  Per-site metadata including `chrom`, `position`, `strand`, `mod_type`,
-  `motif` (`"GATC"` for 6mA sites, `"CCWGG"` for 5mC sites), and
-  `is_diff` (ground-truth differential methylation status for testing
-  purposes).
+  GRanges with 1-bp ranges per site. mcols include `mod_type`, `motif`,
+  `mod_context`, and `is_diff` (ground-truth differential methylation
+  status for testing).
 
 - **colData**:
 
   Per-sample metadata: `sample_name`, `condition`, `replicate`,
   `caller`.
 
-- **genomeInfo**:
+- **Seqinfo**:
 
-  Named integer vector: `c(chr_sim = 100000L)`.
+  Chromosome sizes: `c(chr_sim = 100000L)`.
 
 - **annotation**:
 
@@ -95,6 +94,8 @@ comma_example_data
 #> genome: 1 chromosome (100,000 bp total) 
 #> annotation: 5 features 
 #> motif sites: none 
+#> caller: modkit 
+#> min_coverage: 5 
 modTypes(comma_example_data)
 #> [1] "5mC" "6mA"
 motifs(comma_example_data)

@@ -45,9 +45,9 @@ plot_genome_track(
 
 - mod_type:
 
-  Character string specifying a single modification type to display
-  (e.g., `"6mA"`, `"5mC"`). If `NULL` (default), all modification types
-  are shown, colored differently.
+  Character vector of modification types to display (e.g., `"6mA"`,
+  `c("6mA", "5mC")`). If `NULL` (default), all modification types are
+  shown, colored differently.
 
 - motif:
 

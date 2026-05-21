@@ -28,8 +28,8 @@ plot_methylation_distribution(
 
 - mod_type:
 
-  Character string specifying a single modification type to plot (e.g.,
-  `"6mA"`, `"5mC"`). If `NULL` (default), all modification types are
+  Character vector of modification types to include (e.g., `"6mA"`,
+  `c("6mA", "5mC")`). If `NULL` (default), all modification types are
   included and the plot is faceted by `mod_type`.
 
 - motif:

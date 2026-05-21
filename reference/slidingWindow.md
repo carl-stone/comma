@@ -44,9 +44,9 @@ slidingWindow(
 
 - mod_type:
 
-  Character string or `NULL`. If provided, only sites of the specified
-  modification type (e.g., `"6mA"`) are included in the smoothing. If
-  `NULL` (default), all sites are used.
+  Character vector or `NULL`. If provided, only sites of the specified
+  modification type(s) (e.g., `"6mA"`, `c("6mA", "5mC")`) are included
+  in the smoothing. If `NULL` (default), all sites are used.
 
 - motif:
 

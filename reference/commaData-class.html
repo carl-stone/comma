@@ -15,7 +15,7 @@ analysis functions."></head><body>
 
     <a class="navbar-brand me-2" href="../index.html">comma</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.0.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -62,7 +62,15 @@ analysis functions.</p>
     </div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
-    <p>The class stores methylation data in two assay matrices (accessible via
+    <p>Genomic annotation and motif site positions are stored in
+<code>metadata(object)</code> rather than as dedicated slots. Use
+<code><a href="https://rdrr.io/pkg/BiocGenerics/man/annotation.html" class="external-link">annotation</a>(object)</code> and
+<code><a href="motifSites.html">motifSites</a>(object)</code> to access them.</p>
+<p>Genome size information is stored in the <code>Seqinfo</code> attached to
+<code>rowRanges(object)</code>, accessible via <code>seqlengths(object)</code> or
+<code>seqinfo(object)</code>. The <code>genome()</code> accessor returns the same
+named integer vector for backward compatibility.</p>
+<p>The class stores methylation data in two assay matrices (accessible via
 <code><a href="https://rdrr.io/pkg/SummarizedExperiment/man/SummarizedExperiment-class.html" class="external-link">assay</a></code>):</p><dl><dt><code>"methylation"</code></dt>
 <dd><p>Beta values (proportion of reads called
 methylated, range 0-1). Sites with coverage below the
@@ -76,14 +84,17 @@ methylated, range 0-1). Sites with coverage below the
 <code>rowRanges(object)</code>, a
 <code><a href="https://rdrr.io/pkg/GenomicRanges/man/GRanges-class.html" class="external-link">GRanges</a></code> with one 1-bp range per methylation
 site. Per-site metadata is in the <code>mcols</code> of this GRanges and
-includes at minimum: <code>mod_type</code>, <code>motif</code>, and
-<code>mod_context</code>. The <code>motif</code> column stores the sequence context
-of each site (e.g., <code>"GATC"</code> or <code>"CCWGG"</code>) as extracted from the
-modkit <code>mod_code</code> field. It is <code>NA</code> for Dorado and Megalodon
-callers. The <code>mod_context</code> column is a composite of modification type
-and motif (e.g., <code>"6mA_GATC"</code>, <code>"5mC_CCWGG"</code>), or just
-<code>mod_type</code> when motif is unavailable (e.g., <code>"6mA"</code> for
-Dorado/Megalodon data). All analyses default to running independently per
+includes at minimum: <code>mod_type</code> and <code>motif</code>. The <code>mod_type</code>
+column is a factor with levels <code>c("4mC", "5mC", "6mA")</code>, enforcing
+valid values at the data structure level. The <code>motif</code>
+column stores the sequence context of each site (e.g., <code>"GATC"</code> or
+<code>"CCWGG"</code>) as extracted from the modkit <code>mod_code</code> field. It is
+<code>NA</code> for Dorado and Megalodon callers. The <code>mod_context</code> is
+computed on demand from <code>mod_type</code> and <code>motif</code> (e.g.,
+<code>"6mA_GATC"</code>, <code>"5mC_CCWGG"</code>), or just <code>mod_type</code> when
+motif is unavailable (e.g., <code>"6mA"</code> for Dorado/Megalodon data). Use
+<code><a href="modContexts.html">modContexts</a>(object)</code> or <code><a href="siteInfo.html">siteInfo</a>(object)</code> to
+retrieve it. All analyses default to running independently per
 <code>mod_context</code> group to prevent spurious mixing of biologically distinct
 methylation events.</p>
 <p>For convenience, <code><a href="siteInfo.html">siteInfo</a>(object)</code> returns a flat
@@ -91,29 +102,10 @@ methylation events.</p>
 strand) with the mcols columns.</p>
 <p>Per-sample metadata is in <code>colData(object)</code> and includes at minimum:
 <code>sample_name</code>, <code>condition</code>, <code>replicate</code>.</p>
+<p>The methylation caller and minimum coverage threshold are stored in
+<code>metadata(object)</code> and accessible via <code><a href="caller.html">caller</a>(object)</code>
+and <code><a href="minCoverage.html">minCoverage</a>(object)</code>.</p>
     </div>
-    <div class="section level2">
-    <h2 id="slots">Slots<a class="anchor" aria-label="anchor" href="#slots"></a></h2>
-
-
-<dl><dt><code>genomeInfo</code></dt>
-<dd><p>Named integer vector of chromosome sizes
-c(chromosome name = length in bp).</p></dd>
-
-
-<dt><code>annotation</code></dt>
-<dd><p><code><a href="https://rdrr.io/pkg/GenomicRanges/man/GRanges-class.html" class="external-link">GRanges</a></code> of genomic features
-loaded from a GFF3 or BED file. May be an empty <code>GRanges</code> if no
-annotation was provided.</p></dd>
-
-
-<dt><code>motifSites</code></dt>
-<dd><p><code><a href="https://rdrr.io/pkg/GenomicRanges/man/GRanges-class.html" class="external-link">GRanges</a></code> of all instances of
-the user-specified sequence motif in the genome (e.g., all GATC sites).
-May be an empty <code>GRanges</code> if no motif was specified.</p></dd>
-
-
-</dl></div>
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
     <div class="dont-index"><p><code><a href="commaData.html">commaData</a></code> for the constructor,

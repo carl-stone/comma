@@ -11,6 +11,7 @@ when `method = "limma"`.
 .runLimma(
   methyl_mat,
   coverage_mat,
+  site_df,
   coldata,
   formula,
   alpha = 0.5,
@@ -28,6 +29,11 @@ when `method = "limma"`.
 - coverage_mat:
 
   Integer matrix (sites × samples) of read depths.
+
+- site_df:
+
+  Data frame with columns `chrom`, `position`, `strand`, `mod_type`,
+  `motif` — one row per site.
 
 - coldata:
 

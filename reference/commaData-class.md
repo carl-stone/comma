@@ -14,6 +14,18 @@ to construct instances.
 
 ## Details
 
+Genomic annotation and motif site positions are stored in
+`metadata(object)` rather than as dedicated slots. Use
+[`annotation`](https://rdrr.io/pkg/BiocGenerics/man/annotation.html)`(object)`
+and
+[`motifSites`](https://carl-stone.github.io/comma/reference/motifSites.md)`(object)`
+to access them.
+
+Genome size information is stored in the `Seqinfo` attached to
+`rowRanges(object)`, accessible via `seqlengths(object)` or
+`seqinfo(object)`. The `genome()` accessor returns the same named
+integer vector for backward compatibility.
+
 The class stores methylation data in two assay matrices (accessible via
 [`assay`](https://rdrr.io/pkg/SummarizedExperiment/man/SummarizedExperiment-class.html)):
 
@@ -29,15 +41,21 @@ The class stores methylation data in two assay matrices (accessible via
 Genomic positions are stored in `rowRanges(object)`, a
 [`GRanges`](https://rdrr.io/pkg/GenomicRanges/man/GRanges-class.html)
 with one 1-bp range per methylation site. Per-site metadata is in the
-`mcols` of this GRanges and includes at minimum: `mod_type`, `motif`,
-and `mod_context`. The `motif` column stores the sequence context of
-each site (e.g., `"GATC"` or `"CCWGG"`) as extracted from the modkit
-`mod_code` field. It is `NA` for Dorado and Megalodon callers. The
-`mod_context` column is a composite of modification type and motif
-(e.g., `"6mA_GATC"`, `"5mC_CCWGG"`), or just `mod_type` when motif is
-unavailable (e.g., `"6mA"` for Dorado/Megalodon data). All analyses
-default to running independently per `mod_context` group to prevent
-spurious mixing of biologically distinct methylation events.
+`mcols` of this GRanges and includes at minimum: `mod_type` and `motif`.
+The `mod_type` column is a factor with levels `c("4mC", "5mC", "6mA")`,
+enforcing valid values at the data structure level. The `motif` column
+stores the sequence context of each site (e.g., `"GATC"` or `"CCWGG"`)
+as extracted from the modkit `mod_code` field. It is `NA` for Dorado and
+Megalodon callers. The `mod_context` is computed on demand from
+`mod_type` and `motif` (e.g., `"6mA_GATC"`, `"5mC_CCWGG"`), or just
+`mod_type` when motif is unavailable (e.g., `"6mA"` for Dorado/Megalodon
+data). Use
+[`modContexts`](https://carl-stone.github.io/comma/reference/modContexts.md)`(object)`
+or
+[`siteInfo`](https://carl-stone.github.io/comma/reference/siteInfo.md)`(object)`
+to retrieve it. All analyses default to running independently per
+`mod_context` group to prevent spurious mixing of biologically distinct
+methylation events.
 
 For convenience,
 [`siteInfo`](https://carl-stone.github.io/comma/reference/siteInfo.md)`(object)`
@@ -47,25 +65,11 @@ position, strand) with the mcols columns.
 Per-sample metadata is in `colData(object)` and includes at minimum:
 `sample_name`, `condition`, `replicate`.
 
-## Slots
-
-- `genomeInfo`:
-
-  Named integer vector of chromosome sizes c(chromosome name = length in
-  bp).
-
-- `annotation`:
-
-  [`GRanges`](https://rdrr.io/pkg/GenomicRanges/man/GRanges-class.html)
-  of genomic features loaded from a GFF3 or BED file. May be an empty
-  `GRanges` if no annotation was provided.
-
-- `motifSites`:
-
-  [`GRanges`](https://rdrr.io/pkg/GenomicRanges/man/GRanges-class.html)
-  of all instances of the user-specified sequence motif in the genome
-  (e.g., all GATC sites). May be an empty `GRanges` if no motif was
-  specified.
+The methylation caller and minimum coverage threshold are stored in
+`metadata(object)` and accessible via
+[`caller`](https://carl-stone.github.io/comma/reference/caller.md)`(object)`
+and
+[`minCoverage`](https://carl-stone.github.io/comma/reference/minCoverage.md)`(object)`.
 
 ## See also
 

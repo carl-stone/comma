@@ -29,9 +29,9 @@ mValues(object, alpha = 0.5, mod_type = NULL, motif = NULL, mod_context = NULL)
 
 - mod_type:
 
-  Character string specifying a single modification type (e.g., `"6mA"`,
-  `"5mC"`). If `NULL` (default), M-values are computed for all sites in
-  `object`.
+  Character vector of modification types to include (e.g., `"6mA"`,
+  `c("6mA", "5mC")`). If `NULL` (default), M-values are computed for all
+  sites in `object`.
 
 - motif:
 

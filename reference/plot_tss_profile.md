@@ -55,8 +55,8 @@ plot_tss_profile(
 
 - mod_type:
 
-  Character string or `NULL`. If provided, only sites of the specified
-  modification type (e.g., `"6mA"`, `"5mC"`) are included.
+  Character vector or `NULL`. If provided, only sites of the specified
+  modification type(s) (e.g., `"6mA"`, `c("6mA", "5mC")`) are included.
 
 - motif:
 
@@ -156,6 +156,18 @@ plot still renders.
 ``` r
 data(comma_example_data)
 plot_tss_profile(comma_example_data, feature_type = "gene", window = 500L)
+#> Warning: GRanges object contains 3 out-of-bound ranges located on sequence chr_sim.
+#>   Note that ranges located on a sequence whose length is unknown (NA) or on a
+#>   circular sequence are not considered out-of-bound (use seqlengths() and
+#>   isCircular() to get the lengths and circularity flags of the underlying
+#>   sequences). You can use trim() to trim these ranges. See
+#>   ?`trim,GenomicRanges-method` for more information.
+#> Warning: GRanges object contains 2 out-of-bound ranges located on sequence chr_sim.
+#>   Note that ranges located on a sequence whose length is unknown (NA) or on a
+#>   circular sequence are not considered out-of-bound (use seqlengths() and
+#>   isCircular() to get the lengths and circularity flags of the underlying
+#>   sequences). You can use trim() to trim these ranges. See
+#>   ?`trim,GenomicRanges-method` for more information.
 #> Ignoring unknown labels:
 #> • colour : "Sample"
 #> Warning: Ignoring empty aesthetic: `colour`.
@@ -164,6 +176,18 @@ plot_tss_profile(comma_example_data, feature_type = "gene", window = 500L)
 # Colour by modification type, facet by sample
 plot_tss_profile(comma_example_data, feature_type = "gene",
                  color_by = "mod_type", facet_by = "sample")
+#> Warning: GRanges object contains 3 out-of-bound ranges located on sequence chr_sim.
+#>   Note that ranges located on a sequence whose length is unknown (NA) or on a
+#>   circular sequence are not considered out-of-bound (use seqlengths() and
+#>   isCircular() to get the lengths and circularity flags of the underlying
+#>   sequences). You can use trim() to trim these ranges. See
+#>   ?`trim,GenomicRanges-method` for more information.
+#> Warning: GRanges object contains 2 out-of-bound ranges located on sequence chr_sim.
+#>   Note that ranges located on a sequence whose length is unknown (NA) or on a
+#>   circular sequence are not considered out-of-bound (use seqlengths() and
+#>   isCircular() to get the lengths and circularity flags of the underlying
+#>   sequences). You can use trim() to trim these ranges. See
+#>   ?`trim,GenomicRanges-method` for more information.
 #> Ignoring unknown labels:
 #> • colour : "Modification type"
 #> Warning: Ignoring empty aesthetic: `colour`.
@@ -172,6 +196,18 @@ plot_tss_profile(comma_example_data, feature_type = "gene",
 # Overlay loess smooth
 plot_tss_profile(comma_example_data, feature_type = "gene",
                  show_smooth = TRUE)
+#> Warning: GRanges object contains 3 out-of-bound ranges located on sequence chr_sim.
+#>   Note that ranges located on a sequence whose length is unknown (NA) or on a
+#>   circular sequence are not considered out-of-bound (use seqlengths() and
+#>   isCircular() to get the lengths and circularity flags of the underlying
+#>   sequences). You can use trim() to trim these ranges. See
+#>   ?`trim,GenomicRanges-method` for more information.
+#> Warning: GRanges object contains 2 out-of-bound ranges located on sequence chr_sim.
+#>   Note that ranges located on a sequence whose length is unknown (NA) or on a
+#>   circular sequence are not considered out-of-bound (use seqlengths() and
+#>   isCircular() to get the lengths and circularity flags of the underlying
+#>   sequences). You can use trim() to trim these ranges. See
+#>   ?`trim,GenomicRanges-method` for more information.
 #> Warning: LOESS smooth for group(s) 'ctrl_1', 'ctrl_2', 'ctrl_3', 'treat_1', 'treat_2', 'treat_3' encountered numerical instability; the smooth may be unreliable. Consider adjusting smooth_span or increasing data density near this feature.
 #> Warning: Ignoring empty aesthetic: `colour`.
 #> Warning: Removed 420 rows containing missing values or values outside the scale range

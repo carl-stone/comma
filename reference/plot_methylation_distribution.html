@@ -11,7 +11,7 @@ methylation level distributions across samples and modification types."></head><
 
     <a class="navbar-brand me-2" href="../index.html">comma</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.0.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -68,8 +68,8 @@ methylation level distributions across samples and modification types.</p>
 
 
 <dt id="arg-mod-type">mod_type<a class="anchor" aria-label="anchor" href="#arg-mod-type"></a></dt>
-<dd><p>Character string specifying a single modification type to
-plot (e.g., <code>"6mA"</code>, <code>"5mC"</code>). If <code>NULL</code> (default), all
+<dd><p>Character vector of modification types to include
+(e.g., <code>"6mA"</code>, <code>c("6mA", "5mC")</code>). If <code>NULL</code> (default), all
 modification types are included and the plot is faceted by
 <code>mod_type</code>.</p></dd>
 

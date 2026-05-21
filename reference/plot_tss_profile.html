@@ -15,7 +15,7 @@ sites by regulatory feature overlap (e.g., sigma factor binding sites,
 
     <a class="navbar-brand me-2" href="../index.html">comma</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.0.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -104,9 +104,9 @@ ignored otherwise.</p></dd>
 
 
 <dt id="arg-mod-type">mod_type<a class="anchor" aria-label="anchor" href="#arg-mod-type"></a></dt>
-<dd><p>Character string or <code>NULL</code>. If provided, only sites
-of the specified modification type (e.g., <code>"6mA"</code>, <code>"5mC"</code>)
-are included.</p></dd>
+<dd><p>Character vector or <code>NULL</code>. If provided, only sites
+of the specified modification type(s) (e.g., <code>"6mA"</code>,
+<code>c("6mA", "5mC")</code>) are included.</p></dd>
 
 
 <dt id="arg-motif">motif<a class="anchor" aria-label="anchor" href="#arg-motif"></a></dt>
@@ -201,6 +201,18 @@ so the plot still renders.</p>
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">comma_example_data</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu">plot_tss_profile</span><span class="op">(</span><span class="va">comma_example_data</span>, feature_type <span class="op">=</span> <span class="st">"gene"</span>, window <span class="op">=</span> <span class="fl">500L</span><span class="op">)</span></span></span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>GRanges object contains 3 out-of-bound ranges located on sequence chr_sim.</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span>   Note that ranges located on a sequence whose length is unknown (NA) or on a</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span>   circular sequence are not considered out-of-bound (use seqlengths() and</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span>   isCircular() to get the lengths and circularity flags of the underlying</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span>   sequences). You can use trim() to trim these ranges. See</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span>   ?`trim,GenomicRanges-method` for more information.</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>GRanges object contains 2 out-of-bound ranges located on sequence chr_sim.</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span>   Note that ranges located on a sequence whose length is unknown (NA) or on a</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span>   circular sequence are not considered out-of-bound (use seqlengths() and</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span>   isCircular() to get the lengths and circularity flags of the underlying</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span>   sequences). You can use trim() to trim these ranges. See</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span>   ?`trim,GenomicRanges-method` for more information.</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Ignoring unknown labels:</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> <span style="color: #00BB00;">colour</span> : <span style="color: #0000BB;">"Sample"</span></span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Ignoring empty aesthetic: `colour`.</span>
@@ -209,6 +221,18 @@ so the plot still renders.</p>
 <span class="r-in"><span><span class="co"># Colour by modification type, facet by sample</span></span></span>
 <span class="r-in"><span><span class="fu">plot_tss_profile</span><span class="op">(</span><span class="va">comma_example_data</span>, feature_type <span class="op">=</span> <span class="st">"gene"</span>,</span></span>
 <span class="r-in"><span>                 color_by <span class="op">=</span> <span class="st">"mod_type"</span>, facet_by <span class="op">=</span> <span class="st">"sample"</span><span class="op">)</span></span></span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>GRanges object contains 3 out-of-bound ranges located on sequence chr_sim.</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span>   Note that ranges located on a sequence whose length is unknown (NA) or on a</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span>   circular sequence are not considered out-of-bound (use seqlengths() and</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span>   isCircular() to get the lengths and circularity flags of the underlying</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span>   sequences). You can use trim() to trim these ranges. See</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span>   ?`trim,GenomicRanges-method` for more information.</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>GRanges object contains 2 out-of-bound ranges located on sequence chr_sim.</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span>   Note that ranges located on a sequence whose length is unknown (NA) or on a</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span>   circular sequence are not considered out-of-bound (use seqlengths() and</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span>   isCircular() to get the lengths and circularity flags of the underlying</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span>   sequences). You can use trim() to trim these ranges. See</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span>   ?`trim,GenomicRanges-method` for more information.</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Ignoring unknown labels:</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">•</span> <span style="color: #00BB00;">colour</span> : <span style="color: #0000BB;">"Modification type"</span></span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Ignoring empty aesthetic: `colour`.</span>
@@ -217,6 +241,18 @@ so the plot still renders.</p>
 <span class="r-in"><span><span class="co"># Overlay loess smooth</span></span></span>
 <span class="r-in"><span><span class="fu">plot_tss_profile</span><span class="op">(</span><span class="va">comma_example_data</span>, feature_type <span class="op">=</span> <span class="st">"gene"</span>,</span></span>
 <span class="r-in"><span>                 show_smooth <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>GRanges object contains 3 out-of-bound ranges located on sequence chr_sim.</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span>   Note that ranges located on a sequence whose length is unknown (NA) or on a</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span>   circular sequence are not considered out-of-bound (use seqlengths() and</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span>   isCircular() to get the lengths and circularity flags of the underlying</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span>   sequences). You can use trim() to trim these ranges. See</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span>   ?`trim,GenomicRanges-method` for more information.</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>GRanges object contains 2 out-of-bound ranges located on sequence chr_sim.</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span>   Note that ranges located on a sequence whose length is unknown (NA) or on a</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span>   circular sequence are not considered out-of-bound (use seqlengths() and</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span>   isCircular() to get the lengths and circularity flags of the underlying</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span>   sequences). You can use trim() to trim these ranges. See</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span>   ?`trim,GenomicRanges-method` for more information.</span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>LOESS smooth for group(s) 'ctrl_1', 'ctrl_2', 'ctrl_3', 'treat_1', 'treat_2', 'treat_3' encountered numerical instability; the smooth may be unreliable. Consider adjusting smooth_span or increasing data density near this feature.</span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Ignoring empty aesthetic: `colour`.</span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Removed 420 rows containing missing values or values outside the scale range</span>

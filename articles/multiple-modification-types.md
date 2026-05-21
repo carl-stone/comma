@@ -43,8 +43,8 @@ modTypes(comma_example_data)
 
 table(siteInfo(comma_example_data)$mod_type)
 #> 
-#> 5mC 6mA 
-#> 195 393
+#> 4mC 5mC 6mA 
+#>   0 195 393
 ```
 
 ### Per-modification methylation summary
@@ -273,7 +273,7 @@ sessionInfo()
 #> [1] stats     graphics  grDevices datasets  utils     methods   base     
 #> 
 #> other attached packages:
-#> [1] comma_0.1.0.9000 BiocStyle_2.38.0
+#> [1] comma_0.2.0      BiocStyle_2.38.0
 #> 
 #> loaded via a namespace (and not attached):
 #>   [1] bitops_1.0-9                rlang_1.2.0                

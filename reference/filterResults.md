@@ -48,7 +48,7 @@ filterResults(
 
 - mod_type:
 
-  Character string or `NULL`. Passed to
+  Character vector or `NULL`. Passed to
   [`results`](https://carl-stone.github.io/comma/reference/results.md)
   for optional modification type filtering.
 

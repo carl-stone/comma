@@ -13,7 +13,7 @@ genomic annotation and motif site positions."></head><body>
 
     <a class="navbar-brand me-2" href="../index.html">comma</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.0.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -91,7 +91,7 @@ named integer vector — do not index into the BSgenome with <code>$</code>
 (e.g., <code>BSgenome.Ecoli.NCBI.20080805$NC_000913</code>) as that yields a
 <code>DNAString</code> which has no chromosome name and cannot be used. Set to
 <code>NULL</code> to omit genome information (not recommended). When a
-multi-sequence source is provided, genomeInfo is automatically restricted
+multi-sequence source is provided, genome info is automatically restricted
 to chromosomes present in the data.</p></dd>
 
 
@@ -158,12 +158,12 @@ produced the input files. One of <code>"modkit"</code> (default),
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
     <p>The constructor uses a parse-then-merge strategy:</p><ol><li><p>Each file is parsed independently using the appropriate parser.</p></li>
-<li><p>Sites are identified by a 5-part key:
-<code>"chrom:position:strand:mod_type:motif"</code> (motif is <code>"NA"</code>
-for Dorado and Megalodon callers).</p></li>
-<li><p>The union of all sites across all samples is taken.</p></li>
-<li><p>Beta values and coverage are arranged into sites × samples matrices,
-with <code>NA</code> for samples that do not cover a given site.</p></li>
+<li><p>Sites are identified by their genomic position (chromosome, position,
+strand) plus modification type and motif context.</p></li>
+<li><p>The union of all sites across all samples is taken, using
+<code>findOverlaps()</code> for alignment.</p></li>
+<li><p>Beta values and coverage are arranged into sites \(\times\) samples
+matrices, with <code>NA</code> for samples that do not cover a given site.</p></li>
 <li><p>Sites where coverage is below <code>min_coverage</code> in a sample have
 their beta value set to <code>NA</code> (but coverage is preserved).</p></li>
 </ol></div>
@@ -189,6 +189,8 @@ their beta value set to <code>NA</code> (but coverage is preserved).</p></li>
 <span class="r-out co"><span class="r-pr">#&gt;</span> genome: 1 chromosome (100,000 bp total) </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> annotation: 5 features </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> motif sites: none </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> caller: modkit </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> min_coverage: 5 </span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span> <span class="co"># \dontrun{</span></span></span>
 <span class="r-in"><span><span class="co"># Load two modkit BED files (requires user-provided files)</span></span></span>

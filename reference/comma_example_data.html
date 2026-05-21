@@ -11,7 +11,7 @@ tests. It does not represent real biological data."></head><body>
 
     <a class="navbar-brand me-2" href="../index.html">comma</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.0.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -72,19 +72,17 @@ simulated 100 kb chromosome (<code>"chr_sim"</code>).</p></dd>
 
 </dl></dd>
 
-<dt><strong>rowData</strong></dt>
-<dd><p>Per-site metadata including <code>chrom</code>,
-<code>position</code>, <code>strand</code>, <code>mod_type</code>, <code>motif</code>
-(<code>"GATC"</code> for 6mA sites, <code>"CCWGG"</code> for 5mC sites), and
-<code>is_diff</code> (ground-truth differential methylation status for
-testing purposes).</p></dd>
+<dt><strong>rowRanges</strong></dt>
+<dd><p>GRanges with 1-bp ranges per site. mcols include
+<code>mod_type</code>, <code>motif</code>, <code>mod_context</code>, and <code>is_diff</code>
+(ground-truth differential methylation status for testing).</p></dd>
 
 <dt><strong>colData</strong></dt>
 <dd><p>Per-sample metadata: <code>sample_name</code>,
 <code>condition</code>, <code>replicate</code>, <code>caller</code>.</p></dd>
 
-<dt><strong>genomeInfo</strong></dt>
-<dd><p>Named integer vector: <code>c(chr_sim = 100000L)</code>.</p></dd>
+<dt><strong>Seqinfo</strong></dt>
+<dd><p>Chromosome sizes: <code>c(chr_sim = 100000L)</code>.</p></dd>
 
 <dt><strong>annotation</strong></dt>
 <dd><p>5 simulated genomic features (genes, rRNA, tRNA).</p></dd>
@@ -130,6 +128,8 @@ modification-type functionality.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> genome: 1 chromosome (100,000 bp total) </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> annotation: 5 features </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> motif sites: none </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> caller: modkit </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> min_coverage: 5 </span>
 <span class="r-in"><span><span class="fu"><a href="modTypes.html">modTypes</a></span><span class="op">(</span><span class="va">comma_example_data</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "5mC" "6mA"</span>
 <span class="r-in"><span><span class="fu"><a href="motifs.html">motifs</a></span><span class="op">(</span><span class="va">comma_example_data</span><span class="op">)</span></span></span>

@@ -47,7 +47,7 @@ commaData(
   `BSgenome.Ecoli.NCBI.20080805$NC_000913`) as that yields a `DNAString`
   which has no chromosome name and cannot be used. Set to `NULL` to omit
   genome information (not recommended). When a multi-sequence source is
-  provided, genomeInfo is automatically restricted to chromosomes
+  provided, genome info is automatically restricted to chromosomes
   present in the data.
 
 - annotation:
@@ -114,14 +114,14 @@ The constructor uses a parse-then-merge strategy:
 
 1.  Each file is parsed independently using the appropriate parser.
 
-2.  Sites are identified by a 5-part key:
-    `"chrom:position:strand:mod_type:motif"` (motif is `"NA"` for Dorado
-    and Megalodon callers).
+2.  Sites are identified by their genomic position (chromosome,
+    position, strand) plus modification type and motif context.
 
-3.  The union of all sites across all samples is taken.
+3.  The union of all sites across all samples is taken, using
+    `findOverlaps()` for alignment.
 
-4.  Beta values and coverage are arranged into sites × samples matrices,
-    with `NA` for samples that do not cover a given site.
+4.  Beta values and coverage are arranged into sites \\\times\\ samples
+    matrices, with `NA` for samples that do not cover a given site.
 
 5.  Sites where coverage is below `min_coverage` in a sample have their
     beta value set to `NA` (but coverage is preserved).
@@ -152,6 +152,8 @@ comma_example_data
 #> genome: 1 chromosome (100,000 bp total) 
 #> annotation: 5 features 
 #> motif sites: none 
+#> caller: modkit 
+#> min_coverage: 5 
 
 if (FALSE) { # \dontrun{
 # Load two modkit BED files (requires user-provided files)

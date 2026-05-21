@@ -9,7 +9,14 @@ when `method = "quasi_f"`.
 ## Usage
 
 ``` r
-.runQuasiF(methyl_mat, coverage_mat, coldata, formula, ref_level = NULL)
+.runQuasiF(
+  methyl_mat,
+  coverage_mat,
+  site_df,
+  coldata,
+  formula,
+  ref_level = NULL
+)
 ```
 
 ## Arguments
@@ -22,6 +29,11 @@ when `method = "quasi_f"`.
 - coverage_mat:
 
   Integer matrix (sites × samples) of read depths.
+
+- site_df:
+
+  Data frame with columns `chrom`, `position`, `strand`, `mod_type`,
+  `motif` — one row per site.
 
 - coldata:
 

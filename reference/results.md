@@ -30,9 +30,9 @@ results(object, mod_type = NULL, motif = NULL, mod_context = NULL, ...)
 
 - mod_type:
 
-  Character string or `NULL`. If provided, only sites of the specified
-  modification type are returned. If `NULL` (default), results for all
-  modification types are returned.
+  Character vector or `NULL`. If provided, only sites of the specified
+  modification type(s) are returned. If `NULL` (default), results for
+  all modification types are returned.
 
 - motif:
 
@@ -104,25 +104,25 @@ dm <- diffMethyl(comma_example_data, formula = ~ condition, mod_type = "6mA")
 #> uniting...
 res <- results(dm)
 head(res[order(res$dm_padj), ])
-#>                            chrom position strand mod_type motif mod_context
-#> chr_sim:50176:-:6mA:GATC chr_sim    50176      -      6mA  GATC    6mA_GATC
-#> chr_sim:70003:-:6mA:GATC chr_sim    70003      -      6mA  GATC    6mA_GATC
-#> chr_sim:63550:+:6mA:GATC chr_sim    63550      +      6mA  GATC    6mA_GATC
-#> chr_sim:61440:+:6mA:GATC chr_sim    61440      +      6mA  GATC    6mA_GATC
-#> chr_sim:86016:+:6mA:GATC chr_sim    86016      +      6mA  GATC    6mA_GATC
-#> chr_sim:2180:-:6mA:GATC  chr_sim     2180      -      6mA  GATC    6mA_GATC
-#>                          is_diff    dm_pvalue      dm_padj dm_delta_beta
-#> chr_sim:50176:-:6mA:GATC    TRUE 4.705226e-78 1.849154e-75    -0.7336497
-#> chr_sim:70003:-:6mA:GATC    TRUE 1.982943e-70 3.896483e-68    -0.7050844
-#> chr_sim:63550:+:6mA:GATC    TRUE 3.822058e-68 5.006897e-66    -0.7799241
-#> chr_sim:61440:+:6mA:GATC    TRUE 1.199352e-66 1.178364e-64    -0.7090099
-#> chr_sim:86016:+:6mA:GATC    TRUE 4.658449e-64 3.661541e-62    -0.6743832
-#> chr_sim:2180:-:6mA:GATC     TRUE 6.144202e-62 4.024452e-60    -0.7543758
-#>                          dm_mean_beta_control dm_mean_beta_treatment
-#> chr_sim:50176:-:6mA:GATC            0.8939269             0.16027720
-#> chr_sim:70003:-:6mA:GATC            0.8734775             0.16839309
-#> chr_sim:63550:+:6mA:GATC            0.8661683             0.08624415
-#> chr_sim:61440:+:6mA:GATC            0.9070218             0.19801189
-#> chr_sim:86016:+:6mA:GATC            0.8716203             0.19723706
-#> chr_sim:2180:-:6mA:GATC             0.9464297             0.19205391
+#>       chrom position strand mod_type motif is_diff    dm_pvalue      dm_padj
+#> 196 chr_sim    50176      -      6mA  GATC    TRUE 4.705226e-78 1.849154e-75
+#> 287 chr_sim    70003      -      6mA  GATC    TRUE 1.982943e-70 3.896483e-68
+#> 260 chr_sim    63550      +      6mA  GATC    TRUE 3.822058e-68 5.006897e-66
+#> 249 chr_sim    61440      +      6mA  GATC    TRUE 1.199352e-66 1.178364e-64
+#> 347 chr_sim    86016      +      6mA  GATC    TRUE 4.658449e-64 3.661541e-62
+#> 9   chr_sim     2180      -      6mA  GATC    TRUE 6.144202e-62 4.024452e-60
+#>     dm_delta_beta dm_mean_beta_control dm_mean_beta_treatment mod_context
+#> 196    -0.7336497            0.8939269             0.16027720    6mA_GATC
+#> 287    -0.7050844            0.8734775             0.16839309    6mA_GATC
+#> 260    -0.7799241            0.8661683             0.08624415    6mA_GATC
+#> 249    -0.7090099            0.9070218             0.19801189    6mA_GATC
+#> 347    -0.6743832            0.8716203             0.19723706    6mA_GATC
+#> 9      -0.7543758            0.9464297             0.19205391    6mA_GATC
+#>             site_key
+#> 196 50176:-:6mA:GATC
+#> 287 70003:-:6mA:GATC
+#> 260 63550:+:6mA:GATC
+#> 249 61440:+:6mA:GATC
+#> 347 86016:+:6mA:GATC
+#> 9    2180:-:6mA:GATC
 ```

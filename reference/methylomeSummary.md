@@ -22,9 +22,10 @@ methylomeSummary(object, mod_type = NULL, motif = NULL, mod_context = NULL)
 
 - mod_type:
 
-  Character string or `NULL`. If provided, only sites of the specified
-  modification type (e.g., `"6mA"`) are included in the summary. If
-  `NULL` (default), all modification types are summarized together.
+  Character vector or `NULL`. If provided, only sites of the specified
+  modification type(s) (e.g., `"6mA"`, `c("6mA", "5mC")`) are included
+  in the summary. If `NULL` (default), all modification types are
+  summarized together.
 
 - motif:
 
@@ -87,10 +88,6 @@ A `data.frame` with one row per sample, containing:
   `min_coverage` threshold, which have coverage stored as 0 or their raw
   depth).
 
-- `median_coverage`:
-
-  Median sequencing depth.
-
 ## See also
 
 [`methylation`](https://carl-stone.github.io/comma/reference/methylation.md),
@@ -110,13 +107,13 @@ ms
 #> 4     treat_1 treatment      all     588       588 0.8357998   0.8864176
 #> 5     treat_2 treatment      all     588       588 0.8369054   0.8893089
 #> 6     treat_3 treatment      all     588       588 0.8388398   0.8866568
-#>      sd_beta frac_methylated mean_coverage median_coverage
-#> 1 0.10704958       0.9897959      79.25340            79.0
-#> 2 0.09647906       0.9948980      79.83333            81.0
-#> 3 0.10609612       0.9897959      82.67347            83.0
-#> 4 0.17009987       0.9421769      76.49490            76.5
-#> 5 0.16870207       0.9404762      78.44218            78.0
-#> 6 0.16809920       0.9455782      79.17517            76.5
+#>      sd_beta frac_methylated mean_coverage median_coverage caller min_coverage
+#> 1 0.10704958       0.9897959      79.25340            79.0 modkit            5
+#> 2 0.09647906       0.9948980      79.83333            81.0 modkit            5
+#> 3 0.10609612       0.9897959      82.67347            83.0 modkit            5
+#> 4 0.17009987       0.9421769      76.49490            76.5 modkit            5
+#> 5 0.16870207       0.9404762      78.44218            78.0 modkit            5
+#> 6 0.16809920       0.9455782      79.17517            76.5 modkit            5
 
 # Summarize only 6mA sites
 ms_6mA <- methylomeSummary(comma_example_data, mod_type = "6mA")

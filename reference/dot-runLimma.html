@@ -11,7 +11,7 @@ diffMethyl when method = &quot;limma&quot;."></head><body>
 
     <a class="navbar-brand me-2" href="../index.html">comma</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.0.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -53,6 +53,7 @@ t-test to identify differentially methylated sites. Called by
     <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">.runLimma</span><span class="op">(</span></span>
 <span>  <span class="va">methyl_mat</span>,</span>
 <span>  <span class="va">coverage_mat</span>,</span>
+<span>  <span class="va">site_df</span>,</span>
 <span>  <span class="va">coldata</span>,</span>
 <span>  <span class="va">formula</span>,</span>
 <span>  alpha <span class="op">=</span> <span class="fl">0.5</span>,</span>
@@ -71,6 +72,11 @@ t-test to identify differentially methylated sites. Called by
 
 <dt id="arg-coverage-mat">coverage_mat<a class="anchor" aria-label="anchor" href="#arg-coverage-mat"></a></dt>
 <dd><p>Integer matrix (sites × samples) of read depths.</p></dd>
+
+
+<dt id="arg-site-df">site_df<a class="anchor" aria-label="anchor" href="#arg-site-df"></a></dt>
+<dd><p>Data frame with columns <code>chrom</code>, <code>position</code>,
+<code>strand</code>, <code>mod_type</code>, <code>motif</code> — one row per site.</p></dd>
 
 
 <dt id="arg-coldata">coldata<a class="anchor" aria-label="anchor" href="#arg-coldata"></a></dt>

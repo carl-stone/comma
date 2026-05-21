@@ -28,9 +28,9 @@ plot_coverage(
 
 - mod_type:
 
-  Character string specifying a single modification type (e.g., `"6mA"`,
-  `"5mC"`). If `NULL` (default), all sites from all modification types
-  are included.
+  Character vector of modification types to include (e.g., `"6mA"`,
+  `c("6mA", "5mC")`). If `NULL` (default), all sites from all
+  modification types are included.
 
 - motif:
 

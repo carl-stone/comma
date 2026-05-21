@@ -2,7 +2,9 @@
 
 Returns the chromosome sizes stored in a
 [`commaData`](https://carl-stone.github.io/comma/reference/commaData.md)
-object.
+object. Genome size information is stored in the `Seqinfo` attached to
+`rowRanges(object)`. This accessor returns `seqlengths(object)` for
+backward compatibility.
 
 ## Usage
 
@@ -19,8 +21,8 @@ genome(x)
 
 ## Value
 
-A named integer vector of chromosome sizes (chromosome name → length in
-bp), or `NULL` if no genome information was provided at construction.
+A named integer vector of chromosome sizes (chromosome name -\> length
+in bp), or `NULL` if no genome information was provided at construction.
 
 ## Examples
 
