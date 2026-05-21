@@ -50,7 +50,8 @@ test_that("plot_volcano: custom thresholds produce vlines at correct positions",
         if (is.function(layer_data)) NA_real_ else layer_data$xintercept[1]
     }, numeric(1))
     intercepts <- intercepts[!is.na(intercepts)]
-    expect_true(any(abs(intercepts - 0.3) < 0.01) || any(abs(intercepts + 0.3) < 0.01))
+    expect_true(any(abs(intercepts - 0.3) < 0.01))
+    expect_true(any(abs(intercepts + 0.3) < 0.01))
 })
 
 # ─── Threshold lines ──────────────────────────────────────────────────────────

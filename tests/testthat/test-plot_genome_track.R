@@ -106,6 +106,8 @@ test_that("plot_genome_track: start only (no end) filters positions >= start", {
     expect_s3_class(p, "ggplot")
     bd <- ggplot2::ggplot_build(p)
     x_vals <- bd$data[[1L]]$x
+    # Must have at least one point (guard against vacuous pass on empty vector)
+    expect_true(length(x_vals) > 0L)
     # All displayed positions should be >= 3000
     expect_true(all(x_vals >= 3000L))
 })
