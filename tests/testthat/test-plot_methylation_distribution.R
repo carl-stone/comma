@@ -87,12 +87,28 @@ test_that("plot_methylation_distribution: returns ggplot for valid input", {
     obj <- .make_dist_data()
     p <- plot_methylation_distribution(obj)
     expect_s3_class(p, "ggplot")
+    # Verify density layer has data points (beta values)
+    bd <- ggplot2::ggplot_build(p)$data[[1]]
+    expect_true(nrow(bd) > 0L)
+    # Each density group should have observations (n > 0)
+    expect_true(all(bd$n > 0L))
+    # x values should be in [0, 1] (beta range)
+    expect_true(all(bd$x >= 0 & bd$x <= 1))
 })
 
 test_that("plot_methylation_distribution: mod_type filter returns ggplot", {
     obj <- .make_dist_data_two_mods()
+    p_unfiltered <- plot_methylation_distribution(obj)
     p <- plot_methylation_distribution(obj, mod_type = "6mA")
     expect_s3_class(p, "ggplot")
+    # Verify filtered data has different content than unfiltered
+    bd_filtered   <- ggplot2::ggplot_build(p)$data[[1]]
+    bd_unfiltered <- ggplot2::ggplot_build(p_unfiltered)$data[[1]]
+    n_filtered   <- sum(bd_filtered$n[!duplicated(paste(bd_filtered$group,
+                                                        bd_filtered$PANEL))])
+    n_unfiltered <- sum(bd_unfiltered$n[!duplicated(paste(bd_unfiltered$group,
+                                                          bd_unfiltered$PANEL))])
+    expect_true(n_filtered < n_unfiltered)
 })
 
 # ─── Faceting ─────────────────────────────────────────────────────────────────
@@ -115,12 +131,21 @@ test_that("plot_methylation_distribution: single-mod object has no facets", {
 
 test_that("plot_methylation_distribution: NAs in beta values are silently excluded", {
     obj <- .make_dist_data()
+    p_orig <- plot_methylation_distribution(obj)
     # Inject NAs into the methylation matrix
     methyl_mat <- methylation(obj)
     methyl_mat[1:3, "ctrl_1"] <- NA
     SummarizedExperiment::assay(obj, "methylation") <- methyl_mat
     p <- plot_methylation_distribution(obj)
     expect_s3_class(p, "ggplot")
+    # Verify fewer data points after NA injection
+    bd_orig <- ggplot2::ggplot_build(p_orig)$data[[1]]
+    bd_na   <- ggplot2::ggplot_build(p)$data[[1]]
+    n_orig <- sum(bd_orig$n[!duplicated(paste(bd_orig$group,
+                                              bd_orig$PANEL))])
+    n_na   <- sum(bd_na$n[!duplicated(paste(bd_na$group,
+                                            bd_na$PANEL))])
+    expect_true(n_na < n_orig)
 })
 
 # ─── Error conditions ─────────────────────────────────────────────────────────

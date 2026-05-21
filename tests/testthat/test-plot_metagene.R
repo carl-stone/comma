@@ -55,22 +55,40 @@
 
 # ─── Basic return type ────────────────────────────────────────────────────────
 
-test_that("plot_metagene: returns ggplot for valid feature type", {
+test_that("plot_metagene: returns ggplot with line data for valid feature type", {
     obj <- .make_metagene_data()
     p <- plot_metagene(obj, feature = "gene")
     expect_s3_class(p, "ggplot")
+    # Verify line layer has data with bin_center values in [0,1]
+    bd <- ggplot2::ggplot_build(p)
+    line_data <- bd$data[[1]]
+    expect_true(nrow(line_data) > 0)
+    expect_true(all(line_data$x >= -1e-6 & line_data$x <= 1 + 1e-6))
 })
 
-test_that("plot_metagene: mod_type filter accepted", {
+test_that("plot_metagene: mod_type filter produces valid line data", {
     obj <- .make_metagene_data()
     p <- plot_metagene(obj, feature = "gene", mod_type = "6mA")
     expect_s3_class(p, "ggplot")
+    # Verify line layer has data
+    bd <- ggplot2::ggplot_build(p)
+    expect_true(nrow(bd$data[[1]]) > 0)
 })
 
-test_that("plot_metagene: n_bins parameter accepted", {
+test_that("plot_metagene: n_bins parameter controls bin count in line data", {
     obj <- .make_metagene_data()
     p <- plot_metagene(obj, feature = "gene", n_bins = 20L)
     expect_s3_class(p, "ggplot")
+    # Verify line layer has data
+    bd <- ggplot2::ggplot_build(p)
+    line_data <- bd$data[[1]]
+    expect_true(nrow(line_data) > 0)
+    # More bins should produce more unique x positions than default
+    p_default <- plot_metagene(obj, feature = "gene")
+    bd_default <- ggplot2::ggplot_build(p_default)
+    n_x_20 <- length(unique(round(line_data$x, 4)))
+    n_x_default <- length(unique(round(bd_default$data[[1]]$x, 4)))
+    expect_gte(n_x_20, n_x_default)
 })
 
 # ─── x-axis range ─────────────────────────────────────────────────────────────

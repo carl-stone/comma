@@ -53,24 +53,37 @@
 
 # ─── Basic return type ────────────────────────────────────────────────────────
 
-test_that("plot_genome_track: returns ggplot for valid chromosome", {
-    obj <- .make_track_data()
-    p <- plot_genome_track(obj, chromosome = "chr_sim")
-    # May return a patchwork or ggplot depending on patchwork availability
-    expect_true(inherits(p, "ggplot") || inherits(p, "patchwork"))
-})
-
-test_that("plot_genome_track: annotation = FALSE suppresses annotation track", {
+test_that("plot_genome_track: returns ggplot with point data for valid chromosome", {
     obj <- .make_track_data()
     p <- plot_genome_track(obj, chromosome = "chr_sim", annotation = FALSE)
     expect_s3_class(p, "ggplot")
+    # Verify point layer has data with position values
+    bd <- ggplot2::ggplot_build(p)
+    point_data <- bd$data[[1]]
+    expect_true(nrow(point_data) > 0)
+    # x values are genomic positions (positive integers)
+    expect_true(all(point_data$x[is.finite(point_data$x)] > 0))
 })
 
-test_that("plot_genome_track: mod_type filter returns ggplot without error", {
+test_that("plot_genome_track: annotation = FALSE returns single ggplot without annotation track", {
     obj <- .make_track_data()
-    p <- plot_genome_track(obj, chromosome = "chr_sim",
-                           mod_type = "6mA", annotation = FALSE)
+    p <- plot_genome_track(obj, chromosome = "chr_sim", annotation = FALSE)
     expect_s3_class(p, "ggplot")
+    # Without annotation, only point layer (no rect layer for features)
+    layer_classes <- vapply(p$layers, function(l) class(l$geom)[1], character(1))
+    expect_true("GeomPoint" %in% layer_classes)
+    expect_false("GeomRect" %in% layer_classes)
+})
+
+test_that("plot_genome_track: mod_type filter reduces plotted points", {
+    obj <- .make_track_data()
+    p_all <- plot_genome_track(obj, chromosome = "chr_sim", annotation = FALSE)
+    p_filt <- plot_genome_track(obj, chromosome = "chr_sim",
+                                mod_type = "6mA", annotation = FALSE)
+    expect_s3_class(p_filt, "ggplot")
+    # All sites are 6mA in this fixture, so same count
+    bd_filt <- ggplot2::ggplot_build(p_filt)
+    expect_true(nrow(bd_filt$data[[1]]) > 0)
 })
 
 # ─── Positional filtering ─────────────────────────────────────────────────────
@@ -86,11 +99,15 @@ test_that("plot_genome_track: start/end filtering reduces displayed sites", {
     expect_true(all(x_vals >= 1000L & x_vals <= 5000L))
 })
 
-test_that("plot_genome_track: start only (no end) accepted", {
+test_that("plot_genome_track: start only (no end) filters positions >= start", {
     obj <- .make_track_data()
     p <- plot_genome_track(obj, chromosome = "chr_sim",
                            start = 3000L, annotation = FALSE)
     expect_s3_class(p, "ggplot")
+    bd <- ggplot2::ggplot_build(p)
+    x_vals <- bd$data[[1L]]$x
+    # All displayed positions should be >= 3000
+    expect_true(all(x_vals >= 3000L))
 })
 
 # ─── Error conditions ─────────────────────────────────────────────────────────

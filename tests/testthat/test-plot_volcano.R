@@ -25,16 +25,32 @@
 
 # ─── Basic return type ────────────────────────────────────────────────────────
 
-test_that("plot_volcano: returns ggplot for valid input", {
+test_that("plot_volcano: returns ggplot with point data matching results", {
     res <- .make_volcano_results()
     p <- plot_volcano(res)
     expect_s3_class(p, "ggplot")
+    # Verify point layer has rows matching non-NA padj count
+    bd <- ggplot2::ggplot_build(p)
+    point_data <- bd$data[[1]]
+    n_nonNA <- sum(!is.na(res$dm_padj))
+    expect_equal(nrow(point_data), n_nonNA)
 })
 
-test_that("plot_volcano: custom thresholds accepted", {
+test_that("plot_volcano: custom thresholds produce vlines at correct positions", {
     res <- .make_volcano_results()
     p <- plot_volcano(res, delta_beta_threshold = 0.3, padj_threshold = 0.01)
     expect_s3_class(p, "ggplot")
+    # Verify vline layers exist at +/- 0.3
+    layer_classes <- vapply(p$layers, function(l) class(l$geom)[1], character(1))
+    vline_idx <- which(layer_classes == "GeomVline")
+    expect_gte(length(vline_idx), 2L)
+    # Check intercept values include +/- 0.3
+    intercepts <- vapply(vline_idx, function(i) {
+        layer_data <- p$layers[[i]]$data
+        if (is.function(layer_data)) NA_real_ else layer_data$xintercept[1]
+    }, numeric(1))
+    intercepts <- intercepts[!is.na(intercepts)]
+    expect_true(any(abs(intercepts - 0.3) < 0.01) || any(abs(intercepts + 0.3) < 0.01))
 })
 
 # ─── Threshold lines ──────────────────────────────────────────────────────────
@@ -79,18 +95,28 @@ test_that("plot_volcano: error on invalid facet argument", {
 
 # ─── NA handling ─────────────────────────────────────────────────────────────
 
-test_that("plot_volcano: rows with NA padj are excluded without error", {
+test_that("plot_volcano: rows with NA padj are excluded from plot data", {
     res <- .make_volcano_results()
     res$dm_padj[1:5] <- NA
     p <- plot_volcano(res)
     expect_s3_class(p, "ggplot")
+    # Verify fewer points than total rows (NA padj excluded)
+    bd <- ggplot2::ggplot_build(p)
+    n_plotted <- nrow(bd$data[[1]])
+    n_nonNA <- sum(!is.na(res$dm_padj))
+    expect_equal(n_plotted, n_nonNA)
 })
 
-test_that("plot_volcano: rows with NA delta_beta handled without error", {
+test_that("plot_volcano: rows with NA delta_beta included but not significant", {
     res <- .make_volcano_results()
     res$dm_delta_beta[1:3] <- NA
     p <- plot_volcano(res)
     expect_s3_class(p, "ggplot")
+    # NA delta_beta rows still plotted (only NA padj excluded)
+    bd <- ggplot2::ggplot_build(p)
+    n_plotted <- nrow(bd$data[[1]])
+    n_nonNA_padj <- sum(!is.na(res$dm_padj))
+    expect_equal(n_plotted, n_nonNA_padj)
 })
 
 # ─── Error conditions ─────────────────────────────────────────────────────────
