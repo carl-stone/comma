@@ -37,11 +37,22 @@ test_that("coverageDepth: log2_depth is log2(depth+1)", {
     expect_equal(result$log2_depth[non_na], log2(result$depth[non_na] + 1), tolerance = 1e-10)
 })
 
-test_that("coverageDepth: method='median' works without error", {
+test_that("coverageDepth: method='median' and 'mean' both return valid results with NA handling", {
     data(comma_example_data)
-    result <- coverageDepth(comma_example_data, window = 10000L, method = "median")
-    expect_s3_class(result, "data.frame")
-    expect_true("depth" %in% colnames(result))
+    result_median <- coverageDepth(comma_example_data, window = 10000L, method = "median")
+    result_mean   <- coverageDepth(comma_example_data, window = 10000L, method = "mean")
+    # Both methods should return valid data.frames
+    expect_s3_class(result_median, "data.frame")
+    expect_s3_class(result_mean, "data.frame")
+    expect_true("depth" %in% colnames(result_median))
+    expect_true("depth" %in% colnames(result_mean))
+    # Both should produce finite numeric depths (not NA/Inf) where coverage exists
+    med_depths <- result_median$depth[!is.na(result_median$depth)]
+    mean_depths <- result_mean$depth[!is.na(result_mean$depth)]
+    expect_true(length(med_depths) > 0)
+    expect_true(length(mean_depths) > 0)
+    expect_true(all(is.finite(med_depths)))
+    expect_true(all(is.finite(mean_depths)))
 })
 
 test_that("coverageDepth: depth values are non-negative where not NA", {
