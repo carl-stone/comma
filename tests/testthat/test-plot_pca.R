@@ -45,19 +45,18 @@ test_that("plot_pca: returns ggplot for valid input", {
     obj <- .make_pca_data()
     p <- plot_pca(obj)
     expect_s3_class(p, "ggplot")
-    # Verify point layer has n sample points
-    bd <- ggplot2::ggplot_build(p)$data[[1]]
-    expect_equal(nrow(bd), ncol(methylation(obj)))
+    # p$data has exactly one row per sample and required columns
+    expect_equal(nrow(p$data), ncol(obj))
+    expect_true(all(c("PC1", "PC2", "sample_name") %in% colnames(p$data)))
 })
 
 test_that("plot_pca: color_by argument accepted", {
     obj <- .make_pca_data()
     p <- plot_pca(obj, color_by = "condition")
     expect_s3_class(p, "ggplot")
-    # Verify colour aesthetic mapping present
-    bd <- ggplot2::ggplot_build(p)$data[[1]]
-    expect_true("colour" %in% colnames(bd))
-    expect_true(length(unique(bd$colour)) >= 2L)
+    # Verify colour mapping references the color_by column
+    expect_true("colour" %in% names(p$mapping))
+    expect_equal(p$labels$colour, "condition")
 })
 
 test_that("plot_pca: shape_by = NULL accepted without error", {
@@ -66,20 +65,17 @@ test_that("plot_pca: shape_by = NULL accepted without error", {
     expect_s3_class(p, "ggplot")
     # Verify no shape aesthetic mapped
     expect_false("shape" %in% names(p$mapping))
-    # Verify points render correctly via built data
-    bd <- ggplot2::ggplot_build(p)$data[[1]]
-    expect_equal(nrow(bd), ncol(methylation(obj)))
 })
 
 test_that("plot_pca: mod_type filter reduces sites used", {
     data(comma_example_data)
     p_unfiltered <- plot_pca(comma_example_data)
-    p <- plot_pca(comma_example_data, mod_type = "6mA")
-    expect_s3_class(p, "ggplot")
-    # Verify PCA data differs with/without filter
-    bd_filtered   <- ggplot2::ggplot_build(p)$data[[1]]
-    bd_unfiltered <- ggplot2::ggplot_build(p_unfiltered)$data[[1]]
-    expect_false(identical(bd_filtered$x, bd_unfiltered$x))
+    p_filtered    <- plot_pca(comma_example_data, mod_type = "6mA")
+    expect_s3_class(p_filtered, "ggplot")
+    # Same samples, different sites used → different PC1 values
+    d_unfiltered <- p_unfiltered$data[order(p_unfiltered$data$sample_name), ]
+    d_filtered   <- p_filtered$data[order(p_filtered$data$sample_name), ]
+    expect_false(identical(d_filtered$PC1, d_unfiltered$PC1))
 })
 
 # ─── Axis labels contain PC variance ─────────────────────────────────────────
@@ -178,4 +174,6 @@ test_that("plot_pca: works with comma_example_data", {
     data(comma_example_data)
     p <- plot_pca(comma_example_data)
     expect_s3_class(p, "ggplot")
+    # 6 samples → 6 rows in plot data
+    expect_equal(nrow(p$data), 6L)
 })

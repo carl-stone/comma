@@ -59,36 +59,44 @@ test_that("plot_metagene: returns ggplot with line data for valid feature type",
     obj <- .make_metagene_data()
     p <- plot_metagene(obj, feature = "gene")
     expect_s3_class(p, "ggplot")
-    # Verify line layer has data with bin_center values in [0,1]
-    bd <- ggplot2::ggplot_build(p)
-    line_data <- bd$data[[1]]
-    expect_true(nrow(line_data) > 0)
-    expect_true(all(line_data$x >= -1e-6 & line_data$x <= 1 + 1e-6))
+    d <- p$data
+    # bin_center values are in [0, 1]
+    expect_true(all(d$bin_center >= 0))
+    expect_true(all(d$bin_center <= 1))
+    # sample_name matches fixture
+    expect_setequal(as.character(d$sample_name), c("ctrl_1", "treat_1"))
+    # mean_beta values are finite
+    expect_true(all(is.finite(d$mean_beta)))
 })
 
-test_that("plot_metagene: mod_type filter produces valid line data", {
+test_that("plot_metagene: mod_type filter produces identical data when all sites match", {
     obj <- .make_metagene_data()
-    p <- plot_metagene(obj, feature = "gene", mod_type = "6mA")
-    expect_s3_class(p, "ggplot")
-    # Verify line layer has data
-    bd <- ggplot2::ggplot_build(p)
-    expect_true(nrow(bd$data[[1]]) > 0)
+    p <- plot_metagene(obj, feature = "gene")
+    p_filt <- plot_metagene(obj, feature = "gene", mod_type = "6mA")
+    expect_s3_class(p_filt, "ggplot")
+    # All sites are 6mA, so filtering by 6mA should produce identical data
+    d_all  <- p$data
+    d_filt <- p_filt$data
+    expect_identical(d_all$bin_center, d_filt$bin_center)
+    expect_identical(as.character(d_all$sample_name),
+                     as.character(d_filt$sample_name))
+    expect_identical(d_all$mean_beta, d_filt$mean_beta)
 })
 
-test_that("plot_metagene: n_bins parameter controls bin count in line data", {
+test_that("plot_metagene: n_bins parameter controls bin count", {
     obj <- .make_metagene_data()
-    p <- plot_metagene(obj, feature = "gene", n_bins = 20L)
-    expect_s3_class(p, "ggplot")
-    # Verify line layer has data
-    bd <- ggplot2::ggplot_build(p)
-    line_data <- bd$data[[1]]
-    expect_true(nrow(line_data) > 0)
-    # More bins should produce more unique x positions than default
-    p_default <- plot_metagene(obj, feature = "gene")
-    bd_default <- ggplot2::ggplot_build(p_default)
-    n_x_20 <- length(unique(round(line_data$x, 4)))
-    n_x_default <- length(unique(round(bd_default$data[[1]]$x, 4)))
-    expect_gte(n_x_20, n_x_default)
+    p_20 <- plot_metagene(obj, feature = "gene", n_bins = 20L)
+    p_50 <- plot_metagene(obj, feature = "gene", n_bins = 50L)
+    # Compute expected bin centers the same way the function does
+    breaks_20 <- seq(0, 1, length.out = 21L)
+    centers_20 <- (breaks_20[-length(breaks_20)] + breaks_20[-1L]) / 2
+    breaks_50 <- seq(0, 1, length.out = 51L)
+    centers_50 <- (breaks_50[-length(breaks_50)] + breaks_50[-1L]) / 2
+    # Every observed bin_center must be present in the expected grid
+    obs_20 <- round(unique(p_20$data$bin_center), 10)
+    obs_50 <- round(unique(p_50$data$bin_center), 10)
+    expect_true(all(obs_20 %in% round(centers_20, 10)))
+    expect_true(all(obs_50 %in% round(centers_50, 10)))
 })
 
 # ─── x-axis range ─────────────────────────────────────────────────────────────
@@ -139,4 +147,5 @@ test_that("plot_metagene: works with comma_example_data", {
     data(comma_example_data)
     p <- plot_metagene(comma_example_data, feature = "gene")
     expect_s3_class(p, "ggplot")
+    expect_gt(nrow(p$data), 0L)
 })

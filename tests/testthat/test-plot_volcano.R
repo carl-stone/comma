@@ -23,35 +23,54 @@
     res
 }
 
-# ─── Basic return type ────────────────────────────────────────────────────────
+# ─── Data mapping ─────────────────────────────────────────────────────────────
 
-test_that("plot_volcano: returns ggplot with point data matching results", {
+test_that("plot_volcano: p$data contains exact non-NA padj rows with computed neg_log10_padj", {
     res <- .make_volcano_results()
     p <- plot_volcano(res)
     expect_s3_class(p, "ggplot")
-    # Verify point layer has rows matching non-NA padj count
-    bd <- ggplot2::ggplot_build(p)
-    point_data <- bd$data[[1]]
+    # p$data should have exactly the non-NA padj rows
     n_nonNA <- sum(!is.na(res$dm_padj))
-    expect_equal(nrow(point_data), n_nonNA)
+    expect_equal(nrow(p$data), n_nonNA)
+    # neg_log10_padj should be -log10(padj) clamped
+    expected_y <- -log10(pmax(res$dm_padj[!is.na(res$dm_padj)], .Machine$double.xmin))
+    expect_equal(p$data$neg_log10_padj, expected_y)
+    # dm_delta_beta should match input exactly
+    expect_equal(p$data$dm_delta_beta, res$dm_delta_beta[!is.na(res$dm_padj)])
 })
 
-test_that("plot_volcano: custom thresholds produce vlines at correct positions", {
+test_that("plot_volcano: significance categories match threshold rules", {
     res <- .make_volcano_results()
     p <- plot_volcano(res, delta_beta_threshold = 0.3, padj_threshold = 0.01)
-    expect_s3_class(p, "ggplot")
-    # Verify vline layers exist at +/- 0.3
+    # Verify significance assignments
+    pd <- p$data
+    # Rows with padj <= 0.01 and delta_beta >= 0.3 should be "Hypermethylated"
+    hyper <- pd$dm_padj <= 0.01 & pd$dm_delta_beta >= 0.3
+    if (any(hyper)) {
+        expect_equal(as.character(pd$significance[hyper]), rep("Hypermethylated", sum(hyper)))
+    }
+    # Rows with padj <= 0.01 and delta_beta <= -0.3 should be "Hypomethylated"
+    hypo <- pd$dm_padj <= 0.01 & pd$dm_delta_beta <= -0.3
+    if (any(hypo)) {
+        expect_equal(as.character(pd$significance[hypo]), rep("Hypomethylated", sum(hypo)))
+    }
+})
+
+test_that("plot_volcano: vlines at exact +/- delta_beta_threshold", {
+    res <- .make_volcano_results()
+    p <- plot_volcano(res, delta_beta_threshold = 0.3, padj_threshold = 0.01)
     layer_classes <- vapply(p$layers, function(l) class(l$geom)[1], character(1))
     vline_idx <- which(layer_classes == "GeomVline")
     expect_gte(length(vline_idx), 2L)
-    # Check intercept values include +/- 0.3
+    # Extract exact intercept values
     intercepts <- vapply(vline_idx, function(i) {
         layer_data <- p$layers[[i]]$data
         if (is.function(layer_data)) NA_real_ else layer_data$xintercept[1]
     }, numeric(1))
     intercepts <- intercepts[!is.na(intercepts)]
-    expect_true(any(abs(intercepts - 0.3) < 0.01))
-    expect_true(any(abs(intercepts + 0.3) < 0.01))
+    # Both +0.3 and -0.3 must be present
+    expect_true(any(abs(intercepts - 0.3) < 1e-10))
+    expect_true(any(abs(intercepts + 0.3) < 1e-10))
 })
 
 # ─── Threshold lines ──────────────────────────────────────────────────────────
@@ -96,28 +115,28 @@ test_that("plot_volcano: error on invalid facet argument", {
 
 # ─── NA handling ─────────────────────────────────────────────────────────────
 
-test_that("plot_volcano: rows with NA padj are excluded from plot data", {
+test_that("plot_volcano: rows with NA padj are excluded from p$data exactly", {
     res <- .make_volcano_results()
     res$dm_padj[1:5] <- NA
     p <- plot_volcano(res)
     expect_s3_class(p, "ggplot")
-    # Verify fewer points than total rows (NA padj excluded)
-    bd <- ggplot2::ggplot_build(p)
-    n_plotted <- nrow(bd$data[[1]])
+    # p$data should have exactly the non-NA padj rows
     n_nonNA <- sum(!is.na(res$dm_padj))
-    expect_equal(n_plotted, n_nonNA)
+    expect_equal(nrow(p$data), n_nonNA)
+    # No NA padj values should appear in p$data
+    expect_false(any(is.na(p$data$dm_padj)))
 })
 
-test_that("plot_volcano: rows with NA delta_beta included but not significant", {
+test_that("plot_volcano: rows with NA delta_beta are kept in p$data", {
     res <- .make_volcano_results()
     res$dm_delta_beta[1:3] <- NA
     p <- plot_volcano(res)
     expect_s3_class(p, "ggplot")
-    # NA delta_beta rows still plotted (only NA padj excluded)
-    bd <- ggplot2::ggplot_build(p)
-    n_plotted <- nrow(bd$data[[1]])
+    # NA delta_beta rows are still plotted (only NA padj excluded)
     n_nonNA_padj <- sum(!is.na(res$dm_padj))
-    expect_equal(n_plotted, n_nonNA_padj)
+    expect_equal(nrow(p$data), n_nonNA_padj)
+    # NA delta_beta values should be present in p$data
+    expect_true(any(is.na(p$data$dm_delta_beta)))
 })
 
 # ─── Error conditions ─────────────────────────────────────────────────────────
@@ -149,11 +168,16 @@ test_that("plot_volcano: NULL delta_beta_threshold colors by padj alone", {
     set.seed(42L)
     res <- .make_volcano_results()
     p <- plot_volcano(res, delta_beta_threshold = NULL)
-    pd <- ggplot2::ggplot_build(p)$data[[1L]]
-    # All points with dm_padj <= 0.05 and dm_delta_beta > 0 should be Hypermethylated
-    sig_pos <- res$dm_padj <= 0.05 & res$dm_delta_beta > 0 & !is.na(res$dm_padj)
-    expect_true(any(sig_pos))
-    expect_s3_class(p, "ggplot")
+    # With NULL threshold, significance is based on padj only + sign of delta_beta
+    pd <- p$data
+    sig_pos <- pd$dm_padj <= 0.05 & pd$dm_delta_beta > 0
+    if (any(sig_pos)) {
+        expect_equal(as.character(pd$significance[sig_pos]), rep("Hypermethylated", sum(sig_pos)))
+    }
+    sig_neg <- pd$dm_padj <= 0.05 & pd$dm_delta_beta < 0
+    if (any(sig_neg)) {
+        expect_equal(as.character(pd$significance[sig_neg]), rep("Hypomethylated", sum(sig_neg)))
+    }
 })
 
 test_that("plot_volcano: error on invalid delta_beta_threshold", {
@@ -177,4 +201,7 @@ test_that("plot_volcano: works with results() output from comma_example_data", {
     res <- results(cd_dm)
     p <- plot_volcano(res)
     expect_s3_class(p, "ggplot")
+    # p$data row count should match non-NA padj rows in results
+    n_nonNA <- sum(!is.na(res$dm_padj))
+    expect_equal(nrow(p$data), n_nonNA)
 })

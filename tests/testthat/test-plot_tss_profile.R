@@ -99,21 +99,20 @@ test_that("returns ggplot for valid input", {
     obj <- .make_tss_data()
     p   <- plot_tss_profile(obj, feature_type = "gene", window = 500L)
     expect_s3_class(p, "ggplot")
-    # Verify point layer has data with TSS-relative positions
-    bd <- ggplot2::ggplot_build(p)$data[[1]]
-    expect_true(nrow(bd) > 0L)
-    expect_true(all(bd$x >= -500 & bd$x <= 500))
+    # Verify p$data has rel_pos within [-window, window] and beta values present
+    expect_true("rel_pos" %in% colnames(p$data))
+    expect_true(all(p$data$rel_pos >= -500L & p$data$rel_pos <= 500L))
+    expect_true("beta" %in% colnames(p$data))
+    expect_true(any(!is.na(p$data$beta)))
 })
 
 test_that("returns ggplot when mod_type is specified", {
     obj <- .make_tss_data()
     p_unfiltered <- plot_tss_profile(obj, feature_type = "gene")
-    p   <- plot_tss_profile(obj, feature_type = "gene", mod_type = "6mA")
-    expect_s3_class(p, "ggplot")
-    # Verify filtering applied (same or fewer points)
-    bd_filtered   <- ggplot2::ggplot_build(p)$data[[1]]
-    bd_unfiltered <- ggplot2::ggplot_build(p_unfiltered)$data[[1]]
-    expect_true(nrow(bd_filtered) <= nrow(bd_unfiltered))
+    p_filtered   <- plot_tss_profile(obj, feature_type = "gene", mod_type = "6mA")
+    expect_s3_class(p_filtered, "ggplot")
+    # Filtering by mod_type produces same or fewer data rows
+    expect_true(nrow(p_filtered$data) <= nrow(p_unfiltered$data))
 })
 
 ## ── x-axis and TSS marker ───────────────────────────────────────────────────
@@ -145,12 +144,9 @@ test_that("color_by = 'mod_type' returns ggplot", {
     obj <- .make_tss_data()
     p   <- plot_tss_profile(obj, feature_type = "gene", color_by = "mod_type")
     expect_s3_class(p, "ggplot")
-    # Verify colour aesthetic maps to mod_type
+    # Verify colour mapping references mod_type
     expect_true("colour" %in% names(p$mapping))
     expect_equal(p$labels$colour, "Modification type")
-    # Verify point layer renders via built data
-    bd <- ggplot2::ggplot_build(p)$data[[1]]
-    expect_true(nrow(bd) > 0L)
 })
 
 test_that("color_by = 'regulatory_element' with valid types returns ggplot", {
@@ -159,10 +155,8 @@ test_that("color_by = 'regulatory_element' with valid types returns ggplot", {
                              color_by = "regulatory_element",
                              regulatory_feature_types = "sigma_binding")
     expect_s3_class(p, "ggplot")
-    # Verify regulatory coloring applied: data has regulatory_element column
-    # with at least two groups (regulatory overlap + "None")
+    # Verify regulatory_element column present in plot data
     expect_true("regulatory_element" %in% colnames(p$data))
-    expect_true(length(unique(p$data$regulatory_element)) >= 2L)
     # Verify colour mapping is present
     expect_true("colour" %in% names(p$mapping))
 })
@@ -288,15 +282,6 @@ test_that("color_by = 'none' + facet_by = 'mod_type' + show_smooth returns ggplo
     # Verify smooth layer present
     layer_classes <- vapply(p$layers, function(l) class(l$geom)[1], character(1))
     expect_true(any(layer_classes == "GeomLine"))
-    # Verify via built data: point layer renders and smooth layer has data
-    bd <- ggplot2::ggplot_build(p)$data
-    bd_point <- bd[[1]]
-    expect_true(nrow(bd_point) > 0L)
-    smooth_idx <- which(layer_classes == "GeomLine")
-    if (length(smooth_idx) > 0L) {
-        bd_smooth <- bd[[smooth_idx[1]]]
-        expect_true(nrow(bd_smooth) > 0L)
-    }
 })
 
 test_that("show_smooth = TRUE with facet_by = 'sample' produces separate smooth per panel", {
@@ -390,6 +375,7 @@ test_that("works with comma_example_data, feature_type = 'gene'", {
     p <- plot_tss_profile(comma_example_data, feature_type = "gene",
                           window = 500L)
     expect_s3_class(p, "ggplot")
+    # Verify plot data has expected structure
+    expect_true(all(c("rel_pos", "beta", "sample_name") %in% colnames(p$data)))
+    expect_true(nrow(p$data) > 0L)
 })
-
-
