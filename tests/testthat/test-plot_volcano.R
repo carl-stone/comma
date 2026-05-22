@@ -9,10 +9,24 @@
         strand        = rep("+", 20L),
         mod_type      = rep("6mA", 20L),
         mod_context   = rep("GATC", 20L),
-        dm_pvalue     = c(runif(15L, 0, 0.1), runif(5L, 0.1, 1)),
-        dm_padj       = c(runif(5L, 0, 0.05), runif(10L, 0.05, 0.5), runif(5L, 0.5, 1)),
-        dm_delta_beta = c(runif(5L, 0.2, 0.8), runif(5L, -0.8, -0.2),
-                          runif(10L, -0.1, 0.1)),
+        dm_pvalue = c(
+            1e-6, 1e-5, 1e-4, 1e-3, 1e-2,  # 5 significant (padj < 0.05)
+            0.05, 0.1, 0.2, 0.3, 0.4,       # 5 moderate
+            0.5, 0.6, 0.7, 0.8, 0.9,        # 5 non-significant
+            1e-7, 1e-6, 1e-5, 1e-4, 1e-3    # 5 more significant
+        ),
+        dm_padj = c(
+            0.001, 0.005, 0.01, 0.02, 0.04,  # 5 < 0.05
+            0.06, 0.10, 0.20, 0.30, 0.40,    # 5 >= 0.05
+            0.50, 0.60, 0.70, 0.80, 0.90,    # 5 high
+            0.0005, 0.002, 0.008, 0.015, 0.03 # 5 < 0.05
+        ),
+        dm_delta_beta = c(
+            0.5, 0.4, -0.6, -0.4, 0.1,   # 2 hyper, 2 hypo, 1 ns
+            0.05, -0.02, 0.03, -0.01, 0.08,  # 5 ns
+            -0.05, 0.02, -0.03, 0.01, -0.08, # 5 ns
+            -0.5, -0.35, 0.45, 0.3, -0.1   # 2 hypo, 2 hyper, 1 ns
+        ),
         stringsAsFactors = FALSE
     )
 }
@@ -46,14 +60,12 @@ test_that("plot_volcano: significance categories match threshold rules", {
     pd <- p$data
     # Rows with padj <= 0.01 and delta_beta >= 0.3 should be "Hypermethylated"
     hyper <- pd$dm_padj <= 0.01 & pd$dm_delta_beta >= 0.3
-    if (any(hyper)) {
-        expect_equal(as.character(pd$significance[hyper]), rep("Hypermethylated", sum(hyper)))
-    }
+    expect_true(any(hyper), "Fixture should produce at least one hypermethylated site")
+    expect_equal(as.character(pd$significance[hyper]), rep("Hypermethylated", sum(hyper)))
     # Rows with padj <= 0.01 and delta_beta <= -0.3 should be "Hypomethylated"
     hypo <- pd$dm_padj <= 0.01 & pd$dm_delta_beta <= -0.3
-    if (any(hypo)) {
-        expect_equal(as.character(pd$significance[hypo]), rep("Hypomethylated", sum(hypo)))
-    }
+    expect_true(any(hypo), "Fixture should produce at least one hypomethylated site")
+    expect_equal(as.character(pd$significance[hypo]), rep("Hypomethylated", sum(hypo)))
 })
 
 test_that("plot_volcano: vlines at exact +/- delta_beta_threshold", {
@@ -165,19 +177,16 @@ test_that("plot_volcano: error when all padj values are NA", {
 })
 
 test_that("plot_volcano: NULL delta_beta_threshold colors by padj alone", {
-    set.seed(42L)
     res <- .make_volcano_results()
     p <- plot_volcano(res, delta_beta_threshold = NULL)
     # With NULL threshold, significance is based on padj only + sign of delta_beta
     pd <- p$data
     sig_pos <- pd$dm_padj <= 0.05 & pd$dm_delta_beta > 0
-    if (any(sig_pos)) {
-        expect_equal(as.character(pd$significance[sig_pos]), rep("Hypermethylated", sum(sig_pos)))
-    }
+    expect_true(any(sig_pos), "Fixture should produce sig_pos sites at padj <= 0.05")
+    expect_equal(as.character(pd$significance[sig_pos]), rep("Hypermethylated", sum(sig_pos)))
     sig_neg <- pd$dm_padj <= 0.05 & pd$dm_delta_beta < 0
-    if (any(sig_neg)) {
-        expect_equal(as.character(pd$significance[sig_neg]), rep("Hypomethylated", sum(sig_neg)))
-    }
+    expect_true(any(sig_neg), "Fixture should produce sig_neg sites at padj <= 0.05")
+    expect_equal(as.character(pd$significance[sig_neg]), rep("Hypomethylated", sum(sig_neg)))
 })
 
 test_that("plot_volcano: error on invalid delta_beta_threshold", {
