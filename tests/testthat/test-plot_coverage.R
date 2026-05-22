@@ -75,9 +75,10 @@ test_that("plot_coverage: per_sample = TRUE facets by sample_name", {
     obj <- .make_cov_data()
     p <- plot_coverage(obj, per_sample = TRUE)
     expect_false(inherits(p$facet, "FacetNull"))
-    # FacetWrap params$facets is a quosures list; extract the variable name
-    facet_vars <- vapply(p$facet$params$facets, function(q) rlang::as_name(q), character(1))
-    expect_true("sample_name" %in% facet_vars)
+    # FacetWrap: verify the facet variable is sample_name
+    # Extract from the facet formula without importing rlang
+    facet_formula <- p$facet$vars()
+    expect_true("sample_name" %in% facet_formula)
 })
 
 test_that("plot_coverage: per_sample = FALSE produces unfaceted plot", {
