@@ -25,10 +25,10 @@ constructor. This is an internal function called when
 
 - mod_type:
 
-  Character string or `NULL`. Modification type to assign to all sites
-  (e.g., `"6mA"`). Megalodon files are modification- type-specific, so
-  the type cannot be auto-detected from the file alone. If `NULL`,
-  defaults to `"6mA"` with a warning.
+  Character string. Modification type to assign to all sites (e.g.,
+  `"6mA"`). Megalodon files are modification-type-specific, so the type
+  cannot be auto-detected from the file alone and must be supplied
+  explicitly.
 
 - min_coverage:
 
