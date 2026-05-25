@@ -15,7 +15,8 @@ when `method = "quasi_f"`.
   site_df,
   coldata,
   formula,
-  ref_level = NULL
+  ref_level = NULL,
+  design_info = NULL
 )
 ```
 

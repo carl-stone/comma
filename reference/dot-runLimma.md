@@ -15,7 +15,8 @@ when `method = "limma"`.
   coldata,
   formula,
   alpha = 0.5,
-  ref_level = NULL
+  ref_level = NULL,
+  design_info = NULL
 )
 ```
 
