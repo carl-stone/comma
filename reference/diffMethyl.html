@@ -27,6 +27,7 @@ as new columns in rowData."></head><body>
 <li class="nav-item dropdown">
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
   <ul class="dropdown-menu" aria-labelledby="dropdown-articles"><li><a class="dropdown-item" href="../articles/getting-started.html">Getting Started with comma</a></li>
+    <li><a class="dropdown-item" href="../articles/import-troubleshooting.html">Troubleshooting Data Import</a></li>
     <li><a class="dropdown-item" href="../articles/multiple-modification-types.html">Working with Multiple Modification Types</a></li>
     <li><a class="dropdown-item" href="../articles/understanding-commaData.html">Understanding the commaData object</a></li>
   </ul></li>
@@ -108,7 +109,8 @@ and produces calibrated relative p-values suitable for downstream
 filtering. Requires <span class="pkg">methylKit</span> (Bioconductor).
 <code>"quasi_f"</code> applies empirical Bayes shrinkage of quasibinomial
 dispersions via <code><a href="https://rdrr.io/pkg/limma/man/squeezeVar.html" class="external-link">squeezeVar</a></code> (quasi-likelihood F-test;
-count-data EB, recommended for small n). Requires <span class="pkg">limma</span>.
+count-data EB), making it a good general-purpose alternative for bacterial
+methylomes. Requires <span class="pkg">limma</span>.
 <code>"limma"</code> applies empirical Bayes variance shrinkage via
 <code><a href="https://rdrr.io/pkg/limma/man/ebayes.html" class="external-link">eBayes</a></code> on M-value-transformed data; recommended when
 replicates are few (n &lt; 3 per group). Requires <span class="pkg">limma</span>.</p></dd>
@@ -196,6 +198,19 @@ borrowing information across all sites to stabilize the per-site variance
 estimate. Recommended when replicates are few (n &lt; 3 per group). Requires
 <span class="pkg">limma</span> (<code>BiocManager::install("limma")</code>). Effect sizes are
 reported on the original beta scale.</p>
+<p><strong>Method selection guidance:</strong>
+Use the default <code>"methylkit"</code> backend when you want compatibility with
+established <span class="pkg">methylKit</span> workflows or need results that closely follow
+methylKit's logistic-regression conventions. Use <code>"quasi_f"</code> as a
+good general-purpose alternative for bacterial methylomes when you want a
+count-aware model with empirical Bayes dispersion shrinkage and genome-wide
+multiple-testing correction handled entirely inside <span class="pkg">comma</span>. It is often
+a good first alternative if methylKit convergence warnings, zero-variance
+sites, or runtime become distracting. Use <code>"limma"</code> when you want the
+familiar <span class="pkg">limma</span> empirical-Bayes linear-model workflow on M-values,
+especially for complete datasets with few replicates per group. All three
+backends report <code>dm_delta_beta</code> on the original beta scale, so effect
+sizes remain comparable even when p-values differ.</p>
 <p><strong>Multiple mod contexts:</strong> When <code>mod_context = NULL</code> (default),
 all modification contexts (mod_type x motif combinations) present in the
 object are tested independently and results are combined. Sites not belonging

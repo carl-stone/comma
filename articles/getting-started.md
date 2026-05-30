@@ -292,6 +292,27 @@ cd_dm
 #> min_coverage: 5
 ```
 
+### Choosing a Differential Methylation Backend
+
+[`diffMethyl()`](https://carl-stone.github.io/comma/reference/diffMethyl.md)
+keeps `method = "methylkit"` as the default for compatibility with
+established methylKit workflows and its logistic-regression conventions.
+This is a sensible choice when you already use methylKit elsewhere or
+want results that follow methylKit’s handling of differential
+methylation.
+
+`method = "quasi_f"` is a good general-purpose alternative for bacterial
+methylomes. It uses a quasibinomial model with empirical Bayes
+dispersion shrinkage, keeps multiple-testing correction inside `comma`,
+and can be a practical first alternative when methylKit convergence
+warnings, zero-variance sites, or runtime become distracting.
+
+`method = "limma"` uses limma’s empirical-Bayes linear model on
+M-values. It is most useful when you want a familiar limma workflow on
+complete data, especially with only a few replicates per group. All
+three backends report `dm_delta_beta` on the original beta scale, so
+effect sizes remain comparable even when p-values differ.
+
 Extract the results as a tidy data frame:
 
 ``` r

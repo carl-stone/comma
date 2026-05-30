@@ -62,9 +62,10 @@ diffMethyl(
   filtering. Requires methylKit (Bioconductor). `"quasi_f"` applies
   empirical Bayes shrinkage of quasibinomial dispersions via
   [`squeezeVar`](https://rdrr.io/pkg/limma/man/squeezeVar.html)
-  (quasi-likelihood F-test; count-data EB, recommended for small n).
-  Requires limma. `"limma"` applies empirical Bayes variance shrinkage
-  via [`eBayes`](https://rdrr.io/pkg/limma/man/ebayes.html) on
+  (quasi-likelihood F-test; count-data EB), making it a good
+  general-purpose alternative for bacterial methylomes. Requires limma.
+  `"limma"` applies empirical Bayes variance shrinkage via
+  [`eBayes`](https://rdrr.io/pkg/limma/man/ebayes.html) on
   M-value-transformed data; recommended when replicates are few (n \< 3
   per group). Requires limma.
 
@@ -153,6 +154,20 @@ all sites to stabilize the per-site variance estimate. Recommended when
 replicates are few (n \< 3 per group). Requires limma
 (`BiocManager::install("limma")`). Effect sizes are reported on the
 original beta scale.
+
+**Method selection guidance:** Use the default `"methylkit"` backend
+when you want compatibility with established methylKit workflows or need
+results that closely follow methylKit's logistic-regression conventions.
+Use `"quasi_f"` as a good general-purpose alternative for bacterial
+methylomes when you want a count-aware model with empirical Bayes
+dispersion shrinkage and genome-wide multiple-testing correction handled
+entirely inside comma. It is often a good first alternative if methylKit
+convergence warnings, zero-variance sites, or runtime become
+distracting. Use `"limma"` when you want the familiar limma
+empirical-Bayes linear-model workflow on M-values, especially for
+complete datasets with few replicates per group. All three backends
+report `dm_delta_beta` on the original beta scale, so effect sizes
+remain comparable even when p-values differ.
 
 **Multiple mod contexts:** When `mod_context = NULL` (default), all
 modification contexts (mod_type x motif combinations) present in the

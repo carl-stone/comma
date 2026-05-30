@@ -34,6 +34,7 @@
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
   <ul class="dropdown-menu" aria-labelledby="dropdown-articles">
 <li><a class="dropdown-item" href="../articles/getting-started.html">Getting Started with comma</a></li>
+    <li><a class="dropdown-item" href="../articles/import-troubleshooting.html">Troubleshooting Data Import</a></li>
     <li><a class="dropdown-item" href="../articles/multiple-modification-types.html">Working with Multiple Modification Types</a></li>
     <li><a class="dropdown-item" href="../articles/understanding-commaData.html">Understanding the commaData object</a></li>
   </ul>
@@ -353,6 +354,26 @@ the same object with statistical results in <code>rowData</code>.</p>
 <span><span class="co">#&gt; motif sites: none </span></span>
 <span><span class="co">#&gt; caller: modkit </span></span>
 <span><span class="co">#&gt; min_coverage: 5</span></span></code></pre></div>
+<div class="section level3">
+<h3 id="choosing-a-differential-methylation-backend">Choosing a Differential Methylation Backend<a class="anchor" aria-label="anchor" href="#choosing-a-differential-methylation-backend"></a>
+</h3>
+<p><code><a href="../reference/diffMethyl.html">diffMethyl()</a></code> keeps <code>method = "methylkit"</code> as
+the default for compatibility with established methylKit workflows and
+its logistic-regression conventions. This is a sensible choice when you
+already use methylKit elsewhere or want results that follow methylKit’s
+handling of differential methylation.</p>
+<p><code>method = "quasi_f"</code> is a good general-purpose alternative
+for bacterial methylomes. It uses a quasibinomial model with empirical
+Bayes dispersion shrinkage, keeps multiple-testing correction inside
+<code>comma</code>, and can be a practical first alternative when
+methylKit convergence warnings, zero-variance sites, or runtime become
+distracting.</p>
+<p><code>method = "limma"</code> uses limma’s empirical-Bayes linear
+model on M-values. It is most useful when you want a familiar limma
+workflow on complete data, especially with only a few replicates per
+group. All three backends report <code>dm_delta_beta</code> on the
+original beta scale, so effect sizes remain comparable even when
+p-values differ.</p>
 <p>Extract the results as a tidy data frame:</p>
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">res</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/results.html">results</a></span><span class="op">(</span><span class="va">cd_dm</span><span class="op">)</span></span>
@@ -371,6 +392,7 @@ the same object with statistical results in <code>rowData</code>.</p>
 <code class="sourceCode R"><span><span class="va">sig</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/filterResults.html">filterResults</a></span><span class="op">(</span><span class="va">cd_dm</span>, padj <span class="op">=</span> <span class="fl">0.05</span>, delta_beta <span class="op">=</span> <span class="fl">0.2</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="st">"Significant sites:"</span>, <span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">sig</span><span class="op">)</span>, <span class="st">"\n"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Significant sites: 31</span></span></code></pre></div>
+</div>
 <div class="section level3">
 <h3 id="volcano-plot">Volcano Plot<a class="anchor" aria-label="anchor" href="#volcano-plot"></a>
 </h3>
