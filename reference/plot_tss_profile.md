@@ -190,6 +190,8 @@ plot_tss_profile(comma_example_data, feature_type = "gene",
 #>   ?`trim,GenomicRanges-method` for more information.
 #> Ignoring unknown labels:
 #> • colour : "Modification type"
+#> Warning: No shared levels found between `names(values)` of the manual scale and the
+#> data's colour values.
 #> Warning: Ignoring empty aesthetic: `colour`.
 
 
