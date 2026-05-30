@@ -118,7 +118,9 @@ transitions as follows: score &lt;= 200 = blue (0,0,255), score &lt;= 400 =
 blue-purple (83,0,172), score &lt;= 600 = purple (167,0,85), score &lt;= 800 =
 red-purple (222,0,28), score &lt;= 1000 = red (250,0,0).</p>
 <p>Sites with <code>NA</code> methylation (below the coverage threshold) are
-excluded from the output.</p>
+excluded from the output. Output is written to a temporary file in the
+destination directory and moved into place only after the BED content has
+been written successfully, so failed writes do not leave partial BED files.</p>
     </div>
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>

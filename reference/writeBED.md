@@ -74,7 +74,10 @@ gradient transitions as follows: score \<= 200 = blue (0,0,255), score
 score \<= 800 = red-purple (222,0,28), score \<= 1000 = red (250,0,0).
 
 Sites with `NA` methylation (below the coverage threshold) are excluded
-from the output.
+from the output. Output is written to a temporary file in the
+destination directory and moved into place only after the BED content
+has been written successfully, so failed writes do not leave partial BED
+files.
 
 ## See also
 

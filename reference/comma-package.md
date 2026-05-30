@@ -75,11 +75,11 @@ The modkit pileup format is documented at
 
 Useful links:
 
-- <https://github.com/carl-stone/CoMMA>
+- <https://github.com/carl-stone/comma>
 
-- <https://carl-stone.github.io/CoMMA/>
+- <https://carl-stone.github.io/comma/>
 
-- Report bugs at <https://github.com/carl-stone/CoMMA/issues>
+- Report bugs at <https://github.com/carl-stone/comma/issues>
 
 ## Author
 
