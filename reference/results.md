@@ -118,11 +118,11 @@ head(res[order(res$dm_padj), ])
 #> 249    -0.7090099            0.9070218             0.19801189    6mA_GATC
 #> 347    -0.6743832            0.8716203             0.19723706    6mA_GATC
 #> 9      -0.7543758            0.9464297             0.19205391    6mA_GATC
-#>             site_key
-#> 196 50176:-:6mA:GATC
-#> 287 70003:-:6mA:GATC
-#> 260 63550:+:6mA:GATC
-#> 249 61440:+:6mA:GATC
-#> 347 86016:+:6mA:GATC
-#> 9    2180:-:6mA:GATC
+#>                     site_key
+#> 196 chr_sim:50176:-:6mA:GATC
+#> 287 chr_sim:70003:-:6mA:GATC
+#> 260 chr_sim:63550:+:6mA:GATC
+#> 249 chr_sim:61440:+:6mA:GATC
+#> 347 chr_sim:86016:+:6mA:GATC
+#> 9    chr_sim:2180:-:6mA:GATC
 ```

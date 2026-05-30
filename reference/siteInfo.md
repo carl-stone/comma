@@ -29,11 +29,10 @@ A [`DataFrame`](https://rdrr.io/pkg/S4Vectors/man/DataFrame-class.html)
 with one row per methylation site. Always contains columns `chrom`,
 `position`, `strand`, `mod_type`, `motif` (the sequence context; `NA`
 for Dorado/Megalodon callers), `mod_context` (the composite modification
-context, e.g., `"6mA_GATC"`), and `site_key` (a human-readable label,
-e.g., `"512:+:6mA:GATC"` for single-chromosome genomes or
-`"chr1:512:+:6mA:GATC"` for multi-chromosome genomes — computed on
-demand, not used for internal matching). May contain additional
-annotation columns added by
+context, e.g., `"6mA_GATC"`), and `site_key` (a human-readable label
+with fixed `"chrom:position:strand:mod_type:motif"` fields, e.g.,
+`"chr1:512:+:6mA:GATC"`; computed on demand, not used for internal
+matching). May contain additional annotation columns added by
 [`annotateSites()`](https://carl-stone.github.io/comma/reference/annotateSites.md)
 or result columns from
 [`diffMethyl()`](https://carl-stone.github.io/comma/reference/diffMethyl.md).
@@ -57,12 +56,12 @@ head(siteInfo(comma_example_data))
 #> 4     chr_sim      1073           +      6mA        GATC     FALSE    6mA_GATC
 #> 5     chr_sim      1536           -      6mA        GATC     FALSE    6mA_GATC
 #> 6     chr_sim      1602           +      6mA        GATC      TRUE    6mA_GATC
-#>          site_key
-#>       <character>
-#> 1  443:+:6mA:GATC
-#> 2  512:+:6mA:GATC
-#> 3 1024:+:6mA:GATC
-#> 4 1073:+:6mA:GATC
-#> 5 1536:-:6mA:GATC
-#> 6 1602:+:6mA:GATC
+#>                 site_key
+#>              <character>
+#> 1 chr_sim:443:+:6mA:GATC
+#> 2 chr_sim:512:+:6mA:GATC
+#> 3 chr_sim:1024:+:6mA:G..
+#> 4 chr_sim:1073:+:6mA:G..
+#> 5 chr_sim:1536:-:6mA:G..
+#> 6 chr_sim:1602:+:6mA:G..
 ```

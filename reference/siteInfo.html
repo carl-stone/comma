@@ -80,9 +80,9 @@ Always contains columns <code>chrom</code>, <code>position</code>, <code>strand<
 <code>mod_type</code>, <code>motif</code> (the sequence context; <code>NA</code> for
 Dorado/Megalodon callers), <code>mod_context</code> (the composite
 modification context, e.g., <code>"6mA_GATC"</code>), and <code>site_key</code>
-(a human-readable label, e.g., <code>"512:+:6mA:GATC"</code> for
-single-chromosome genomes or <code>"chr1:512:+:6mA:GATC"</code> for
-multi-chromosome genomes — computed on demand, not used for
+(a human-readable label with fixed
+<code>"chrom:position:strand:mod_type:motif"</code> fields, e.g.,
+<code>"chr1:512:+:6mA:GATC"</code>; computed on demand, not used for
 internal matching). May contain additional
 annotation columns added by <code><a href="annotateSites.html">annotateSites()</a></code>
 or result columns from <code><a href="diffMethyl.html">diffMethyl()</a></code>.</p>
@@ -105,14 +105,14 @@ or result columns from <code><a href="diffMethyl.html">diffMethyl()</a></code>.<
 <span class="r-out co"><span class="r-pr">#&gt;</span> 4     chr_sim      1073           +      6mA        GATC     FALSE    6mA_GATC</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 5     chr_sim      1536           -      6mA        GATC     FALSE    6mA_GATC</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 6     chr_sim      1602           +      6mA        GATC      TRUE    6mA_GATC</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>          site_key</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       &lt;character&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1  443:+:6mA:GATC</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2  512:+:6mA:GATC</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3 1024:+:6mA:GATC</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4 1073:+:6mA:GATC</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5 1536:-:6mA:GATC</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6 1602:+:6mA:GATC</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                 site_key</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>              &lt;character&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 chr_sim:443:+:6mA:GATC</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2 chr_sim:512:+:6mA:GATC</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3 chr_sim:1024:+:6mA:G..</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4 chr_sim:1073:+:6mA:G..</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5 chr_sim:1536:-:6mA:G..</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6 chr_sim:1602:+:6mA:G..</span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
