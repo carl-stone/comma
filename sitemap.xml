@@ -42,6 +42,7 @@
 <url><loc>https://carl-stone.github.io/comma/reference/dot-validateGenomeInfo.html</loc></url>
 <url><loc>https://carl-stone.github.io/comma/reference/enrichMethylation.html</loc></url>
 <url><loc>https://carl-stone.github.io/comma/reference/filterResults.html</loc></url>
+<url><loc>https://carl-stone.github.io/comma/reference/filterSites.html</loc></url>
 <url><loc>https://carl-stone.github.io/comma/reference/findMotifSites.html</loc></url>
 <url><loc>https://carl-stone.github.io/comma/reference/genome-commaData-method.html</loc></url>
 <url><loc>https://carl-stone.github.io/comma/reference/index.html</loc></url>
@@ -64,10 +65,11 @@
 <url><loc>https://carl-stone.github.io/comma/reference/plot_volcano.html</loc></url>
 <url><loc>https://carl-stone.github.io/comma/reference/results.html</loc></url>
 <url><loc>https://carl-stone.github.io/comma/reference/sampleInfo.html</loc></url>
+<url><loc>https://carl-stone.github.io/comma/reference/siteCoverage.html</loc></url>
 <url><loc>https://carl-stone.github.io/comma/reference/siteInfo.html</loc></url>
 <url><loc>https://carl-stone.github.io/comma/reference/slidingWindow.html</loc></url>
 <url><loc>https://carl-stone.github.io/comma/reference/sub-commaData-ANY-ANY-ANY-method.html</loc></url>
-<url><loc>https://carl-stone.github.io/comma/reference/subset.html</loc></url>
+<url><loc>https://carl-stone.github.io/comma/reference/subset.commaData.html</loc></url>
 <url><loc>https://carl-stone.github.io/comma/reference/varianceByDepth.html</loc></url>
 <url><loc>https://carl-stone.github.io/comma/reference/writeBED.html</loc></url>
 </urlset>

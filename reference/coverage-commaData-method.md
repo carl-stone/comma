@@ -1,8 +1,10 @@
-# Accessor for the sequencing coverage (read depth) matrix
+# Deprecated coverage accessor for commaData objects
 
-Retrieves the sites × samples matrix of read depth from a
-[`commaData`](https://carl-stone.github.io/comma/reference/commaData.md)
-object.
+`coverage(commaData)` is deprecated because `coverage()` is an
+established IRanges/GenomicRanges generic for computing genomic
+coverage, not for retrieving an assay matrix. Use
+[`siteCoverage`](https://carl-stone.github.io/comma/reference/siteCoverage.md)
+instead.
 
 ## Usage
 
@@ -17,44 +19,14 @@ coverage(x, shift = 0L, width = NULL, weight = 1L, ...)
 
   A `commaData` object.
 
-- shift:
+- shift, width, weight, ...:
 
-  Not used; inherited from the
-  [`IRanges::coverage`](https://rdrr.io/pkg/IRanges/man/coverage-methods.html)
-  generic.
-
-- width:
-
-  Not used; inherited from the
-  [`IRanges::coverage`](https://rdrr.io/pkg/IRanges/man/coverage-methods.html)
-  generic.
-
-- weight:
-
-  Not used; inherited from the
-  [`IRanges::coverage`](https://rdrr.io/pkg/IRanges/man/coverage-methods.html)
-  generic.
-
-- ...:
-
-  Not used.
+  Inherited from
+  [`IRanges::coverage`](https://rdrr.io/pkg/IRanges/man/coverage-methods.html).
+  These arguments are not meaningful for the commaData assay accessor
+  and must be left at their defaults.
 
 ## Value
 
 An integer matrix with rows corresponding to methylation sites and
 columns corresponding to samples.
-
-## See also
-
-[`methylation`](https://carl-stone.github.io/comma/reference/methylation.md),
-[`siteInfo`](https://carl-stone.github.io/comma/reference/siteInfo.md)
-
-## Examples
-
-``` r
-data(comma_example_data)
-cov <- coverage(comma_example_data)
-summary(as.vector(cov))
-#>    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-#>   10.00   44.00   79.00   79.31  114.00  150.00 
-```

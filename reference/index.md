@@ -33,7 +33,7 @@
   : Synthetic example methylation dataset for the comma package
 
 - [`coverage(`*`<commaData>`*`)`](https://carl-stone.github.io/comma/reference/coverage-commaData-method.md)
-  : Accessor for the sequencing coverage (read depth) matrix
+  : Deprecated coverage accessor for commaData objects
 
 - [`coverageDepth()`](https://carl-stone.github.io/comma/reference/coverageDepth.md)
   : Windowed sequencing depth across the genome
@@ -46,6 +46,10 @@
 
 - [`filterResults()`](https://carl-stone.github.io/comma/reference/filterResults.md)
   : Filter differential methylation results by significance thresholds
+
+- [`filterSites()`](https://carl-stone.github.io/comma/reference/filterSites.md)
+  : Filter a commaData object by condition, modification type, or
+  chromosome
 
 - [`findMotifSites()`](https://carl-stone.github.io/comma/reference/findMotifSites.md)
   : Find all instances of a sequence motif in a genome
@@ -110,6 +114,9 @@
 - [`sampleInfo()`](https://carl-stone.github.io/comma/reference/sampleInfo.md)
   : Accessor for per-sample metadata
 
+- [`siteCoverage()`](https://carl-stone.github.io/comma/reference/siteCoverage.md)
+  : Accessor for the sequencing coverage (read depth) matrix
+
 - [`siteInfo()`](https://carl-stone.github.io/comma/reference/siteInfo.md)
   : Accessor for per-site metadata
 
@@ -119,9 +126,8 @@
 - [`` `[`( ``*`<commaData>`*`,`*`<ANY>`*`,`*`<ANY>`*`,`*`<ANY>`*`)`](https://carl-stone.github.io/comma/reference/sub-commaData-ANY-ANY-ANY-method.md)
   : Subset a commaData object by sites and/or samples
 
-- [`subset()`](https://carl-stone.github.io/comma/reference/subset.md) :
-  Subset a commaData object by condition, modification type, or
-  chromosome
+- [`subset(`*`<commaData>`*`)`](https://carl-stone.github.io/comma/reference/subset.commaData.md)
+  : Deprecated subset method for commaData objects
 
 - [`varianceByDepth()`](https://carl-stone.github.io/comma/reference/varianceByDepth.md)
   : Methylation variance as a function of sequencing depth

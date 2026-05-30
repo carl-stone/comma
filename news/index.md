@@ -32,8 +32,8 @@
   construction time with an informative message per mod type.
 
 - **`subset(object, mod_context = ...)` filter** —
-  [`subset()`](https://carl-stone.github.io/comma/reference/subset.md)
-  gains a `mod_context` parameter for filtering by modification context.
+  [`subset()`](https://rdrr.io/r/base/subset.html) gains a `mod_context`
+  parameter for filtering by modification context.
 
 - **[`diffMethyl()`](https://carl-stone.github.io/comma/reference/diffMethyl.md)
   loops by `mod_context`** — differential methylation is now computed
@@ -388,8 +388,8 @@
   [`motifSites()`](https://carl-stone.github.io/comma/reference/motifSites.md).
 
 - Added subsetting: `[` for sites/samples and
-  [`subset()`](https://carl-stone.github.io/comma/reference/subset.md)
-  for filtering by `mod_type`, `condition`, or `chrom`.
+  [`subset()`](https://rdrr.io/r/base/subset.html) for filtering by
+  `mod_type`, `condition`, or `chrom`.
 
 - Added internal genome utilities:
   [`.validateGenomeInfo()`](https://carl-stone.github.io/comma/reference/dot-validateGenomeInfo.md),

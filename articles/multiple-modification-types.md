@@ -101,13 +101,14 @@ sequences with high efficiency. 5mC patterns can be more variable.
 
 ## Subsetting by Modification Type
 
-Use [`subset()`](https://carl-stone.github.io/comma/reference/subset.md)
+Use
+[`filterSites()`](https://carl-stone.github.io/comma/reference/filterSites.md)
 to extract a single modification type:
 
 ``` r
 
-only_6ma <- subset(comma_example_data, mod_type = "6mA")
-only_5mc <- subset(comma_example_data, mod_type = "5mC")
+only_6ma <- filterSites(comma_example_data, mod_type = "6mA")
+only_5mc <- filterSites(comma_example_data, mod_type = "5mC")
 
 cat("6mA sites:", nrow(methylation(only_6ma)), "\n")
 #> 6mA sites: 393

@@ -160,10 +160,11 @@ sequences with high efficiency. 5mC patterns can be more variable.</p>
 <div class="section level2">
 <h2 id="subsetting-by-modification-type">Subsetting by Modification Type<a class="anchor" aria-label="anchor" href="#subsetting-by-modification-type"></a>
 </h2>
-<p>Use <code><a href="../reference/subset.html">subset()</a></code> to extract a single modification type:</p>
+<p>Use <code><a href="../reference/filterSites.html">filterSites()</a></code> to extract a single modification
+type:</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">only_6ma</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/subset.html">subset</a></span><span class="op">(</span><span class="va">comma_example_data</span>, mod_type <span class="op">=</span> <span class="st">"6mA"</span><span class="op">)</span></span>
-<span><span class="va">only_5mc</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/subset.html">subset</a></span><span class="op">(</span><span class="va">comma_example_data</span>, mod_type <span class="op">=</span> <span class="st">"5mC"</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="va">only_6ma</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/filterSites.html">filterSites</a></span><span class="op">(</span><span class="va">comma_example_data</span>, mod_type <span class="op">=</span> <span class="st">"6mA"</span><span class="op">)</span></span>
+<span><span class="va">only_5mc</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/filterSites.html">filterSites</a></span><span class="op">(</span><span class="va">comma_example_data</span>, mod_type <span class="op">=</span> <span class="st">"5mC"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="st">"6mA sites:"</span>, <span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="fu"><a href="../reference/methylation.html">methylation</a></span><span class="op">(</span><span class="va">only_6ma</span><span class="op">)</span><span class="op">)</span>, <span class="st">"\n"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; 6mA sites: 393</span></span>

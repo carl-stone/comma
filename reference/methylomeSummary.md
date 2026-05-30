@@ -88,10 +88,24 @@ A `data.frame` with one row per sample, containing:
   `min_coverage` threshold, which have coverage stored as 0 or their raw
   depth).
 
+- `median_coverage`:
+
+  Median sequencing depth.
+
+- `caller`:
+
+  Methylation caller that produced the data (e.g., `"modkit"`), or `NA`
+  if not stored.
+
+- `min_coverage`:
+
+  Minimum coverage threshold applied at construction, or `NA` if not
+  stored.
+
 ## See also
 
 [`methylation`](https://carl-stone.github.io/comma/reference/methylation.md),
-[`coverage`](https://rdrr.io/pkg/IRanges/man/coverage-methods.html),
+[`siteCoverage`](https://carl-stone.github.io/comma/reference/siteCoverage.md),
 [`sampleInfo`](https://carl-stone.github.io/comma/reference/sampleInfo.md)
 
 ## Examples

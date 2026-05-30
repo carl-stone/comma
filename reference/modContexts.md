@@ -40,7 +40,7 @@ positions, which is likely artefactual).
 
 [`modTypes`](https://carl-stone.github.io/comma/reference/modTypes.md),
 [`motifs`](https://carl-stone.github.io/comma/reference/motifs.md),
-[`subset`](https://carl-stone.github.io/comma/reference/subset.md)
+[`subset`](https://rdrr.io/r/base/subset.html)
 
 ## Examples
 

@@ -29,7 +29,7 @@ columns corresponding to samples. Rownames are site keys
 
 ## See also
 
-[`coverage`](https://carl-stone.github.io/comma/reference/coverage-commaData-method.md),
+[`siteCoverage`](https://carl-stone.github.io/comma/reference/siteCoverage.md),
 [`siteInfo`](https://carl-stone.github.io/comma/reference/siteInfo.md),
 [`sampleInfo`](https://carl-stone.github.io/comma/reference/sampleInfo.md)
 
