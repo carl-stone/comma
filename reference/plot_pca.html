@@ -93,13 +93,15 @@ included.</p></dd>
 
 <dt id="arg-color-by">color_by<a class="anchor" aria-label="anchor" href="#arg-color-by"></a></dt>
 <dd><p>Character string naming a column in <code>sampleInfo(object)</code>
-to use for point color. Default <code>"condition"</code>.</p></dd>
+to use for point color. When <code>return_data = TRUE</code>, this column is
+validated and included in the returned data. Default <code>"condition"</code>.</p></dd>
 
 
 <dt id="arg-shape-by">shape_by<a class="anchor" aria-label="anchor" href="#arg-shape-by"></a></dt>
 <dd><p>Character string naming a column in <code>sampleInfo(object)</code>
 to use for point shape. If <code>NULL</code> (default), all points use the same
-shape. Ignored when <code>return_data = TRUE</code>.</p></dd>
+shape. When <code>return_data = TRUE</code>, a non-<code>NULL</code> column is
+validated and included in the returned data.</p></dd>
 
 
 <dt id="arg-return-data">return_data<a class="anchor" aria-label="anchor" href="#arg-return-data"></a></dt>
@@ -117,7 +119,8 @@ labels. Each point represents one sample and is labeled with its
 <code>sample_name</code>. Points are colored by <code>color_by</code>.</p>
 <p>When <code>return_data = TRUE</code>, a <code>data.frame</code> with one row per
 sample containing columns <code>PC1</code>, <code>PC2</code>, <code>sample_name</code>, and
-all columns from <code>sampleInfo(object)</code>. The attribute
+all columns from <code>sampleInfo(object)</code>, including requested
+<code>color_by</code> and non-<code>NULL</code> <code>shape_by</code> columns. The attribute
 <code>percentVar</code> (accessible via <code>attr(result, "percentVar")</code>) is a
 named numeric vector giving the percentage of variance explained by PC1 and
 PC2.</p>

@@ -36,7 +36,7 @@ methylomeSummary(object, mod_type = NULL, motif = NULL, mod_context = NULL)
 - mod_context:
 
   Character vector or `NULL`. If provided, only sites with a matching
-  modification context are included (e.g., `"6mA_GATC"`). Applied after
+  modification context are included (e.g., `"6mA:GATC"`). Applied after
   any `mod_type` and `motif` filters. Use
   [`modContexts`](https://carl-stone.github.io/comma/reference/modContexts.md)
   to see available values.
@@ -51,7 +51,8 @@ A `data.frame` with one row per sample, containing:
 
 - `condition`:
 
-  Experimental condition, from `sampleInfo(object)$condition`.
+  Experimental condition, from the `condition` column in
+  `sampleInfo(object)`.
 
 - `mod_type`:
 
@@ -59,12 +60,13 @@ A `data.frame` with one row per sample, containing:
 
 - `n_sites`:
 
-  Total number of sites considered.
+  Total number of sites considered after filters.
 
 - `n_covered`:
 
   Number of sites with non-`NA` methylation in this sample (i.e., sites
-  above the coverage threshold).
+  above the coverage threshold); this is the denominator for beta
+  summaries.
 
 - `mean_beta`:
 
@@ -84,13 +86,15 @@ A `data.frame` with one row per sample, containing:
 
 - `mean_coverage`:
 
-  Mean sequencing depth across all sites (including sites below the
-  `min_coverage` threshold, which have coverage stored as 0 or their raw
-  depth).
+  Mean sequencing depth across non-missing coverage values for retained
+  sites, including sites below the `min_coverage` threshold when
+  coverage is available.
 
 - `median_coverage`:
 
-  Median sequencing depth.
+  Median sequencing depth across non-missing coverage values for
+  retained sites, including sites below the `min_coverage` threshold
+  when coverage is available.
 
 - `caller`:
 
@@ -101,6 +105,16 @@ A `data.frame` with one row per sample, containing:
 
   Minimum coverage threshold applied at construction, or `NA` if not
   stored.
+
+## Details
+
+Methylation beta summaries (`mean_beta`, `median_beta`, `sd_beta`, and
+`frac_methylated`) are computed over covered sites: sites with non-`NA`
+beta values after the object's coverage threshold has been applied.
+Coverage summaries (`mean_coverage` and `median_coverage`) are computed
+over non-missing coverage values for sites retained after filtering,
+including sites whose beta value is `NA` in a sample because the site
+did not meet the coverage threshold.
 
 ## See also
 
@@ -128,6 +142,15 @@ ms
 #> 4 0.17009987       0.9421769      76.49490            76.5 modkit            5
 #> 5 0.16870207       0.9404762      78.44218            78.0 modkit            5
 #> 6 0.16809920       0.9455782      79.17517            76.5 modkit            5
+# Beta summaries use n_covered; coverage summaries use non-missing coverage.
+ms[, c("sample_name", "n_sites", "n_covered", "mean_beta", "mean_coverage")]
+#>   sample_name n_sites n_covered mean_beta mean_coverage
+#> 1      ctrl_1     588       588 0.8654839      79.25340
+#> 2      ctrl_2     588       588 0.8705692      79.83333
+#> 3      ctrl_3     588       588 0.8638033      82.67347
+#> 4     treat_1     588       588 0.8357998      76.49490
+#> 5     treat_2     588       588 0.8369054      78.44218
+#> 6     treat_3     588       588 0.8388398      79.17517
 
 # Summarize only 6mA sites
 ms_6mA <- methylomeSummary(comma_example_data, mod_type = "6mA")

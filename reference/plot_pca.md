@@ -48,13 +48,15 @@ plot_pca(
 - color_by:
 
   Character string naming a column in `sampleInfo(object)` to use for
-  point color. Default `"condition"`.
+  point color. When `return_data = TRUE`, this column is validated and
+  included in the returned data. Default `"condition"`.
 
 - shape_by:
 
   Character string naming a column in `sampleInfo(object)` to use for
-  point shape. If `NULL` (default), all points use the same shape.
-  Ignored when `return_data = TRUE`.
+  point shape. If `NULL` (default), all points use the same shape. When
+  `return_data = TRUE`, a non-`NULL` column is validated and included in
+  the returned data.
 
 - return_data:
 
@@ -72,7 +74,8 @@ colored by `color_by`.
 
 When `return_data = TRUE`, a `data.frame` with one row per sample
 containing columns `PC1`, `PC2`, `sample_name`, and all columns from
-`sampleInfo(object)`. The attribute `percentVar` (accessible via
+`sampleInfo(object)`, including requested `color_by` and non-`NULL`
+`shape_by` columns. The attribute `percentVar` (accessible via
 `attr(result, "percentVar")`) is a named numeric vector giving the
 percentage of variance explained by PC1 and PC2.
 
