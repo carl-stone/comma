@@ -6,3 +6,5 @@
   comma](https://carl-stone.github.io/comma/articles/getting-started.md):
 - [Working with Multiple Modification
   Types](https://carl-stone.github.io/comma/articles/multiple-modification-types.md):
+- [Understanding the commaData
+  object](https://carl-stone.github.io/comma/articles/understanding-commaData.md):
