@@ -18,7 +18,11 @@ plot_heatmap(results, object, n_sites = 50L, annotation_cols = NULL)
   A `data.frame` returned by
   [`results()`](https://carl-stone.github.io/comma/reference/results.md),
   containing at minimum the columns `chrom`, `position`, `strand`,
-  `mod_type`, `dm_padj`, and `dm_delta_beta`.
+  `mod_type`, `dm_padj`, and `dm_delta_beta`. Row names of the selected
+  rows must be non-missing integer row indices into `object`, as
+  produced by
+  [`results`](https://carl-stone.github.io/comma/reference/results.md)
+  and preserved by ordinary data-frame subsetting and sorting.
 
 - object:
 
@@ -47,6 +51,14 @@ sites (y-axis labels suppressed for readability). The fill color encodes
 methylation beta (blue = 0, white = 0.5, red = 1). `NA` values are shown
 in light grey. An annotation strip above shows sample-level metadata
 encoded by color.
+
+## Details
+
+`plot_heatmap()` maps differential methylation result rows back to
+`object` through the row names on `results`: selected row names must be
+integer row indices within `seq_len(nrow(object))`. Do not reset row
+names or replace them with display labels such as site keys before
+calling this function.
 
 ## See also
 

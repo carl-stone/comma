@@ -64,7 +64,10 @@ reveal condition-specific patterns.</p>
 <dd><p>A <code>data.frame</code> returned by <code><a href="results.html">results()</a></code>,
 containing at minimum the columns <code>chrom</code>, <code>position</code>,
 <code>strand</code>, <code>mod_type</code>, <code>dm_padj</code>, and
-<code>dm_delta_beta</code>.</p></dd>
+<code>dm_delta_beta</code>. Row names of the selected rows must be
+non-missing integer row indices into <code>object</code>, as produced by
+<code><a href="results.html">results</a></code> and preserved by ordinary data-frame subsetting
+and sorting.</p></dd>
 
 
 <dt id="arg-object">object<a class="anchor" aria-label="anchor" href="#arg-object"></a></dt>
@@ -92,6 +95,14 @@ names; the y-axis shows the selected sites (y-axis labels suppressed for
 readability). The fill color encodes methylation beta (blue = 0,
 white = 0.5, red = 1). <code>NA</code> values are shown in light grey. An
 annotation strip above shows sample-level metadata encoded by color.</p>
+    </div>
+    <div class="section level2">
+    <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
+    <p><code>plot_heatmap()</code> maps differential methylation result rows
+back to <code>object</code> through the row names on <code>results</code>: selected
+row names must be integer row indices within <code>seq_len(nrow(object))</code>.
+Do not reset row names or replace them with display labels such as site
+keys before calling this function.</p>
     </div>
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
