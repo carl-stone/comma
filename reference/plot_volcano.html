@@ -109,6 +109,13 @@ levels are present, panels are split by <code>mod_context</code> via
 the plot.</p>
     </div>
     <div class="section level2">
+    <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
+    <p>For the y-axis calculation, adjusted p-values are clamped from
+below at <code>.Machine$double.xmin</code> before applying
+<code>-log10()</code>. This keeps exact-zero adjusted p-values finite in the
+plotted coordinates instead of producing infinite values.</p>
+    </div>
+    <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
     <div class="dont-index"><p><code><a href="diffMethyl.html">diffMethyl</a></code>, <code><a href="results.html">results</a></code>,
 <code><a href="filterResults.html">filterResults</a></code></p></div>

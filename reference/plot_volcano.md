@@ -62,6 +62,13 @@ when that argument is non-`NULL`. When `facet = TRUE` and multiple
 `facet_wrap`. Sites with `NA` adjusted p-value are excluded from the
 plot.
 
+## Details
+
+For the y-axis calculation, adjusted p-values are clamped from below at
+`.Machine$double.xmin` before applying `-log10()`. This keeps exact-zero
+adjusted p-values finite in the plotted coordinates instead of producing
+infinite values.
+
 ## See also
 
 [`diffMethyl`](https://carl-stone.github.io/comma/reference/diffMethyl.md),
