@@ -1,14 +1,12 @@
 # Changelog
 
-## comma 0.1.0.9000
+## comma 0.2.0
 
-### Fresh-start version reset
+### Current package baseline
 
-- Reset package versioning to `0.1.0.9000` on 2026-05-14. Earlier
-  version numbers were informal development labels from the
-  script-to-package transition. This marks the first serious phase of
-  disciplined package development with documented git, branching, PR,
-  release, and project-management rules.
+- The canonical package version is `0.2.0`. Repository URLs use
+  `carl-stone/comma` until the planned commaKit technical rename is done
+  in one deliberate pass.
 
 ### New features
 
@@ -98,9 +96,12 @@
   list (eight plot functions, four DM backends, enrichment analysis),
   and expanded roadmap table.
 
-------------------------------------------------------------------------
+### Historical pre-reset changelog entries
 
-## comma 0.6.0
+The entries below predate the `0.2.0` Schema v2 reset and are retained
+for provenance. They are not the current package version sequence.
+
+## comma 0.6.0 (historical informal label)
 
 ### New features
 
@@ -132,7 +133,7 @@
 
 ------------------------------------------------------------------------
 
-## comma 0.5.0
+## comma 0.5.0 (historical informal label)
 
 ### Major new features
 
@@ -197,7 +198,7 @@
 
 - Added `Visualization` to `biocViews`.
 
-## comma 0.4.0
+## comma 0.4.0 (historical informal label)
 
 ### Major new features
 
@@ -247,7 +248,7 @@
 
 ------------------------------------------------------------------------
 
-## comma 0.3.0
+## comma 0.3.0 (historical informal label)
 
 ### Major new features
 
@@ -335,7 +336,7 @@
 
 ------------------------------------------------------------------------
 
-## comma 0.2.0
+## comma 0.2.0 (historical informal label)
 
 ### Major new features
 
@@ -444,7 +445,7 @@
 
 ------------------------------------------------------------------------
 
-## comma 0.1.0
+## comma 0.1.0 (historical CoMMA label)
 
 - Initial release as `CoMMA` (Comparison of Microbial Methylated
   Adenines).

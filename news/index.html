@@ -40,13 +40,13 @@
     </div>
 
     <div class="section level2">
-<h2 class="pkg-version" data-toc-text="0.1.0.9000" id="comma-0109000">comma 0.1.0.9000<a class="anchor" aria-label="anchor" href="#comma-0109000"></a></h2>
+<h2 class="pkg-version" data-toc-text="0.2.0" id="comma-020">comma 0.2.0<a class="anchor" aria-label="anchor" href="#comma-020"></a></h2>
 <div class="section level3">
-<h3 id="fresh-start-version-reset-0-1-0-9000">Fresh-start version reset<a class="anchor" aria-label="anchor" href="#fresh-start-version-reset-0-1-0-9000"></a></h3>
-<ul><li>Reset package versioning to <code>0.1.0.9000</code> on 2026-05-14. Earlier version numbers were informal development labels from the script-to-package transition. This marks the first serious phase of disciplined package development with documented git, branching, PR, release, and project-management rules.</li>
+<h3 id="current-package-baseline-0-2-0">Current package baseline<a class="anchor" aria-label="anchor" href="#current-package-baseline-0-2-0"></a></h3>
+<ul><li>The canonical package version is <code>0.2.0</code>. Repository URLs use <code>carl-stone/comma</code> until the planned commaKit technical rename is done in one deliberate pass.</li>
 </ul></div>
 <div class="section level3">
-<h3 id="new-features-0-1-0-9000">New features<a class="anchor" aria-label="anchor" href="#new-features-0-1-0-9000"></a></h3>
+<h3 id="new-features-0-2-0">New features<a class="anchor" aria-label="anchor" href="#new-features-0-2-0"></a></h3>
 <ul><li><p><strong><code>mod_context</code> rowData column</strong> — every <code>commaData</code> object now stores a <code>mod_context</code> column in <code>rowData</code> that combines <code>mod_type</code> and <code>motif</code> (e.g. <code>"6mA_GATC"</code>, <code>"5mC_CCWGG"</code>). When <code>motif</code> is <code>NA</code> (Dorado/Megalodon callers), the fallback is the <code>mod_type</code> string alone (never <code>"6mA_NA"</code>). <code>mod_context</code> is required and enforced by <code>setValidity()</code>.</p></li>
 <li><p><strong><code><a href="../reference/modContexts.html">modContexts()</a></code></strong> — new exported S4 accessor that returns sorted unique modification context strings from a <code>commaData</code> object.</p></li>
 <li><p><strong><code>expected_mod_contexts</code> constructor parameter</strong> — <code><a href="../reference/commaData.html">commaData()</a></code> now accepts <code>expected_mod_contexts</code>, a named list mapping mod types to allowed motifs (e.g. <code>list("6mA" = c("GATC", "ACCACC"), "5mC" = "CCWGG")</code>). Sites with unexpected mod_type × motif combinations are dropped at construction time with an informative message per mod type.</p></li>
@@ -55,26 +55,30 @@
 <li><p><strong><code>mod_context</code> parameter added throughout</strong> — <code><a href="../reference/methylomeSummary.html">methylomeSummary()</a></code>, <code><a href="../reference/slidingWindow.html">slidingWindow()</a></code>, <code><a href="../reference/mValues.html">mValues()</a></code>, <code><a href="../reference/writeBED.html">writeBED()</a></code>, and all eight <code>plot_*()</code> functions gain a <code>mod_context = NULL</code> parameter for context-level filtering. <code><a href="../reference/plot_tss_profile.html">plot_tss_profile()</a></code> additionally supports <code>color_by = "mod_context"</code> and <code>facet_by = "mod_context"</code>.</p></li>
 </ul></div>
 <div class="section level3">
-<h3 id="breaking-changes-0-1-0-9000">Breaking changes<a class="anchor" aria-label="anchor" href="#breaking-changes-0-1-0-9000"></a></h3>
+<h3 id="breaking-changes-0-2-0">Breaking changes<a class="anchor" aria-label="anchor" href="#breaking-changes-0-2-0"></a></h3>
 <ul><li>
 <strong>Old <code>commaData</code> objects are invalid</strong> — <code>rowData</code> must include a <code>mod_context</code> character column. Objects created with earlier versions will fail <code>validObject()</code>. Re-create from source files using the updated constructor.</li>
 </ul></div>
 <div class="section level3">
-<h3 id="bug-fixes-0-1-0-9000">Bug fixes<a class="anchor" aria-label="anchor" href="#bug-fixes-0-1-0-9000"></a></h3>
+<h3 id="bug-fixes-0-2-0">Bug fixes<a class="anchor" aria-label="anchor" href="#bug-fixes-0-2-0"></a></h3>
 <ul><li>
 <code>diffMethyl(method = "methylkit")</code> no longer crashes with “object of type ‘closure’ is not subsettable” when a modification context contains sites where all samples have zero coverage after filtering. <code><a href="https://rdrr.io/pkg/methylKit/man/unite-methods.html" class="external-link">methylKit::unite()</a></code> retains such sites in the united object; <code>calculateDiffMeth()</code> then calls <code>glm.fit</code> with all-zero weights and all-NaN response, which crashes. The wrapper now filters those sites out before calling <code>calculateDiffMeth</code> and assigns them <code>p = 1</code> (consistent with the null hypothesis). Regression test added.</li>
 </ul></div>
 <div class="section level3">
-<h3 id="package-improvements-0-1-0-9000">Package improvements<a class="anchor" aria-label="anchor" href="#package-improvements-0-1-0-9000"></a></h3>
+<h3 id="package-improvements-0-2-0">Package improvements<a class="anchor" aria-label="anchor" href="#package-improvements-0-2-0"></a></h3>
 <ul><li>Added explicit <code>Author</code> and <code>Maintainer</code> fields to DESCRIPTION for R 4.6.0 compatibility.</li>
 <li>Replaced non-ASCII character in <code><a href="../reference/writeBED.html">writeBED()</a></code> documentation with ASCII equivalent.</li>
 <li>Updated <code>.Rbuildignore</code> to exclude development files (<code>.claude/</code>, <code>.codex/</code>, <code>.letta/</code>, <code>.lteams/</code>, <code>AGENTS.md</code>, <code>PRD.md</code>, <code>VISION.md</code>, <code>ROADMAP.md</code>, <code>SPECS.md</code>).</li>
 <li>Renamed test files to match <code>test-functionName.R</code> convention: <code>test-coverageAnalysis.R</code> → <code>test-coverageDepth.R</code> + <code>test-varianceByDepth.R</code>, <code>test-enrichment.R</code> → <code>test-enrichMethylation.R</code>, <code>test-find_motif_sites.R</code> → <code>test-findMotifSites.R</code>, <code>test-load_annotation.R</code> → <code>test-loadAnnotation.R</code>, <code>test-m_values.R</code> → <code>test-mValues.R</code>, <code>test-plot_distribution.R</code> → <code>test-plot_methylation_distribution.R</code>.</li>
 <li>Updated README: corrected example data size (588 sites), added enrichment analysis and TSS profile workflow sections, updated feature list (eight plot functions, four DM backends, enrichment analysis), and expanded roadmap table.</li>
-</ul><hr></div>
+</ul></div>
+<div class="section level3">
+<h3 id="historical-pre-reset-changelog-entries-0-2-0">Historical pre-reset changelog entries<a class="anchor" aria-label="anchor" href="#historical-pre-reset-changelog-entries-0-2-0"></a></h3>
+<p>The entries below predate the <code>0.2.0</code> Schema v2 reset and are retained for provenance. They are not the current package version sequence.</p>
+</div>
 </div>
     <div class="section level2">
-<h2 class="pkg-version" data-toc-text="0.6.0" id="comma-060">comma 0.6.0<a class="anchor" aria-label="anchor" href="#comma-060"></a></h2>
+<h2 class="pkg-version" data-toc-text="0.6.0" id="comma-060-historical-informal-label">comma 0.6.0 (historical informal label)<a class="anchor" aria-label="anchor" href="#comma-060-historical-informal-label"></a></h2>
 <div class="section level3">
 <h3 id="new-features-0-6-0">New features<a class="anchor" aria-label="anchor" href="#new-features-0-6-0"></a></h3>
 <ul><li><p><strong><code><a href="../reference/mValues.html">mValues()</a></code></strong> — new exported function that converts per-site beta values and read depths into M-values using the formula <code>log2((M_reads + alpha) / (U_reads + alpha))</code> with a default pseudocount of <code>alpha = 0.5</code>. M-values are variance-stabilized relative to raw beta values and are better suited for distance-based analyses such as PCA.</p></li>
@@ -88,7 +92,7 @@
 </ul><hr></div>
 </div>
     <div class="section level2">
-<h2 class="pkg-version" data-toc-text="0.5.0" id="comma-050">comma 0.5.0<a class="anchor" aria-label="anchor" href="#comma-050"></a></h2>
+<h2 class="pkg-version" data-toc-text="0.5.0" id="comma-050-historical-informal-label">comma 0.5.0 (historical informal label)<a class="anchor" aria-label="anchor" href="#comma-050-historical-informal-label"></a></h2>
 <div class="section level3">
 <h3 id="major-new-features-0-5-0">Major new features<a class="anchor" aria-label="anchor" href="#major-new-features-0-5-0"></a></h3>
 <ul><li><p><strong><code><a href="../reference/plot_methylation_distribution.html">plot_methylation_distribution()</a></code></strong> — beta value density plot per sample, coloured by sample name, and faceted by modification type when multiple types are present. Useful for QC and comparing methylation level distributions.</p></li>
@@ -117,7 +121,7 @@
 </ul></div>
 </div>
     <div class="section level2">
-<h2 class="pkg-version" data-toc-text="0.4.0" id="comma-040">comma 0.4.0<a class="anchor" aria-label="anchor" href="#comma-040"></a></h2>
+<h2 class="pkg-version" data-toc-text="0.4.0" id="comma-040-historical-informal-label">comma 0.4.0 (historical informal label)<a class="anchor" aria-label="anchor" href="#comma-040-historical-informal-label"></a></h2>
 <div class="section level3">
 <h3 id="major-new-features-0-4-0">Major new features<a class="anchor" aria-label="anchor" href="#major-new-features-0-4-0"></a></h3>
 <ul><li>
@@ -139,7 +143,7 @@
 </ul><hr></div>
 </div>
     <div class="section level2">
-<h2 class="pkg-version" data-toc-text="0.3.0" id="comma-030">comma 0.3.0<a class="anchor" aria-label="anchor" href="#comma-030"></a></h2>
+<h2 class="pkg-version" data-toc-text="0.3.0" id="comma-030-historical-informal-label">comma 0.3.0 (historical informal label)<a class="anchor" aria-label="anchor" href="#comma-030-historical-informal-label"></a></h2>
 <div class="section level3">
 <h3 id="major-new-features-0-3-0">Major new features<a class="anchor" aria-label="anchor" href="#major-new-features-0-3-0"></a></h3>
 <ul><li>
@@ -176,7 +180,7 @@
 </ul><hr></div>
 </div>
     <div class="section level2">
-<h2 class="pkg-version" data-toc-text="0.2.0" id="comma-020">comma 0.2.0<a class="anchor" aria-label="anchor" href="#comma-020"></a></h2>
+<h2 class="pkg-version" data-toc-text="0.2.0" id="comma-020-historical-informal-label">comma 0.2.0 (historical informal label)<a class="anchor" aria-label="anchor" href="#comma-020-historical-informal-label"></a></h2>
 <div class="section level3">
 <h3 id="major-new-features-0-2-0">Major new features<a class="anchor" aria-label="anchor" href="#major-new-features-0-2-0"></a></h3>
 <ul><li><p>Added <code>commaData</code> S4 class (extends <code>SummarizedExperiment</code>) — the central data object for all comma analyses. Stores methylation beta values and coverage as assay matrices with per-site and per-sample metadata.</p></li>
@@ -216,7 +220,7 @@
 </ul><hr></div>
 </div>
     <div class="section level2">
-<h2 class="pkg-version" data-toc-text="0.1.0" id="comma-010">comma 0.1.0<a class="anchor" aria-label="anchor" href="#comma-010"></a></h2>
+<h2 class="pkg-version" data-toc-text="0.1.0" id="comma-010-historical-comma-label">comma 0.1.0 (historical CoMMA label)<a class="anchor" aria-label="anchor" href="#comma-010-historical-comma-label"></a></h2>
 <ul><li>Initial release as <code>CoMMA</code> (Comparison of Microbial Methylated Adenines).</li>
 <li>Exported functions: <code>annotateMethylSites()</code>, <code>annotateTSS()</code>, <code>methylRollingMedian()</code>.</li>
 <li>Data: 9 MG1655-specific <code>.rda</code> datasets.</li>
