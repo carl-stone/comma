@@ -45,7 +45,7 @@
 <li class="nav-item"><form class="form-inline" role="search">
  <input class="form-control" type="search" name="search-input" id="search-input" autocomplete="off" aria-label="Search site" placeholder="Search for" data-search-index="search.json">
 </form></li>
-<li class="nav-item"><a class="external-link nav-link" href="https://github.com/carl-stone/CoMMA/" aria-label="GitHub"><span class="fa fab fa-github fa-lg"></span></a></li>
+<li class="nav-item"><a class="external-link nav-link" href="https://github.com/carl-stone/comma/" aria-label="GitHub"><span class="fa fab fa-github fa-lg"></span></a></li>
       </ul>
 </div>
 
@@ -54,29 +54,29 @@
 </nav><div class="container template-home">
 <div class="row">
   <main id="main" class="col-md-9"><div class="section level1">
-<div class="page-header"><h1 id="comma">comma<a class="anchor" aria-label="anchor" href="#comma"></a>
+<div class="page-header"><h1 id="commakit">commaKit<a class="anchor" aria-label="anchor" href="#commakit"></a>
 </h1></div>
 <!-- badges: start -->
 
-<p><strong>comma</strong> (<strong>co</strong>mma: for <strong>m</strong>icrobial <strong>m</strong>ethylation <strong>a</strong>nalysis) is an R package for genome-wide analysis of bacterial DNA methylation from Oxford Nanopore sequencing data. It accepts output from <strong>modkit</strong>, <strong>Dorado</strong>, and <strong>Megalodon</strong>, supports <strong>6mA, 5mC, and 4mC</strong> in a single unified container, and covers the full analysis workflow from raw files through quality control, site annotation, differential methylation testing, and publication-quality visualization.</p>
+<p><strong>commaKit</strong> (<strong>Com</strong>parative <strong>M</strong>icrobial <strong>M</strong>ethylomics <strong>A</strong>nalysis <strong>Kit</strong>) is an R package for genome-wide analysis of bacterial DNA methylation from Oxford Nanopore sequencing data. It accepts output from <strong>modkit</strong>, <strong>Dorado</strong>, and <strong>Megalodon</strong>, supports <strong>6mA, 5mC, and 4mC</strong> in a single unified container, and covers the full analysis workflow from raw files through quality control, site annotation, differential methylation testing, and publication-quality visualization.</p>
 <div class="section level2">
 <h2 id="features">Features<a class="anchor" aria-label="anchor" href="#features"></a>
 </h2>
 <ul>
 <li>
-<strong><code>commaData</code> S4 class</strong> — extends <code>SummarizedExperiment</code>; stores beta values, coverage, sample metadata, genome info, and annotations together.</li>
+<strong><code>commaData</code> S4 class</strong> — extends <code>RangedSummarizedExperiment</code>; stores beta values, coverage, sample metadata, genome info, and annotations together.</li>
 <li>
 <strong>Three input types</strong> — modkit pileup BED (primary), Dorado BAM (full MM/ML tag decoding), and Megalodon (legacy).</li>
 <li>
 <strong>Genome annotation</strong> via <code><a href="https://rdrr.io/pkg/IRanges/man/findOverlaps-methods.html" class="external-link">GenomicRanges::findOverlaps()</a></code>; three modes: overlap, proximity, and metagene (normalized position within feature bodies).</li>
 <li>
-<strong>Differential methylation</strong> — four statistical backends (<a href="https://doi.org/doi:10.18129/B9.bioc.methylKit" class="external-link"><code>methylKit</code></a>, beta-binomial GLM, <a href="https://doi.org/doi:10.18129/B9.bioc.limma" class="external-link"><code>limma</code></a>, and quasi-binomial F-test), with a DESeq2-style interface (<code><a href="reference/diffMethyl.html">diffMethyl()</a></code> → <code><a href="reference/results.html">results()</a></code> → <code><a href="reference/filterResults.html">filterResults()</a></code>).</li>
+<strong>Differential methylation</strong> — three statistical backends (<a href="https://doi.org/doi:10.18129/B9.bioc.methylKit" class="external-link"><code>methylKit</code></a>, <a href="https://doi.org/doi:10.18129/B9.bioc.limma" class="external-link"><code>limma</code></a>, and quasi-binomial F-test), with a DESeq2-style interface (<code><a href="reference/diffMethyl.html">diffMethyl()</a></code> → <code><a href="reference/results.html">results()</a></code> → <code><a href="reference/filterResults.html">filterResults()</a></code>).</li>
 <li>
 <strong>Enrichment analysis</strong> — GO and KEGG over-representation analysis (ORA) and gene set enrichment analysis (GSEA) via <a href="https://doi.org/doi:10.18129/B9.bioc.clusterProfiler" class="external-link"><code>clusterProfiler</code></a>, with offline KEGG support and gene role semantics (target/regulator).</li>
 <li>
 <strong>Eight <code>plot_*()</code> functions</strong> — coverage QC, beta distributions, PCA, genome tracks, metagene profiles, TSS profiles, volcano plots, and heatmaps; all return <code>ggplot</code> objects for further customization. PCA uses variance-stabilized M-values internally and supports <code>return_data = TRUE</code> for custom plotting.</li>
 <li>
-<strong><code><a href="reference/mValues.html">mValues()</a></code></strong> — converts beta values and read depths to M-values (<code>log2((M + α) / (U + α))</code>), useful for distance-based analyses and custom plots.</li>
+<strong><code><a href="reference/mValues.html">mValues()</a></code></strong> — converts beta values and read depths to M-values (<code>log2((M + a) / (U + a))</code>), useful for distance-based analyses and custom plots.</li>
 <li>
 <strong>Compatible with any monoploid genome</strong> — genome annotations can be loaded as GFF3 or BED files. Supports linear or circular chromosomes.</li>
 <li>
@@ -95,11 +95,11 @@
 <div class="section level2">
 <h2 id="the-commadata-object">The <code>commaData</code> Object<a class="anchor" aria-label="anchor" href="#the-commadata-object"></a>
 </h2>
-<p><code>commaData</code> extends <code>SummarizedExperiment</code> and is constructed from per-sample methylation files:</p>
+<p><code>commaData</code> extends <code>RangedSummarizedExperiment</code> and is constructed from per-sample methylation files:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/carl-stone/CoMMA" class="external-link">comma</a></span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/carl-stone/comma" class="external-link">comma</a></span><span class="op">)</span></span>
 <span></span>
-<span><span class="co"># Named vector: sample_name → path to modkit pileup BED</span></span>
+<span><span class="co"># Named vector: sample_name -&gt; path to modkit pileup BED</span></span>
 <span><span class="va">files</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span></span>
 <span>  ctrl_1  <span class="op">=</span> <span class="st">"path/to/ctrl_rep1.bed"</span>,</span>
 <span>  ctrl_2  <span class="op">=</span> <span class="st">"path/to/ctrl_rep2.bed"</span>,</span>
@@ -126,17 +126,17 @@
 <span><span class="op">)</span></span></code></pre></div>
 <p>A built-in synthetic dataset (588 sites, 6 samples, 100 kb genome) is included for testing and demonstrations:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/carl-stone/CoMMA" class="external-link">comma</a></span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/carl-stone/comma" class="external-link">comma</a></span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">comma_example_data</span><span class="op">)</span></span>
 <span><span class="va">comma_example_data</span></span>
 <span><span class="co">#&gt; class: commaData</span></span>
-<span><span class="co">#&gt; sites: 588 | samples: 6 </span></span>
-<span><span class="co">#&gt; mod types: 5mC, 6mA </span></span>
-<span><span class="co">#&gt; motifs: CCWGG, GATC </span></span>
-<span><span class="co">#&gt; mod contexts: 5mC_CCWGG, 6mA_GATC </span></span>
-<span><span class="co">#&gt; conditions: control, treatment </span></span>
-<span><span class="co">#&gt; genome: 1 chromosome (100,000 bp total) </span></span>
-<span><span class="co">#&gt; annotation: 5 features </span></span>
+<span><span class="co">#&gt; sites: 588 | samples: 6</span></span>
+<span><span class="co">#&gt; mod types: 5mC, 6mA</span></span>
+<span><span class="co">#&gt; motifs: CCWGG, GATC</span></span>
+<span><span class="co">#&gt; mod contexts: 5mC_CCWGG, 6mA_GATC</span></span>
+<span><span class="co">#&gt; conditions: control, treatment</span></span>
+<span><span class="co">#&gt; genome: 1 chromosome (100,000 bp total)</span></span>
+<span><span class="co">#&gt; annotation: 5 features</span></span>
 <span><span class="co">#&gt; motif sites: none</span></span></code></pre></div>
 </div>
 <div class="section level2">
@@ -193,7 +193,7 @@
 <div class="section level3">
 <h3 id="step-3--genome-track-visualization">Step 3 — Genome Track Visualization<a class="anchor" aria-label="anchor" href="#step-3--genome-track-visualization"></a>
 </h3>
-<p><code><a href="reference/plot_genome_track.html">plot_genome_track()</a></code> produces a genome browser–style scatter plot of methylation along a chromosomal region:</p>
+<p><code><a href="reference/plot_genome_track.html">plot_genome_track()</a></code> produces a genome browser-style scatter plot of methylation along a chromosomal region:</p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="reference/plot_genome_track.html">plot_genome_track</a></span><span class="op">(</span><span class="va">comma_example_data</span>, chromosome <span class="op">=</span> <span class="st">"chr_sim"</span>,</span>
 <span>                  start <span class="op">=</span> <span class="fl">1L</span>, end <span class="op">=</span> <span class="fl">10000L</span>, mod_type <span class="op">=</span> <span class="st">"6mA"</span><span class="op">)</span></span></code></pre></div>
@@ -212,8 +212,8 @@
 <span><span class="va">sig</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/filterResults.html">filterResults</a></span><span class="op">(</span><span class="va">cd_dm</span>, padj <span class="op">=</span> <span class="fl">0.05</span>, delta_beta <span class="op">=</span> <span class="fl">0.2</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="st">"Total 6mA sites tested:"</span>, <span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">res</span><span class="op">)</span>, <span class="st">"\n"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Total 6mA sites tested: 588</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="st">"Significant sites (padj &lt; 0.05, |Δβ| ≥ 0.2):"</span>, <span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">sig</span><span class="op">)</span>, <span class="st">"\n"</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Significant sites (padj &lt; 0.05, |Δβ| ≥ 0.2): 31</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="st">"Significant sites (padj &lt; 0.05, |delta_beta| &gt;= 0.2):"</span>, <span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">sig</span><span class="op">)</span>, <span class="st">"\n"</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Significant sites (padj &lt; 0.05, |delta_beta| &gt;= 0.2): 31</span></span>
 <span></span>
 <span><span class="co"># Top hits</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">res</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/order.html" class="external-link">order</a></span><span class="op">(</span><span class="va">res</span><span class="op">$</span><span class="va">dm_padj</span><span class="op">)</span>,</span>
@@ -224,8 +224,8 @@
 <span><span class="co">#&gt; chr_sim:63550:+:6mA:GATC chr_sim    63550    -0.7799241 5.006897e-66</span></span>
 <span><span class="co">#&gt; chr_sim:61440:+:6mA:GATC chr_sim    61440    -0.7090099 1.178364e-64</span></span>
 <span><span class="co">#&gt; chr_sim:86016:+:6mA:GATC chr_sim    86016    -0.6743832 3.661541e-62</span></span>
-<span><span class="co">#&gt; chr_sim:2180:-:6mA:GATC  chr_sim     2180    -0.7543758 4.024452e-60</span></span></code></pre></div>
-<p><code><a href="reference/plot_volcano.html">plot_volcano()</a></code> displays the differential methylation landscape — effect size (delta methylation) versus significance (–log10 padj):</p>
+<span><span class="co">#&gt; chr_sim:2180:-:6mA:GATC  chr_sim     2180    -0.7543758 4.024163e-60</span></span></code></pre></div>
+<p><code><a href="reference/plot_volcano.html">plot_volcano()</a></code> displays the differential methylation landscape — effect size (delta methylation) versus significance (-log10 padj):</p>
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="reference/plot_volcano.html">plot_volcano</a></span><span class="op">(</span><span class="va">res</span><span class="op">)</span></span></code></pre></div>
 <p><img src="reference/figures/README-plot-volcano-1.png" alt="Volcano plot of differential 6mA methylation." width="100%"></p>
@@ -288,13 +288,13 @@
 <span><span class="va">obj_6mA</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/filterSites.html">filterSites</a></span><span class="op">(</span><span class="va">comma_example_data</span>, mod_type <span class="op">=</span> <span class="st">"6mA"</span><span class="op">)</span></span>
 <span><span class="va">obj_6mA</span></span>
 <span><span class="co">#&gt; class: commaData</span></span>
-<span><span class="co">#&gt; sites: 393 | samples: 6 </span></span>
-<span><span class="co">#&gt; mod types: 6mA </span></span>
-<span><span class="co">#&gt; motifs: GATC </span></span>
-<span><span class="co">#&gt; mod contexts: 6mA_GATC </span></span>
-<span><span class="co">#&gt; conditions: control, treatment </span></span>
-<span><span class="co">#&gt; genome: 1 chromosome (100,000 bp total) </span></span>
-<span><span class="co">#&gt; annotation: 5 features </span></span>
+<span><span class="co">#&gt; sites: 393 | samples: 6</span></span>
+<span><span class="co">#&gt; mod types: 6mA</span></span>
+<span><span class="co">#&gt; motifs: GATC</span></span>
+<span><span class="co">#&gt; mod contexts: 6mA_GATC</span></span>
+<span><span class="co">#&gt; conditions: control, treatment</span></span>
+<span><span class="co">#&gt; genome: 1 chromosome (100,000 bp total)</span></span>
+<span><span class="co">#&gt; annotation: 5 features</span></span>
 <span><span class="co">#&gt; motif sites: none</span></span></code></pre></div>
 <p>For a complete joint 6mA + 5mC analysis, see the <strong>Multiple Modification Types</strong> vignette (<code><a href="articles/multiple-modification-types.html">vignette("multiple-modification-types", package = "comma")</a></code>).</p>
 </div>
@@ -308,7 +308,7 @@
 <p>Two vignettes are included:</p>
 <ul>
 <li>
-<strong>Getting Started</strong> (<code><a href="articles/getting-started.html">vignette("getting-started", package = "comma")</a></code>) — end-to-end workflow: load → QC → annotate → differential methylation → visualize.</li>
+<strong>Getting Started</strong> (<code><a href="articles/getting-started.html">vignette("getting-started", package = "comma")</a></code>) — end-to-end workflow: load -&gt; QC -&gt; annotate -&gt; differential methylation -&gt; visualize.</li>
 <li>
 <strong>Multiple Modification Types</strong> (<code><a href="articles/multiple-modification-types.html">vignette("multiple-modification-types", package = "comma")</a></code>) — joint 6mA and 5mC analysis in a single <code>commaData</code> object.</li>
 </ul>
@@ -329,29 +329,34 @@
 </tr></thead>
 <tbody>
 <tr>
-<td>0.1.0.9000</td>
-<td>Fresh-start development baseline: current package functionality under disciplined project management</td>
-<td>🚧 Active development</td>
+<td>0.2.0</td>
+<td>Schema v2: RangedSummarizedExperiment, Seqinfo, no-rownames alignment</td>
+<td>Done</td>
 </tr>
 <tr>
-<td>0.1.0</td>
-<td>First internal release checkpoint</td>
-<td>⏳ Planned</td>
+<td>0.2.x</td>
+<td>Test quality, code quality audits, circular boundary behavior</td>
+<td>In progress</td>
+</tr>
+<tr>
+<td>0.3.0</td>
+<td>Layered assays, commaKit rename</td>
+<td>Planned</td>
 </tr>
 <tr>
 <td>0.x.y</td>
 <td>Pre-Bioconductor hardening releases</td>
-<td>⏳ Planned</td>
+<td>Planned</td>
 </tr>
 <tr>
 <td>0.99.0</td>
 <td>Bioconductor submission version</td>
-<td>⏳ Future</td>
+<td>Future</td>
 </tr>
 <tr>
 <td>1.0.0</td>
 <td>Stable public release after external confidence</td>
-<td>⏳ Future</td>
+<td>Future</td>
 </tr>
 </tbody>
 </table>
@@ -365,8 +370,8 @@
   </main><aside class="col-md-3"><div class="links">
 <h2 data-toc-skip>Links</h2>
 <ul class="list-unstyled">
-<li><a href="https://github.com/carl-stone/CoMMA/" class="external-link">Browse source code</a></li>
-<li><a href="https://github.com/carl-stone/CoMMA/issues" class="external-link">Report a bug</a></li>
+<li><a href="https://github.com/carl-stone/comma/" class="external-link">Browse source code</a></li>
+<li><a href="https://github.com/carl-stone/comma/issues" class="external-link">Report a bug</a></li>
 </ul>
 </div>
 
@@ -396,7 +401,7 @@
 <div class="dev-status">
 <h2 data-toc-skip>Dev status</h2>
 <ul class="list-unstyled">
-<li><a href="https://github.com/carl-stone/CoMMA/actions/workflows/R-CMD-check.yaml" class="external-link"><img src="https://github.com/carl-stone/CoMMA/actions/workflows/R-CMD-check.yaml/badge.svg" alt="R-CMD-check"></a></li>
+<li><a href="https://github.com/carl-stone/comma/actions/workflows/R-CMD-check.yaml" class="external-link"><img src="https://github.com/carl-stone/comma/actions/workflows/R-CMD-check.yaml/badge.svg" alt="R-CMD-check"></a></li>
 </ul>
 </div>
 

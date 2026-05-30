@@ -8,15 +8,15 @@
 ## Citation
 
 Source:
-[`DESCRIPTION`](https://github.com/carl-stone/CoMMA/blob/main/DESCRIPTION)
+[`DESCRIPTION`](https://github.com/carl-stone/comma/blob/main/DESCRIPTION)
 
 Stone C (2026). *comma: comma: for microbial methylation analysis*. R
-package version 0.2.0, <https://github.com/carl-stone/CoMMA>.
+package version 0.2.0, <https://github.com/carl-stone/comma>.
 
     @Manual{,
       title = {comma: comma: for microbial methylation analysis},
       author = {Carl Stone},
       year = {2026},
       note = {R package version 0.2.0},
-      url = {https://github.com/carl-stone/CoMMA},
+      url = {https://github.com/carl-stone/comma},
     }
