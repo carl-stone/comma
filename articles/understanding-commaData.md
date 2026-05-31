@@ -110,11 +110,11 @@ rr[1:4]
 #>   [3]  chr_sim      1024      + |      6mA        GATC     FALSE
 #>   [4]  chr_sim      1073      + |      6mA        GATC     FALSE
 #>   -------
-#>   seqinfo: 1 sequence from an unspecified genome
+#>   seqinfo: 1 sequence (1 circular) from an unspecified genome
 GenomeInfoDb::seqinfo(rr)
-#> Seqinfo object with 1 sequence from an unspecified genome:
+#> Seqinfo object with 1 sequence (1 circular) from an unspecified genome:
 #>   seqnames seqlengths isCircular genome
-#>   chr_sim      100000      FALSE   <NA>
+#>   chr_sim      100000       TRUE   <NA>
 ```
 
 For human-readable inspection,

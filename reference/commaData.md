@@ -48,7 +48,10 @@ commaData(
   which has no chromosome name and cannot be used. Set to `NULL` to omit
   genome information (not recommended). When a multi-sequence source is
   provided, genome info is automatically restricted to chromosomes
-  present in the data.
+  present in the data. Chromosomes are assumed circular by default when
+  genome information is attached, matching the package's bacterial
+  genome default; edit `seqinfo(rowRanges(object))` after construction
+  if a chromosome should be treated as linear.
 
 - annotation:
 

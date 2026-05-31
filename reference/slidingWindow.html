@@ -3,13 +3,13 @@
 methylation beta values for each sample in a commaData
 object. The genome size for each chromosome is read from
 genome(object), so no organism-specific values are ever hardcoded.
-Circular genome wrap-around is supported via
-.circularIndex()."><meta property="og:description" content="Computes a per-position sliding window statistic (median or mean) of
+Circular genome wrap-around is controlled by the isCircular values
+stored in seqinfo(object) unless circular is explicitly set."><meta property="og:description" content="Computes a per-position sliding window statistic (median or mean) of
 methylation beta values for each sample in a commaData
 object. The genome size for each chromosome is read from
 genome(object), so no organism-specific values are ever hardcoded.
-Circular genome wrap-around is supported via
-.circularIndex()."></head><body>
+Circular genome wrap-around is controlled by the isCircular values
+stored in seqinfo(object) unless circular is explicitly set."></head><body>
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
 
 
@@ -55,8 +55,8 @@ Circular genome wrap-around is supported via
 methylation beta values for each sample in a <code><a href="commaData.html">commaData</a></code>
 object. The genome size for each chromosome is read from
 <code>genome(object)</code>, so no organism-specific values are ever hardcoded.
-Circular genome wrap-around is supported via
-<code><a href="dot-circularIndex.html">.circularIndex()</a></code>.</p>
+Circular genome wrap-around is controlled by the <code>isCircular</code> values
+stored in <code>seqinfo(object)</code> unless <code>circular</code> is explicitly set.</p>
     </div>
 
     <div class="section level2">
@@ -68,7 +68,7 @@ Circular genome wrap-around is supported via
 <span>  mod_type <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  motif <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  mod_context <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  circular <span class="op">=</span> <span class="cn">TRUE</span></span>
+<span>  circular <span class="op">=</span> <span class="cn">NULL</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
 
@@ -114,10 +114,14 @@ filters.</p></dd>
 
 
 <dt id="arg-circular">circular<a class="anchor" aria-label="anchor" href="#arg-circular"></a></dt>
-<dd><p>Logical. If <code>TRUE</code> (default), positions at the ends of
-each chromosome are wrapped around so that the window at position 1 can
-draw from positions near the chromosome end, and vice versa. Appropriate
-for circular bacterial chromosomes.</p></dd>
+<dd><p>Logical scalar or <code>NULL</code>. If <code>NULL</code> (default),
+circularity is read from <code>seqinfo(object)</code> for each chromosome.
+Chromosomes with missing circularity metadata are treated as circular,
+matching the package assumption for bacterial genomes. If <code>TRUE</code> or
+<code>FALSE</code>, that value overrides <code>seqinfo(object)</code> for all
+chromosomes. Circular chromosomes wrap windows across chromosome ends so
+that the window at position 1 can draw from positions near the chromosome
+end, and vice versa.</p></dd>
 
 </dl></div>
     <div class="section level2">

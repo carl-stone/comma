@@ -5,8 +5,8 @@ methylation beta values for each sample in a
 [`commaData`](https://carl-stone.github.io/comma/reference/commaData.md)
 object. The genome size for each chromosome is read from
 `genome(object)`, so no organism-specific values are ever hardcoded.
-Circular genome wrap-around is supported via
-[`.circularIndex()`](https://carl-stone.github.io/comma/reference/dot-circularIndex.md).
+Circular genome wrap-around is controlled by the `isCircular` values
+stored in `seqinfo(object)` unless `circular` is explicitly set.
 
 ## Usage
 
@@ -18,7 +18,7 @@ slidingWindow(
   mod_type = NULL,
   motif = NULL,
   mod_context = NULL,
-  circular = TRUE
+  circular = NULL
 )
 ```
 
@@ -62,10 +62,13 @@ slidingWindow(
 
 - circular:
 
-  Logical. If `TRUE` (default), positions at the ends of each chromosome
-  are wrapped around so that the window at position 1 can draw from
-  positions near the chromosome end, and vice versa. Appropriate for
-  circular bacterial chromosomes.
+  Logical scalar or `NULL`. If `NULL` (default), circularity is read
+  from `seqinfo(object)` for each chromosome. Chromosomes with missing
+  circularity metadata are treated as circular, matching the package
+  assumption for bacterial genomes. If `TRUE` or `FALSE`, that value
+  overrides `seqinfo(object)` for all chromosomes. Circular chromosomes
+  wrap windows across chromosome ends so that the window at position 1
+  can draw from positions near the chromosome end, and vice versa.
 
 ## Value
 

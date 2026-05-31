@@ -94,7 +94,10 @@ named integer vector — do not index into the BSgenome with <code>$</code>
 <code>DNAString</code> which has no chromosome name and cannot be used. Set to
 <code>NULL</code> to omit genome information (not recommended). When a
 multi-sequence source is provided, genome info is automatically restricted
-to chromosomes present in the data.</p></dd>
+to chromosomes present in the data. Chromosomes are assumed circular by
+default when genome information is attached, matching the package's
+bacterial genome default; edit <code>seqinfo(rowRanges(object))</code> after
+construction if a chromosome should be treated as linear.</p></dd>
 
 
 <dt id="arg-annotation">annotation<a class="anchor" aria-label="anchor" href="#arg-annotation"></a></dt>
