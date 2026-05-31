@@ -14,9 +14,8 @@ types (6mA, 5mC, 4mC), annotation of methylation sites relative to
 genomic features, and identification of differentially methylated sites
 between conditions.
 
-- **Current R package namespace**: `comma` (rename to `commaKit`
-  planned, issue \#168)
-- **GitHub repo**: `carl-stone/comma`
+- **R package namespace**: `commaKit`
+- **GitHub repo**: `carl-stone/commaKit`
 - **Version**: 0.2.0
 - **R**: \>= 4.3.0 (CI pinned to R 4.5)
 - **License**: MIT
@@ -53,31 +52,31 @@ alignment.
 
 ### Analysis pipeline
 
-1.  [`commaData()`](https://carl-stone.github.io/comma/reference/commaData.md)
+1.  [`commaData()`](https://carl-stone.github.io/commaKit/reference/commaData.md)
     — construct from modkit/Dorado/Megalodon output
-2.  [`annotateSites()`](https://carl-stone.github.io/comma/reference/annotateSites.md)
+2.  [`annotateSites()`](https://carl-stone.github.io/commaKit/reference/annotateSites.md)
     — annotate sites to genomic features (list-columns:
     CharacterList/IntegerList/NumericList)
-3.  [`diffMethyl()`](https://carl-stone.github.io/comma/reference/diffMethyl.md)
+3.  [`diffMethyl()`](https://carl-stone.github.io/commaKit/reference/diffMethyl.md)
     — differential methylation (3 backends: beta-binomial/quasi_f,
     limma, methylKit)
-4.  [`results()`](https://carl-stone.github.io/comma/reference/results.md)
+4.  [`results()`](https://carl-stone.github.io/commaKit/reference/results.md)
     /
-    [`filterResults()`](https://carl-stone.github.io/comma/reference/filterResults.md)
+    [`filterResults()`](https://carl-stone.github.io/commaKit/reference/filterResults.md)
     — extract and filter differential methylation results
-5.  [`enrichMethylation()`](https://carl-stone.github.io/comma/reference/enrichMethylation.md)
+5.  [`enrichMethylation()`](https://carl-stone.github.io/commaKit/reference/enrichMethylation.md)
     — ORA/GSEA on differentially methylated genes
-6.  [`methylomeSummary()`](https://carl-stone.github.io/comma/reference/methylomeSummary.md)
+6.  [`methylomeSummary()`](https://carl-stone.github.io/commaKit/reference/methylomeSummary.md)
     — per-sample QC summary
-7.  [`coverageDepth()`](https://carl-stone.github.io/comma/reference/coverageDepth.md)
+7.  [`coverageDepth()`](https://carl-stone.github.io/commaKit/reference/coverageDepth.md)
     /
-    [`varianceByDepth()`](https://carl-stone.github.io/comma/reference/varianceByDepth.md)
+    [`varianceByDepth()`](https://carl-stone.github.io/commaKit/reference/varianceByDepth.md)
     — quality diagnostics
-8.  [`slidingWindow()`](https://carl-stone.github.io/comma/reference/slidingWindow.md)
+8.  [`slidingWindow()`](https://carl-stone.github.io/commaKit/reference/slidingWindow.md)
     — genome-wide smoothed profiles
-9.  [`mValues()`](https://carl-stone.github.io/comma/reference/mValues.md)
+9.  [`mValues()`](https://carl-stone.github.io/commaKit/reference/mValues.md)
     — M-value transformation for PCA
-10. [`writeBED()`](https://carl-stone.github.io/comma/reference/writeBED.md)
+10. [`writeBED()`](https://carl-stone.github.io/commaKit/reference/writeBED.md)
     — export to BED
 
 ### Input parsers
@@ -89,16 +88,16 @@ alignment.
 ### Plot functions (8 total)
 
 All return ggplot/patchwork except
-[`plot_heatmap()`](https://carl-stone.github.io/comma/reference/plot_heatmap.md)
+[`plot_heatmap()`](https://carl-stone.github.io/commaKit/reference/plot_heatmap.md)
 (ComplexHeatmap):
-[`plot_coverage()`](https://carl-stone.github.io/comma/reference/plot_coverage.md),
-[`plot_methylation_distribution()`](https://carl-stone.github.io/comma/reference/plot_methylation_distribution.md),
-[`plot_pca()`](https://carl-stone.github.io/comma/reference/plot_pca.md),
-[`plot_genome_track()`](https://carl-stone.github.io/comma/reference/plot_genome_track.md),
-[`plot_metagene()`](https://carl-stone.github.io/comma/reference/plot_metagene.md),
-[`plot_tss_profile()`](https://carl-stone.github.io/comma/reference/plot_tss_profile.md),
-[`plot_volcano()`](https://carl-stone.github.io/comma/reference/plot_volcano.md),
-[`plot_heatmap()`](https://carl-stone.github.io/comma/reference/plot_heatmap.md)
+[`plot_coverage()`](https://carl-stone.github.io/commaKit/reference/plot_coverage.md),
+[`plot_methylation_distribution()`](https://carl-stone.github.io/commaKit/reference/plot_methylation_distribution.md),
+[`plot_pca()`](https://carl-stone.github.io/commaKit/reference/plot_pca.md),
+[`plot_genome_track()`](https://carl-stone.github.io/commaKit/reference/plot_genome_track.md),
+[`plot_metagene()`](https://carl-stone.github.io/commaKit/reference/plot_metagene.md),
+[`plot_tss_profile()`](https://carl-stone.github.io/commaKit/reference/plot_tss_profile.md),
+[`plot_volcano()`](https://carl-stone.github.io/commaKit/reference/plot_volcano.md),
+[`plot_heatmap()`](https://carl-stone.github.io/commaKit/reference/plot_heatmap.md)
 
 ### diffMethyl backends
 
@@ -107,7 +106,7 @@ All return ggplot/patchwork except
 - **limma** — limma-voom with empirical Bayes moderation
 - **methylKit** — wraps methylKit’s logistic regression
 
-[`diffMethyl()`](https://carl-stone.github.io/comma/reference/diffMethyl.md)
+[`diffMethyl()`](https://carl-stone.github.io/commaKit/reference/diffMethyl.md)
 loops by `mod_context`, not `mod_type` — this prevents spurious pooling
 across different sequence contexts. Effect sizes are always reported on
 the beta scale (0–1), not M-value scale. Multiple testing correction is
@@ -120,9 +119,9 @@ genome-wide across all mod_contexts.
 | Category | Convention | Examples |
 |----|----|----|
 | S4 class | camelCase, lowercase first | `commaData` |
-| Analysis functions | verbNoun() camelCase | [`annotateSites()`](https://carl-stone.github.io/comma/reference/annotateSites.md), [`diffMethyl()`](https://carl-stone.github.io/comma/reference/diffMethyl.md) |
-| Plot functions | plot_noun() snake_case | [`plot_volcano()`](https://carl-stone.github.io/comma/reference/plot_volcano.md), [`plot_metagene()`](https://carl-stone.github.io/comma/reference/plot_metagene.md) |
-| Internal functions | `.` prefix | `.parseBetaValues()`, [`.circularIndex()`](https://carl-stone.github.io/comma/reference/dot-circularIndex.md) |
+| Analysis functions | verbNoun() camelCase | [`annotateSites()`](https://carl-stone.github.io/commaKit/reference/annotateSites.md), [`diffMethyl()`](https://carl-stone.github.io/commaKit/reference/diffMethyl.md) |
+| Plot functions | plot_noun() snake_case | [`plot_volcano()`](https://carl-stone.github.io/commaKit/reference/plot_volcano.md), [`plot_metagene()`](https://carl-stone.github.io/commaKit/reference/plot_metagene.md) |
+| Internal functions | `.` prefix | `.parseBetaValues()`, [`.circularIndex()`](https://carl-stone.github.io/commaKit/reference/dot-circularIndex.md) |
 | Arguments | snake_case | `mod_type`, `min_coverage` |
 | Test files | test-functionName.R | `test-annotateSites.R` |
 
@@ -211,7 +210,7 @@ Rscript -e "devtools::install()"
     spurious pooling across different sequence contexts
 2.  **commaData extends RangedSummarizedExperiment** — genomic positions
     in `rowRanges()` (GRanges), not rowData columns. Use
-    [`siteInfo()`](https://carl-stone.github.io/comma/reference/siteInfo.md)
+    [`siteInfo()`](https://carl-stone.github.io/commaKit/reference/siteInfo.md)
     for backward-compatible flat DataFrame access
 3.  **Effect sizes always on beta scale (0–1)**, not M-value scale
 4.  **Multiple testing correction is genome-wide** across all
@@ -242,12 +241,12 @@ Rscript -e "devtools::install()"
 - **Code Quality Audits**: In progress. Thermonuclear review filed ~30
   findings as issues \#135-#163, index \#164. PRs \#165 and \#166
   merged.
-- **Circle Ops** (issue \#122): Pending — circular genome boundary
-  behavior audit
+- **Circle Ops** (issue \#122): Complete — circular genome boundary
+  behavior audited and documented
 - **Layered Assays** (issue \#118): Proposed for v0.3.0 — assay key
   system for multiple analysis runs
-- **Technical rename to commaKit** (#168-#173): Planned — package/repo
-  rename from `comma`/`CoMMA` to `commaKit`
+- **Technical rename to commaKit** (#168-#173): Complete — package/repo
+  identity renamed from `comma`/`CoMMA` to `commaKit`
 
 ## Durable knowledge in the repo
 

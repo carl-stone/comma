@@ -4,7 +4,7 @@ A thin wrapper around
 [`p.adjust`](https://rdrr.io/r/stats/p.adjust.html) that operates on a
 named numeric vector of p-values and returns adjusted values in the same
 order. Used internally by
-[`diffMethyl`](https://carl-stone.github.io/comma/reference/diffMethyl.md).
+[`diffMethyl`](https://carl-stone.github.io/commaKit/reference/diffMethyl.md).
 
 ## Usage
 

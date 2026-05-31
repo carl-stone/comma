@@ -30,7 +30,7 @@ plot_tss_profile(
 - object:
 
   A
-  [`commaData`](https://carl-stone.github.io/comma/reference/commaData.md)
+  [`commaData`](https://carl-stone.github.io/commaKit/reference/commaData.md)
   object with a non-empty `annotation` slot.
 
 - feature_type:
@@ -125,7 +125,7 @@ line marks the TSS at x = 0.
 ## Details
 
 Unlike
-[`plot_metagene`](https://carl-stone.github.io/comma/reference/plot_metagene.md),
+[`plot_metagene`](https://carl-stone.github.io/commaKit/reference/plot_metagene.md),
 which normalises positions to \\\[0, 1\]\\ and averages across sites,
 `plot_tss_profile` shows every individual site at its exact signed
 base-pair distance from the nearest TSS (negative = upstream, positive =
@@ -133,7 +133,7 @@ downstream). This preserves the absolute spacing of promoter elements
 relative to the start of transcription.
 
 Internally calls
-[`annotateSites`](https://carl-stone.github.io/comma/reference/annotateSites.md)`(keep = "proximity")`
+[`annotateSites`](https://carl-stone.github.io/commaKit/reference/annotateSites.md)`(keep = "proximity")`
 to compute signed TSS distances. Strand awareness follows the same
 convention: for `+` strand features, position 0 is the lowest
 coordinate; for `-` strand features, position 0 is the highest
@@ -147,9 +147,9 @@ plot still renders.
 
 ## See also
 
-[`annotateSites`](https://carl-stone.github.io/comma/reference/annotateSites.md),
-[`plot_metagene`](https://carl-stone.github.io/comma/reference/plot_metagene.md),
-[`loadAnnotation`](https://carl-stone.github.io/comma/reference/loadAnnotation.md)
+[`annotateSites`](https://carl-stone.github.io/commaKit/reference/annotateSites.md),
+[`plot_metagene`](https://carl-stone.github.io/commaKit/reference/plot_metagene.md),
+[`loadAnnotation`](https://carl-stone.github.io/commaKit/reference/loadAnnotation.md)
 
 ## Examples
 

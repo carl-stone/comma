@@ -2,7 +2,7 @@
 
 An internal wrapper that uses limma's empirical Bayes moderated t-test
 to identify differentially methylated sites. Called by
-[`diffMethyl`](https://carl-stone.github.io/comma/reference/diffMethyl.md)
+[`diffMethyl`](https://carl-stone.github.io/commaKit/reference/diffMethyl.md)
 when `method = "limma"`.
 
 ## Usage

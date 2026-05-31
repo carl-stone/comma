@@ -3,10 +3,10 @@
 ### All vignettes
 
 - [Getting Started with
-  comma](https://carl-stone.github.io/comma/articles/getting-started.md):
+  commaKit](https://carl-stone.github.io/commaKit/articles/getting-started.md):
 - [Troubleshooting Data
-  Import](https://carl-stone.github.io/comma/articles/import-troubleshooting.md):
+  Import](https://carl-stone.github.io/commaKit/articles/import-troubleshooting.md):
 - [Working with Multiple Modification
-  Types](https://carl-stone.github.io/comma/articles/multiple-modification-types.md):
+  Types](https://carl-stone.github.io/commaKit/articles/multiple-modification-types.md):
 - [Understanding the commaData
-  object](https://carl-stone.github.io/comma/articles/understanding-commaData.md):
+  object](https://carl-stone.github.io/commaKit/articles/understanding-commaData.md):

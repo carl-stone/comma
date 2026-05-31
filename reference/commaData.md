@@ -1,7 +1,7 @@
 # Create a commaData object from methylation calling output files
 
 Constructor for the
-[`commaData-class`](https://carl-stone.github.io/comma/reference/commaData-class.md)
+[`commaData-class`](https://carl-stone.github.io/commaKit/reference/commaData-class.md)
 S4 class. Parses one or more methylation calling output files (modkit,
 Megalodon, or Dorado), merges them into a sites × samples matrix
 representation, and optionally loads genomic annotation and motif site
@@ -69,7 +69,7 @@ commaData(
 
   Optional character string. A DNA sequence motif (e.g., `"GATC"`) to
   locate in the genome using
-  [`findMotifSites`](https://carl-stone.github.io/comma/reference/findMotifSites.md).
+  [`findMotifSites`](https://carl-stone.github.io/commaKit/reference/findMotifSites.md).
   The results are stored in the `motifSites` slot as a genome-wide
   `GRanges` of all motif instances. Requires `genome` to be a FASTA
   path, `DNAStringSet`, or `BSgenome` object (not a named integer
@@ -131,14 +131,14 @@ The constructor uses a parse-then-merge strategy:
 
 ## See also
 
-[`commaData-class`](https://carl-stone.github.io/comma/reference/commaData-class.md),
-[`methylation`](https://carl-stone.github.io/comma/reference/methylation.md),
-[`coverage`](https://carl-stone.github.io/comma/reference/coverage-commaData-method.md),
-[`sampleInfo`](https://carl-stone.github.io/comma/reference/sampleInfo.md),
-[`siteInfo`](https://carl-stone.github.io/comma/reference/siteInfo.md),
-[`modTypes`](https://carl-stone.github.io/comma/reference/modTypes.md),
-[`loadAnnotation`](https://carl-stone.github.io/comma/reference/loadAnnotation.md),
-[`findMotifSites`](https://carl-stone.github.io/comma/reference/findMotifSites.md)
+[`commaData-class`](https://carl-stone.github.io/commaKit/reference/commaData-class.md),
+[`methylation`](https://carl-stone.github.io/commaKit/reference/methylation.md),
+[`coverage`](https://carl-stone.github.io/commaKit/reference/coverage-commaData-method.md),
+[`sampleInfo`](https://carl-stone.github.io/commaKit/reference/sampleInfo.md),
+[`siteInfo`](https://carl-stone.github.io/commaKit/reference/siteInfo.md),
+[`modTypes`](https://carl-stone.github.io/commaKit/reference/modTypes.md),
+[`loadAnnotation`](https://carl-stone.github.io/commaKit/reference/loadAnnotation.md),
+[`findMotifSites`](https://carl-stone.github.io/commaKit/reference/findMotifSites.md)
 
 ## Examples
 
@@ -147,16 +147,16 @@ The constructor uses a parse-then-merge strategy:
 data(comma_example_data)
 comma_example_data
 #> class: commaData
-#> sites: 588 | samples: 6 
-#> mod types: 5mC, 6mA 
-#> motifs: CCWGG, GATC 
-#> mod contexts: 5mC_CCWGG, 6mA_GATC 
-#> conditions: control, treatment 
-#> genome: 1 chromosome (100,000 bp total) 
-#> annotation: 5 features 
-#> motif sites: none 
-#> caller: modkit 
-#> min_coverage: 5 
+#> sites: 588 | samples: 6
+#> mod types: 5mC, 6mA
+#> motifs: CCWGG, GATC
+#> mod contexts: 5mC_CCWGG, 6mA_GATC
+#> conditions: control, treatment
+#> genome: 1 chromosome (100,000 bp total)
+#> annotation: 5 features
+#> motif sites: none
+#> caller: modkit
+#> min_coverage: 5
 
 if (FALSE) { # \dontrun{
 # Load two modkit BED files (requires user-provided files)

@@ -23,11 +23,11 @@ differential methylation testing, and publication-quality visualization.
   ([`methylKit`](https://doi.org/doi:10.18129/B9.bioc.methylKit),
   [`limma`](https://doi.org/doi:10.18129/B9.bioc.limma), and
   quasi-binomial F-test), with a DESeq2-style interface
-  ([`diffMethyl()`](https://carl-stone.github.io/comma/reference/diffMethyl.md)
+  ([`diffMethyl()`](https://carl-stone.github.io/commaKit/reference/diffMethyl.md)
   →
-  [`results()`](https://carl-stone.github.io/comma/reference/results.md)
+  [`results()`](https://carl-stone.github.io/commaKit/reference/results.md)
   →
-  [`filterResults()`](https://carl-stone.github.io/comma/reference/filterResults.md)).
+  [`filterResults()`](https://carl-stone.github.io/commaKit/reference/filterResults.md)).
 - **Enrichment analysis** — GO and KEGG over-representation analysis
   (ORA) and gene set enrichment analysis (GSEA) via
   [`clusterProfiler`](https://doi.org/doi:10.18129/B9.bioc.clusterProfiler),
@@ -37,7 +37,7 @@ differential methylation testing, and publication-quality visualization.
   heatmaps; all return `ggplot` objects for further customization. PCA
   uses variance-stabilized M-values internally and supports
   `return_data = TRUE` for custom plotting.
-- **[`mValues()`](https://carl-stone.github.io/comma/reference/mValues.md)**
+- **[`mValues()`](https://carl-stone.github.io/commaKit/reference/mValues.md)**
   — converts beta values and read depths to M-values
   (`log2((M + a) / (U + a))`), useful for distance-based analyses and
   custom plots.
@@ -52,7 +52,7 @@ differential methylation testing, and publication-quality visualization.
 ``` r
 
 # Development version from GitHub:
-devtools::install_github("carl-stone/comma")
+devtools::install_github("carl-stone/commaKit")
 
 # Bioconductor release forthcoming
 ```
@@ -64,7 +64,7 @@ per-sample methylation files:
 
 ``` r
 
-library(comma)
+library(commaKit)
 
 # Named vector: sample_name -> path to modkit pileup BED
 files <- c(
@@ -98,7 +98,7 @@ included for testing and demonstrations:
 
 ``` r
 
-library(comma)
+library(commaKit)
 data(comma_example_data)
 comma_example_data
 #> class: commaData
@@ -110,13 +110,15 @@ comma_example_data
 #> genome: 1 chromosome (100,000 bp total)
 #> annotation: 5 features
 #> motif sites: none
+#> caller: modkit
+#> min_coverage: 5
 ```
 
 ## Workflow
 
 ### Step 1 — Quality Control
 
-[`methylomeSummary()`](https://carl-stone.github.io/comma/reference/methylomeSummary.md)
+[`methylomeSummary()`](https://carl-stone.github.io/commaKit/reference/methylomeSummary.md)
 returns per-sample distribution statistics:
 
 ``` r
@@ -133,7 +135,7 @@ ms[, c("sample_name", "condition", "mean_beta", "median_beta",
 #> 6     treat_3 treatment 0.8388398   0.8866568       0.9455782       588
 ```
 
-[`plot_coverage()`](https://carl-stone.github.io/comma/reference/plot_coverage.md)
+[`plot_coverage()`](https://carl-stone.github.io/commaKit/reference/plot_coverage.md)
 shows the sequencing depth distribution per sample:
 
 ``` r
@@ -144,7 +146,7 @@ plot_coverage(comma_example_data)
 ![Coverage depth distribution per
 sample.](reference/figures/README-plot-coverage-1.png)
 
-[`plot_methylation_distribution()`](https://carl-stone.github.io/comma/reference/plot_methylation_distribution.md)
+[`plot_methylation_distribution()`](https://carl-stone.github.io/commaKit/reference/plot_methylation_distribution.md)
 plots the density of beta values, faceted by modification type.
 Bacterial methylomes often show a bimodal distribution (sites are either
 fully methylated or unmethylated):
@@ -157,7 +159,7 @@ plot_methylation_distribution(comma_example_data)
 ![Beta value density per sample, faceted by modification
 type.](reference/figures/README-plot-dist-1.png)
 
-[`plot_pca()`](https://carl-stone.github.io/comma/reference/plot_pca.md)
+[`plot_pca()`](https://carl-stone.github.io/commaKit/reference/plot_pca.md)
 runs PCA on per-sample methylation profiles for sample-level QC. Beta
 values are converted to M-values before PCA for better variance
 stabilization. Use `return_data = TRUE` to retrieve the scores data
@@ -179,7 +181,7 @@ attr(pca_df, "percentVar")  # variance explained by PC1, PC2
 
 ### Step 2 — Annotate Sites
 
-[`annotateSites()`](https://carl-stone.github.io/comma/reference/annotateSites.md)
+[`annotateSites()`](https://carl-stone.github.io/commaKit/reference/annotateSites.md)
 maps sites to genomic features using
 [`GenomicRanges::findOverlaps()`](https://rdrr.io/pkg/IRanges/man/findOverlaps-methods.html)
 — vectorized, no nested loops:
@@ -198,7 +200,7 @@ Three annotation modes are available: `"overlap"`, `"proximity"`
 (nearest feature with signed distance), and `"metagene"` (normalized
 position 0–1 within feature bodies).
 
-[`plot_metagene()`](https://carl-stone.github.io/comma/reference/plot_metagene.md)
+[`plot_metagene()`](https://carl-stone.github.io/commaKit/reference/plot_metagene.md)
 shows the average methylation profile across gene bodies:
 
 ``` r
@@ -211,7 +213,7 @@ plot_metagene(comma_example_data, feature = "gene")
 
 ### Step 3 — Genome Track Visualization
 
-[`plot_genome_track()`](https://carl-stone.github.io/comma/reference/plot_genome_track.md)
+[`plot_genome_track()`](https://carl-stone.github.io/commaKit/reference/plot_genome_track.md)
 produces a genome browser-style scatter plot of methylation along a
 chromosomal region:
 
@@ -226,7 +228,7 @@ chr_sim](reference/figures/README-plot-track-1.png)
 
 ### Step 4 — Differential Methylation
 
-[`diffMethyl()`](https://carl-stone.github.io/comma/reference/diffMethyl.md)
+[`diffMethyl()`](https://carl-stone.github.io/commaKit/reference/diffMethyl.md)
 tests each site for differential methylation between conditions. It is
 modeled on DESeq2’s workflow: pass a `commaData` object and a design
 formula, get back the same object with per-site statistics in `rowData`:
@@ -251,16 +253,16 @@ cat("Significant sites (padj < 0.05, |delta_beta| >= 0.2):", nrow(sig), "\n")
 # Top hits
 head(res[order(res$dm_padj),
          c("chrom", "position", "dm_delta_beta", "dm_padj")])
-#>                            chrom position dm_delta_beta      dm_padj
-#> chr_sim:50176:-:6mA:GATC chr_sim    50176    -0.7336497 1.849154e-75
-#> chr_sim:70003:-:6mA:GATC chr_sim    70003    -0.7050844 3.896483e-68
-#> chr_sim:63550:+:6mA:GATC chr_sim    63550    -0.7799241 5.006897e-66
-#> chr_sim:61440:+:6mA:GATC chr_sim    61440    -0.7090099 1.178364e-64
-#> chr_sim:86016:+:6mA:GATC chr_sim    86016    -0.6743832 3.661541e-62
-#> chr_sim:2180:-:6mA:GATC  chr_sim     2180    -0.7543758 4.024163e-60
+#>       chrom position dm_delta_beta      dm_padj
+#> 196 chr_sim    50176    -0.7336497 1.849154e-75
+#> 287 chr_sim    70003    -0.7050844 3.896483e-68
+#> 260 chr_sim    63550    -0.7799241 5.006897e-66
+#> 249 chr_sim    61440    -0.7090099 1.178364e-64
+#> 347 chr_sim    86016    -0.6743832 3.661541e-62
+#> 9   chr_sim     2180    -0.7543758 4.024452e-60
 ```
 
-[`plot_volcano()`](https://carl-stone.github.io/comma/reference/plot_volcano.md)
+[`plot_volcano()`](https://carl-stone.github.io/commaKit/reference/plot_volcano.md)
 displays the differential methylation landscape — effect size (delta
 methylation) versus significance (-log10 padj):
 
@@ -272,7 +274,7 @@ plot_volcano(res)
 ![Volcano plot of differential 6mA
 methylation.](reference/figures/README-plot-volcano-1.png)
 
-[`plot_heatmap()`](https://carl-stone.github.io/comma/reference/plot_heatmap.md)
+[`plot_heatmap()`](https://carl-stone.github.io/commaKit/reference/plot_heatmap.md)
 shows per-sample beta values for the top differentially methylated
 sites:
 
@@ -286,7 +288,7 @@ sites.](reference/figures/README-plot-heatmap-1.png)
 
 ### Step 5 — Enrichment Analysis
 
-[`enrichMethylation()`](https://carl-stone.github.io/comma/reference/enrichMethylation.md)
+[`enrichMethylation()`](https://carl-stone.github.io/commaKit/reference/enrichMethylation.md)
 performs gene set enrichment on differentially methylated genes. It
 supports GO and KEGG ontologies, ORA and GSEA methods, and distinguishes
 target genes (where DM sites overlap) from regulator genes (whose
@@ -318,7 +320,7 @@ enr_kegg <- enrichMethylation(cd_dm, kegg_term2gene = kegg_t2g$term2gene,
 
 ### Step 6 — TSS Profiles
 
-[`plot_tss_profile()`](https://carl-stone.github.io/comma/reference/plot_tss_profile.md)
+[`plot_tss_profile()`](https://carl-stone.github.io/commaKit/reference/plot_tss_profile.md)
 shows methylation centered on transcription start sites, with optional
 regulatory element coloring:
 
@@ -365,17 +367,19 @@ obj_6mA
 #> genome: 1 chromosome (100,000 bp total)
 #> annotation: 5 features
 #> motif sites: none
+#> caller: modkit
+#> min_coverage: 5
 ```
 
 For a complete joint 6mA + 5mC analysis, see the **Multiple Modification
 Types** vignette
-([`vignette("multiple-modification-types", package = "comma")`](https://carl-stone.github.io/comma/articles/multiple-modification-types.md)).
+([`vignette("multiple-modification-types", package = "commaKit")`](https://carl-stone.github.io/commaKit/articles/multiple-modification-types.md)).
 
 ## Documentation
 
 ``` r
 
-?comma        # Package overview and five-step workflow
+?commaKit     # Package overview and workflow
 ?commaData    # Constructor and commaData class
 ?diffMethyl   # Differential methylation testing
 ```
@@ -383,11 +387,11 @@ Types** vignette
 Two vignettes are included:
 
 - **Getting Started**
-  ([`vignette("getting-started", package = "comma")`](https://carl-stone.github.io/comma/articles/getting-started.md))
+  ([`vignette("getting-started", package = "commaKit")`](https://carl-stone.github.io/commaKit/articles/getting-started.md))
   — end-to-end workflow: load -\> QC -\> annotate -\> differential
   methylation -\> visualize.
 - **Multiple Modification Types**
-  ([`vignette("multiple-modification-types", package = "comma")`](https://carl-stone.github.io/comma/articles/multiple-modification-types.md))
+  ([`vignette("multiple-modification-types", package = "commaKit")`](https://carl-stone.github.io/commaKit/articles/multiple-modification-types.md))
   — joint 6mA and 5mC analysis in a single `commaData` object.
 
 ## Roadmap
@@ -395,8 +399,8 @@ Two vignettes are included:
 | Version | Phase | Status |
 |----|----|----|
 | 0.2.0 | Schema v2: RangedSummarizedExperiment, Seqinfo, no-rownames alignment | Done |
-| 0.2.x | Test quality, code quality audits, circular boundary behavior | In progress |
-| 0.3.0 | Layered assays, commaKit rename | Planned |
+| 0.2.x | Test quality, code quality audits, rename validation | In progress |
+| 0.3.0 | Layered assays and assay provenance | Planned |
 | 0.x.y | Pre-Bioconductor hardening releases | Planned |
 | 0.99.0 | Bioconductor submission version | Future |
 | 1.0.0 | Stable public release after external confidence | Future |

@@ -5,7 +5,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>Working with Multiple Modification Types • comma</title>
+<title>Working with Multiple Modification Types • commaKit</title>
 <script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="../deps/bootstrap-5.3.8/bootstrap.min.css" rel="stylesheet">
 <script src="../deps/bootstrap-5.3.8/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
@@ -18,7 +18,7 @@
 
     <nav class="navbar navbar-expand-lg fixed-top bg-light" data-bs-theme="light" aria-label="Site navigation"><div class="container">
 
-    <a class="navbar-brand me-2" href="../index.html">comma</a>
+    <a class="navbar-brand me-2" href="../index.html">commaKit</a>
 
     <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.0</small>
 
@@ -33,7 +33,7 @@
 <li class="active nav-item dropdown">
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
   <ul class="dropdown-menu" aria-labelledby="dropdown-articles">
-<li><a class="dropdown-item" href="../articles/getting-started.html">Getting Started with comma</a></li>
+<li><a class="dropdown-item" href="../articles/getting-started.html">Getting Started with commaKit</a></li>
     <li><a class="dropdown-item" href="../articles/import-troubleshooting.html">Troubleshooting Data Import</a></li>
     <li><a class="dropdown-item" href="../articles/multiple-modification-types.html">Working with Multiple Modification Types</a></li>
     <li><a class="dropdown-item" href="../articles/understanding-commaData.html">Understanding the commaData object</a></li>
@@ -45,7 +45,7 @@
 <li class="nav-item"><form class="form-inline" role="search">
  <input class="form-control" type="search" name="search-input" id="search-input" autocomplete="off" aria-label="Search site" placeholder="Search for" data-search-index="../search.json">
 </form></li>
-<li class="nav-item"><a class="external-link nav-link" href="https://github.com/carl-stone/comma/" aria-label="GitHub"><span class="fa fab fa-github fa-lg"></span></a></li>
+<li class="nav-item"><a class="external-link nav-link" href="https://github.com/carl-stone/commaKit/" aria-label="GitHub"><span class="fa fab fa-github fa-lg"></span></a></li>
       </ul>
 </div>
 
@@ -62,7 +62,7 @@
       <h1>Working with Multiple Modification Types</h1>
             
       
-      <small class="dont-index">Source: <a href="https://github.com/carl-stone/comma/blob/main/vignettes/multiple-modification-types.Rmd" class="external-link"><code>vignettes/multiple-modification-types.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/carl-stone/commaKit/blob/main/vignettes/multiple-modification-types.Rmd" class="external-link"><code>vignettes/multiple-modification-types.Rmd</code></a></small>
       <div class="d-none name"><code>multiple-modification-types.Rmd</code></div>
     </div>
 
@@ -87,14 +87,14 @@ well characterized in bacteria.</li>
 restriction-modification systems at various sequence motifs; protects
 against foreign DNA.</li>
 </ul>
-<p><code>comma</code> stores all modification types in a single
+<p>commaKit stores all modification types in a single
 <code>commaData</code> object, enabling joint analysis, comparison, and
 visualization across modification types.</p>
 <p>This vignette demonstrates multi-modification workflows using the
 built-in <code>comma_example_data</code> dataset, which contains both
 6mA and 5mC sites.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/carl-stone/comma" class="external-link">comma</a></span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/carl-stone/commaKit" class="external-link">commaKit</a></span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">comma_example_data</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level2">
@@ -311,7 +311,7 @@ Heatmap of top 20 differentially methylated 6mA sites.
 <span><span class="co">#&gt; [1] stats     graphics  grDevices datasets  utils     methods   base     </span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; other attached packages:</span></span>
-<span><span class="co">#&gt; [1] comma_0.2.0      BiocStyle_2.38.0</span></span>
+<span><span class="co">#&gt; [1] commaKit_0.2.0   BiocStyle_2.38.0</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; loaded via a namespace (and not attached):</span></span>
 <span><span class="co">#&gt;   [1] bitops_1.0-9                rlang_1.2.0                </span></span>

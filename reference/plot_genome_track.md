@@ -25,7 +25,7 @@ plot_genome_track(
 - object:
 
   A
-  [`commaData`](https://carl-stone.github.io/comma/reference/commaData.md)
+  [`commaData`](https://carl-stone.github.io/commaKit/reference/commaData.md)
   object.
 
 - chromosome:
@@ -78,8 +78,8 @@ colored rectangles in a separate annotation panel below.
 
 ## See also
 
-[`annotateSites`](https://carl-stone.github.io/comma/reference/annotateSites.md),
-[`plot_metagene`](https://carl-stone.github.io/comma/reference/plot_metagene.md)
+[`annotateSites`](https://carl-stone.github.io/commaKit/reference/annotateSites.md),
+[`plot_metagene`](https://carl-stone.github.io/commaKit/reference/plot_metagene.md)
 
 ## Examples
 

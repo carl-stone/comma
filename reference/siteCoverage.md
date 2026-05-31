@@ -1,7 +1,7 @@
 # Accessor for the sequencing coverage (read depth) matrix
 
 Retrieves the sites × samples matrix of read depth from a
-[`commaData`](https://carl-stone.github.io/comma/reference/commaData.md)
+[`commaData`](https://carl-stone.github.io/commaKit/reference/commaData.md)
 object. This package-specific accessor avoids overloading
 [`IRanges::coverage()`](https://rdrr.io/pkg/IRanges/man/coverage-methods.html),
 whose conventional Bioconductor meaning is genomic/Rle coverage
@@ -29,8 +29,8 @@ columns corresponding to samples.
 
 ## See also
 
-[`methylation`](https://carl-stone.github.io/comma/reference/methylation.md),
-[`siteInfo`](https://carl-stone.github.io/comma/reference/siteInfo.md)
+[`methylation`](https://carl-stone.github.io/commaKit/reference/methylation.md),
+[`siteInfo`](https://carl-stone.github.io/commaKit/reference/siteInfo.md)
 
 ## Examples
 

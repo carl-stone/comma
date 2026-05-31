@@ -20,7 +20,7 @@ coverageDepth(
 - object:
 
   A
-  [`commaData`](https://carl-stone.github.io/comma/reference/commaData.md)
+  [`commaData`](https://carl-stone.github.io/commaKit/reference/commaData.md)
   object.
 
 - window:
@@ -79,12 +79,12 @@ by observed sites is covered.
 wrap bins across the origin, even when `seqinfo(object)` marks a
 chromosome as circular. For circular smoothing across chromosome
 boundaries, use
-[`slidingWindow()`](https://carl-stone.github.io/comma/reference/slidingWindow.md).
+[`slidingWindow()`](https://carl-stone.github.io/commaKit/reference/slidingWindow.md).
 
 ## See also
 
-[`varianceByDepth`](https://carl-stone.github.io/comma/reference/varianceByDepth.md),
-[`methylomeSummary`](https://carl-stone.github.io/comma/reference/methylomeSummary.md)
+[`varianceByDepth`](https://carl-stone.github.io/commaKit/reference/varianceByDepth.md),
+[`methylomeSummary`](https://carl-stone.github.io/commaKit/reference/methylomeSummary.md)
 
 ## Examples
 

@@ -2,9 +2,9 @@
 
 Produces a volcano plot from differential methylation results computed
 by
-[`diffMethyl()`](https://carl-stone.github.io/comma/reference/diffMethyl.md)
+[`diffMethyl()`](https://carl-stone.github.io/commaKit/reference/diffMethyl.md)
 and extracted with
-[`results()`](https://carl-stone.github.io/comma/reference/results.md).
+[`results()`](https://carl-stone.github.io/commaKit/reference/results.md).
 Sites are colored by significance category based on user-supplied
 adjusted p-value and delta-beta thresholds.
 
@@ -24,7 +24,7 @@ plot_volcano(
 - results:
 
   A `data.frame` returned by
-  [`results()`](https://carl-stone.github.io/comma/reference/results.md),
+  [`results()`](https://carl-stone.github.io/commaKit/reference/results.md),
   containing at minimum the columns `dm_delta_beta` (numeric, effect
   size as beta difference treatment minus control) and `dm_padj`
   (numeric, BH-adjusted p-value in \\\[0, 1\]\\).
@@ -71,9 +71,9 @@ infinite values.
 
 ## See also
 
-[`diffMethyl`](https://carl-stone.github.io/comma/reference/diffMethyl.md),
-[`results`](https://carl-stone.github.io/comma/reference/results.md),
-[`filterResults`](https://carl-stone.github.io/comma/reference/filterResults.md)
+[`diffMethyl`](https://carl-stone.github.io/commaKit/reference/diffMethyl.md),
+[`results`](https://carl-stone.github.io/commaKit/reference/results.md),
+[`filterResults`](https://carl-stone.github.io/commaKit/reference/filterResults.md)
 
 ## Examples
 

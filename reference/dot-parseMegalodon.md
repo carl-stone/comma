@@ -3,7 +3,7 @@
 Reads a Megalodon per-read modification output file, aggregates per-read
 calls to per-site beta values and coverage, and returns a tidy data
 frame compatible with the
-[`commaData`](https://carl-stone.github.io/comma/reference/commaData.md)
+[`commaData`](https://carl-stone.github.io/commaKit/reference/commaData.md)
 constructor. This is an internal function called when
 `caller = "megalodon"`.
 

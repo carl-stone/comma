@@ -4,7 +4,7 @@ Reads a GFF3 or BED annotation file and returns a
 [`GRanges`](https://rdrr.io/pkg/GenomicRanges/man/GRanges-class.html)
 object with standardized metadata columns. The result can be passed
 directly to the `annotation` argument of
-[`commaData`](https://carl-stone.github.io/comma/reference/commaData.md).
+[`commaData`](https://carl-stone.github.io/commaKit/reference/commaData.md).
 
 ## Usage
 
@@ -74,7 +74,7 @@ Ensembl-style GFF3 are supported.
 
 ``` r
 # Load the bundled example GFF3 annotation
-gff_file <- system.file("extdata", "example.gff3", package = "comma")
+gff_file <- system.file("extdata", "example.gff3", package = "commaKit")
 if (requireNamespace("rtracklayer", quietly = TRUE)) {
   ann <- loadAnnotation(gff_file)
   ann <- loadAnnotation(gff_file, feature_types = "gene")

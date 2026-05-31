@@ -7,7 +7,7 @@ then joins it against a gene symbol table supplied either as a
 Bioconductor `OrgDb` object or as a plain `data.frame`. The result maps
 each gene symbol to the organism's KEGG-internal gene identifier (e.g.
 b-numbers for *E. coli* K-12), and can be passed to
-[`buildKEGGTermGene()`](https://carl-stone.github.io/comma/reference/buildKEGGTermGene.md)
+[`buildKEGGTermGene()`](https://carl-stone.github.io/commaKit/reference/buildKEGGTermGene.md)
 to translate the `gene` column of `term2gene` from KEGG IDs to symbols
 that match your annotation data.
 
@@ -79,17 +79,17 @@ A `data.frame` with columns:
   (e.g. `"b0344"` for *E. coli* K-12).
 
 Pass this to
-[`buildKEGGTermGene()`](https://carl-stone.github.io/comma/reference/buildKEGGTermGene.md)
+[`buildKEGGTermGene()`](https://carl-stone.github.io/commaKit/reference/buildKEGGTermGene.md)
 as `id_map = ...` to translate the `gene` column of `term2gene` from
 KEGG IDs to symbols.
 
 ## Why this is needed
 
-[`buildKEGGTermGene()`](https://carl-stone.github.io/comma/reference/buildKEGGTermGene.md)
+[`buildKEGGTermGene()`](https://carl-stone.github.io/commaKit/reference/buildKEGGTermGene.md)
 returns pathway-gene associations where genes are identified by
 KEGG-internal IDs (b-numbers for *E. coli*, Entrez IDs for human, etc.).
 Annotation data produced by
-[`loadAnnotation()`](https://carl-stone.github.io/comma/reference/loadAnnotation.md)
+[`loadAnnotation()`](https://carl-stone.github.io/commaKit/reference/loadAnnotation.md)
 uses gene symbols from the GFF3 `Name=` attribute. Without translation,
 no genes will match during enrichment.
 
@@ -114,8 +114,8 @@ Exactly one of `OrgDb` or `entrez2symbol` must be supplied:
 
 ## See also
 
-[`buildKEGGTermGene`](https://carl-stone.github.io/comma/reference/buildKEGGTermGene.md),
-[`enrichMethylation`](https://carl-stone.github.io/comma/reference/enrichMethylation.md)
+[`buildKEGGTermGene`](https://carl-stone.github.io/commaKit/reference/buildKEGGTermGene.md),
+[`enrichMethylation`](https://carl-stone.github.io/commaKit/reference/enrichMethylation.md)
 
 ## Examples
 
@@ -135,10 +135,10 @@ if (requireNamespace("KEGGREST", quietly = TRUE) &&
 }
 #> Fetching KEGG gene ID map for organism 'eco' ...
 #> 'select()' returned 1:1 mapping between keys and columns
-#> KEGG ID map cached to: /tmp/RtmpIgr4rF/eco_id_map.rds
+#> KEGG ID map cached to: /tmp/Rtmp40KjJ3/eco_id_map.rds
 #> Done. 4634 gene symbols mapped to KEGG IDs.
 #> Fetching KEGG pathway data for organism 'eco' ...
-#> KEGG data cached to: /tmp/RtmpIgr4rF/eco_kegg.rds
+#> KEGG data cached to: /tmp/Rtmp40KjJ3/eco_kegg.rds
 #> Done. 4968 gene-pathway associations across 137 pathways.
 
 # Manual table alternative:

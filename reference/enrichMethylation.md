@@ -42,13 +42,13 @@ enrichMethylation(
 - object:
 
   A
-  [`commaData`](https://carl-stone.github.io/comma/reference/commaData.md)
+  [`commaData`](https://carl-stone.github.io/commaKit/reference/commaData.md)
   object on which
-  [`diffMethyl`](https://carl-stone.github.io/comma/reference/diffMethyl.md)
+  [`diffMethyl`](https://carl-stone.github.io/commaKit/reference/diffMethyl.md)
   and
-  [`annotateSites`](https://carl-stone.github.io/comma/reference/annotateSites.md)
+  [`annotateSites`](https://carl-stone.github.io/commaKit/reference/annotateSites.md)
   have been run, **or** a `data.frame` produced by
-  [`results()`](https://carl-stone.github.io/comma/reference/results.md).
+  [`results()`](https://carl-stone.github.io/commaKit/reference/results.md).
 
 - method:
 
@@ -78,7 +78,7 @@ enrichMethylation(
   KEGG. Requires internet access and fires one HTTP request per KEGG
   pathway, which can exceed the API rate limit for organisms with many
   pathways. Prefer `kegg_term2gene` (built once via
-  [`buildKEGGTermGene()`](https://carl-stone.github.io/comma/reference/buildKEGGTermGene.md))
+  [`buildKEGGTermGene()`](https://carl-stone.github.io/commaKit/reference/buildKEGGTermGene.md))
   for reliable KEGG analysis.
 
 - TERM2GENE:
@@ -98,7 +98,7 @@ enrichMethylation(
   A two-column `data.frame` with columns `term` and `gene` containing
   pre-fetched KEGG pathway-gene associations. Build it once per organism
   with
-  [`buildKEGGTermGene()`](https://carl-stone.github.io/comma/reference/buildKEGGTermGene.md)
+  [`buildKEGGTermGene()`](https://carl-stone.github.io/commaKit/reference/buildKEGGTermGene.md)
   and reuse across analyses — no live KEGG API calls are made. Results
   appear in the `$kegg` slot, consistent with the `organism` path. Takes
   precedence over `organism` when both are supplied.
@@ -107,7 +107,7 @@ enrichMethylation(
 
   Optional two-column `data.frame` with columns `term` and `name`
   containing KEGG pathway descriptions. Returned by
-  [`buildKEGGTermGene()`](https://carl-stone.github.io/comma/reference/buildKEGGTermGene.md)
+  [`buildKEGGTermGene()`](https://carl-stone.github.io/commaKit/reference/buildKEGGTermGene.md)
   alongside `kegg_term2gene`.
 
 - gene_col:
@@ -156,13 +156,13 @@ enrichMethylation(
 - mod_type:
 
   Character vector or `NULL`; modification-type filter passed to
-  [`results`](https://carl-stone.github.io/comma/reference/results.md).
+  [`results`](https://carl-stone.github.io/commaKit/reference/results.md).
   Ignored when `object` is a `data.frame`.
 
 - mod_context:
 
   Character string or `NULL`; mod-context filter passed to
-  [`results`](https://carl-stone.github.io/comma/reference/results.md).
+  [`results`](https://carl-stone.github.io/commaKit/reference/results.md).
   Ignored for `data.frame` input.
 
 - pvalueCutoff:
@@ -219,11 +219,11 @@ specify which perspective to test:
 Before calling `enrichMethylation()`, you must:
 
 1.  Run
-    [`diffMethyl`](https://carl-stone.github.io/comma/reference/diffMethyl.md)
+    [`diffMethyl`](https://carl-stone.github.io/commaKit/reference/diffMethyl.md)
     to compute per-site `dm_padj` and `dm_delta_beta` values.
 
 2.  Run
-    [`annotateSites`](https://carl-stone.github.io/comma/reference/annotateSites.md)
+    [`annotateSites`](https://carl-stone.github.io/commaKit/reference/annotateSites.md)
     to assign feature identifiers to each site. For regulatory feature
     types, pass
     `metadata_cols = c("feature_subtype", "transcription_unit")` to
@@ -236,7 +236,7 @@ Supply at least one of the following:
 - `kegg_term2gene`:
 
   (Recommended for KEGG) A two-column `data.frame` pre-built by
-  [`buildKEGGTermGene()`](https://carl-stone.github.io/comma/reference/buildKEGGTermGene.md).
+  [`buildKEGGTermGene()`](https://carl-stone.github.io/commaKit/reference/buildKEGGTermGene.md).
   No network access is required at analysis time; results appear in the
   `$kegg` slot.
 
@@ -311,10 +311,10 @@ the largest absolute score, preserving its sign) or `"mean"`.
 
 ## See also
 
-[`diffMethyl`](https://carl-stone.github.io/comma/reference/diffMethyl.md),
-[`annotateSites`](https://carl-stone.github.io/comma/reference/annotateSites.md),
-[`results`](https://carl-stone.github.io/comma/reference/results.md),
-[`filterResults`](https://carl-stone.github.io/comma/reference/filterResults.md)
+[`diffMethyl`](https://carl-stone.github.io/commaKit/reference/diffMethyl.md),
+[`annotateSites`](https://carl-stone.github.io/commaKit/reference/annotateSites.md),
+[`results`](https://carl-stone.github.io/commaKit/reference/results.md),
+[`filterResults`](https://carl-stone.github.io/commaKit/reference/filterResults.md)
 
 ## Examples
 

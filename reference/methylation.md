@@ -1,7 +1,7 @@
 # Accessor for the methylation (beta value) matrix
 
 Retrieves the sites × samples matrix of methylation beta values from a
-[`commaData`](https://carl-stone.github.io/comma/reference/commaData.md)
+[`commaData`](https://carl-stone.github.io/commaKit/reference/commaData.md)
 object. Values are in the range 0–1 (proportion of reads called
 methylated). Sites below the `min_coverage` threshold set at object
 creation are `NA`.
@@ -29,9 +29,9 @@ columns corresponding to samples. Rownames are site keys
 
 ## See also
 
-[`siteCoverage`](https://carl-stone.github.io/comma/reference/siteCoverage.md),
-[`siteInfo`](https://carl-stone.github.io/comma/reference/siteInfo.md),
-[`sampleInfo`](https://carl-stone.github.io/comma/reference/sampleInfo.md)
+[`siteCoverage`](https://carl-stone.github.io/commaKit/reference/siteCoverage.md),
+[`siteInfo`](https://carl-stone.github.io/commaKit/reference/siteInfo.md),
+[`sampleInfo`](https://carl-stone.github.io/commaKit/reference/sampleInfo.md)
 
 ## Examples
 

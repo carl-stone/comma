@@ -2,7 +2,7 @@
 
 `subset(commaData)` is deprecated to avoid package-level masking of
 [`base::subset()`](https://rdrr.io/r/base/subset.html). Use
-[`filterSites`](https://carl-stone.github.io/comma/reference/filterSites.md)
+[`filterSites`](https://carl-stone.github.io/commaKit/reference/filterSites.md)
 for common commaData filters or `[` for index-based subsetting.
 
 ## Usage
@@ -46,8 +46,8 @@ subset(
   Character vector or `NULL`. If provided, only sites with a matching
   sequence context motif are kept (e.g., `"GATC"`). Sites with `NA`
   motif values are excluded when this filter is active. Use
-  [`motifs`](https://carl-stone.github.io/comma/reference/motifs.md) to
-  see which motifs are present.
+  [`motifs`](https://carl-stone.github.io/commaKit/reference/motifs.md)
+  to see which motifs are present.
 
 - mod_context:
 
@@ -55,7 +55,7 @@ subset(
   modification context are kept (e.g., `"6mA_GATC"`, `"5mC_CCWGG"`). A
   `mod_context` value is `paste(mod_type, motif, sep = "_")` when motif
   is available, or just `mod_type` for Dorado/Megalodon data. Use
-  [`modContexts`](https://carl-stone.github.io/comma/reference/modContexts.md)
+  [`modContexts`](https://carl-stone.github.io/commaKit/reference/modContexts.md)
   to see which contexts are present. When provided, this filter is
   applied in addition to (ANDed with) any `mod_type` or `motif` filters.
 

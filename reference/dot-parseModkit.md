@@ -3,7 +3,7 @@
 Reads a single-sample modkit `pileup` output file and returns a tidy
 data frame of per-site methylation values. This is an internal function
 called by
-[`commaData`](https://carl-stone.github.io/comma/reference/commaData.md).
+[`commaData`](https://carl-stone.github.io/commaKit/reference/commaData.md).
 
 ## Usage
 

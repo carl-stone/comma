@@ -1,15 +1,15 @@
-# commaData: the central data object for the comma package
+# commaData: the central data object for the commaKit package
 
 `commaData` is an S4 class that extends
 [`RangedSummarizedExperiment`](https://rdrr.io/pkg/SummarizedExperiment/man/RangedSummarizedExperiment-class.html)
 to store genome-wide bacterial methylation data from Oxford Nanopore
 sequencing. It is the central object accepted and returned by all
-`comma` analysis functions.
+commaKit analysis functions.
 
 ## Value
 
 An object of class `commaData`. Use
-[`commaData`](https://carl-stone.github.io/comma/reference/commaData.md)
+[`commaData`](https://carl-stone.github.io/commaKit/reference/commaData.md)
 to construct instances.
 
 ## Details
@@ -18,7 +18,7 @@ Genomic annotation and motif site positions are stored in
 `metadata(object)` rather than as dedicated slots. Use
 [`annotation`](https://rdrr.io/pkg/BiocGenerics/man/annotation.html)`(object)`
 and
-[`motifSites`](https://carl-stone.github.io/comma/reference/motifSites.md)`(object)`
+[`motifSites`](https://carl-stone.github.io/commaKit/reference/motifSites.md)`(object)`
 to access them.
 
 Genome size information is stored in the `Seqinfo` attached to
@@ -50,15 +50,15 @@ Megalodon callers. The `mod_context` is computed on demand from
 `mod_type` and `motif` (e.g., `"6mA_GATC"`, `"5mC_CCWGG"`), or just
 `mod_type` when motif is unavailable (e.g., `"6mA"` for Dorado/Megalodon
 data). Use
-[`modContexts`](https://carl-stone.github.io/comma/reference/modContexts.md)`(object)`
+[`modContexts`](https://carl-stone.github.io/commaKit/reference/modContexts.md)`(object)`
 or
-[`siteInfo`](https://carl-stone.github.io/comma/reference/siteInfo.md)`(object)`
+[`siteInfo`](https://carl-stone.github.io/commaKit/reference/siteInfo.md)`(object)`
 to retrieve it. All analyses default to running independently per
 `mod_context` group to prevent spurious mixing of biologically distinct
 methylation events.
 
 For convenience,
-[`siteInfo`](https://carl-stone.github.io/comma/reference/siteInfo.md)`(object)`
+[`siteInfo`](https://carl-stone.github.io/commaKit/reference/siteInfo.md)`(object)`
 returns a flat `DataFrame` combining the genomic coordinates (chrom,
 position, strand) with the mcols columns.
 
@@ -67,19 +67,19 @@ Per-sample metadata is in `colData(object)` and includes at minimum:
 
 The methylation caller and minimum coverage threshold are stored in
 `metadata(object)` and accessible via
-[`caller`](https://carl-stone.github.io/comma/reference/caller.md)`(object)`
+[`caller`](https://carl-stone.github.io/commaKit/reference/caller.md)`(object)`
 and
-[`minCoverage`](https://carl-stone.github.io/comma/reference/minCoverage.md)`(object)`.
+[`minCoverage`](https://carl-stone.github.io/commaKit/reference/minCoverage.md)`(object)`.
 
 ## See also
 
-[`commaData`](https://carl-stone.github.io/comma/reference/commaData.md)
+[`commaData`](https://carl-stone.github.io/commaKit/reference/commaData.md)
 for the constructor,
-[`methylation`](https://carl-stone.github.io/comma/reference/methylation.md),
+[`methylation`](https://carl-stone.github.io/commaKit/reference/methylation.md),
 [`coverage`](https://rdrr.io/pkg/IRanges/man/coverage-methods.html),
-[`sampleInfo`](https://carl-stone.github.io/comma/reference/sampleInfo.md),
-[`siteInfo`](https://carl-stone.github.io/comma/reference/siteInfo.md),
-[`modTypes`](https://carl-stone.github.io/comma/reference/modTypes.md),
-[`modContexts`](https://carl-stone.github.io/comma/reference/modContexts.md),
+[`sampleInfo`](https://carl-stone.github.io/commaKit/reference/sampleInfo.md),
+[`siteInfo`](https://carl-stone.github.io/commaKit/reference/siteInfo.md),
+[`modTypes`](https://carl-stone.github.io/commaKit/reference/modTypes.md),
+[`modContexts`](https://carl-stone.github.io/commaKit/reference/modContexts.md),
 [`annotation`](https://rdrr.io/pkg/BiocGenerics/man/annotation.html) for
 accessors.

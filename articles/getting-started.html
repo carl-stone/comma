@@ -5,12 +5,12 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>Getting Started with comma • comma</title>
+<title>Getting Started with commaKit • commaKit</title>
 <script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="../deps/bootstrap-5.3.8/bootstrap.min.css" rel="stylesheet">
 <script src="../deps/bootstrap-5.3.8/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
 <link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
-<script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Getting Started with comma">
+<script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Getting Started with commaKit">
 </head>
 <body>
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
@@ -18,7 +18,7 @@
 
     <nav class="navbar navbar-expand-lg fixed-top bg-light" data-bs-theme="light" aria-label="Site navigation"><div class="container">
 
-    <a class="navbar-brand me-2" href="../index.html">comma</a>
+    <a class="navbar-brand me-2" href="../index.html">commaKit</a>
 
     <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.0</small>
 
@@ -33,7 +33,7 @@
 <li class="active nav-item dropdown">
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
   <ul class="dropdown-menu" aria-labelledby="dropdown-articles">
-<li><a class="dropdown-item" href="../articles/getting-started.html">Getting Started with comma</a></li>
+<li><a class="dropdown-item" href="../articles/getting-started.html">Getting Started with commaKit</a></li>
     <li><a class="dropdown-item" href="../articles/import-troubleshooting.html">Troubleshooting Data Import</a></li>
     <li><a class="dropdown-item" href="../articles/multiple-modification-types.html">Working with Multiple Modification Types</a></li>
     <li><a class="dropdown-item" href="../articles/understanding-commaData.html">Understanding the commaData object</a></li>
@@ -45,7 +45,7 @@
 <li class="nav-item"><form class="form-inline" role="search">
  <input class="form-control" type="search" name="search-input" id="search-input" autocomplete="off" aria-label="Search site" placeholder="Search for" data-search-index="../search.json">
 </form></li>
-<li class="nav-item"><a class="external-link nav-link" href="https://github.com/carl-stone/comma/" aria-label="GitHub"><span class="fa fab fa-github fa-lg"></span></a></li>
+<li class="nav-item"><a class="external-link nav-link" href="https://github.com/carl-stone/commaKit/" aria-label="GitHub"><span class="fa fab fa-github fa-lg"></span></a></li>
       </ul>
 </div>
 
@@ -59,10 +59,10 @@
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
 
-      <h1>Getting Started with comma</h1>
+      <h1>Getting Started with commaKit</h1>
             
       
-      <small class="dont-index">Source: <a href="https://github.com/carl-stone/comma/blob/main/vignettes/getting-started.Rmd" class="external-link"><code>vignettes/getting-started.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/carl-stone/commaKit/blob/main/vignettes/getting-started.Rmd" class="external-link"><code>vignettes/getting-started.Rmd</code></a></small>
       <div class="d-none name"><code>getting-started.Rmd</code></div>
     </div>
 
@@ -71,16 +71,16 @@
 <div class="section level2">
 <h2 id="introduction">Introduction<a class="anchor" aria-label="anchor" href="#introduction"></a>
 </h2>
-<p><code>comma</code> (<strong>Co</strong>mparative
-<strong>M</strong>ethylomics for <strong>M</strong>icrobial
-<strong>A</strong>nalysis) is an R package for genome-wide analysis of
-bacterial DNA methylation from Oxford Nanopore sequencing data. It
-supports three modification types — N6-methyladenine (6mA),
-5-methylcytosine (5mC), and N4-methylcytosine (4mC) — in a single,
-unified data container. This vignette walks through the complete
+<p><code>commaKit</code> (<strong>Com</strong>parative
+<strong>M</strong>icrobial <strong>M</strong>ethylomics
+<strong>A</strong>nalysis <strong>Kit</strong>) is an R package for
+genome-wide analysis of bacterial DNA methylation from Oxford Nanopore
+sequencing data. It supports three modification types — N6-methyladenine
+(6mA), 5-methylcytosine (5mC), and N4-methylcytosine (4mC) — in a
+single, unified data container. This vignette walks through the complete
 analysis workflow using the built-in <code>comma_example_data</code>
 synthetic dataset.</p>
-<p>The typical <code>comma</code> workflow has six steps:</p>
+<p>The typical commaKit workflow has six steps:</p>
 <ol style="list-style-type: decimal">
 <li>
 <strong>Load</strong> per-sample methylation files into a
@@ -104,17 +104,16 @@ conditions.</li>
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
 </h2>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/ns-load.html" class="external-link">requireNamespace</a></span><span class="op">(</span><span class="st">"BiocManager"</span>, quietly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span></span>
-<span>    <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"BiocManager"</span><span class="op">)</span></span>
-<span><span class="fu">BiocManager</span><span class="fu">::</span><span class="fu"><a href="https://bioconductor.github.io/BiocManager/reference/install.html" class="external-link">install</a></span><span class="op">(</span><span class="st">"comma"</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu">devtools</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"carl-stone/commaKit"</span><span class="op">)</span></span>
+<span><span class="co"># BiocManager::install("commaKit") after Bioconductor release</span></span></code></pre></div>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/carl-stone/comma" class="external-link">comma</a></span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/carl-stone/commaKit" class="external-link">commaKit</a></span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="the-commadata-object">The <code>commaData</code> Object<a class="anchor" aria-label="anchor" href="#the-commadata-object"></a>
 </h2>
 <p><code>commaData</code> extends <code>SummarizedExperiment</code> and
-is the central data container in <code>comma</code>. It stores:</p>
+is the central data container in commaKit. It stores:</p>
 <ul>
 <li>
 <strong>methylation</strong> — a sites × samples matrix of beta
@@ -146,15 +145,15 @@ chromosome across six samples: three controls (<code>ctrl_1</code>,
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">comma_example_data</span><span class="op">)</span></span>
 <span><span class="va">comma_example_data</span></span>
 <span><span class="co">#&gt; class: commaData</span></span>
-<span><span class="co">#&gt; sites: 588 | samples: 6 </span></span>
-<span><span class="co">#&gt; mod types: 5mC, 6mA </span></span>
-<span><span class="co">#&gt; motifs: CCWGG, GATC </span></span>
-<span><span class="co">#&gt; mod contexts: 5mC_CCWGG, 6mA_GATC </span></span>
-<span><span class="co">#&gt; conditions: control, treatment </span></span>
-<span><span class="co">#&gt; genome: 1 chromosome (100,000 bp total) </span></span>
-<span><span class="co">#&gt; annotation: 5 features </span></span>
-<span><span class="co">#&gt; motif sites: none </span></span>
-<span><span class="co">#&gt; caller: modkit </span></span>
+<span><span class="co">#&gt; sites: 588 | samples: 6</span></span>
+<span><span class="co">#&gt; mod types: 5mC, 6mA</span></span>
+<span><span class="co">#&gt; motifs: CCWGG, GATC</span></span>
+<span><span class="co">#&gt; mod contexts: 5mC_CCWGG, 6mA_GATC</span></span>
+<span><span class="co">#&gt; conditions: control, treatment</span></span>
+<span><span class="co">#&gt; genome: 1 chromosome (100,000 bp total)</span></span>
+<span><span class="co">#&gt; annotation: 5 features</span></span>
+<span><span class="co">#&gt; motif sites: none</span></span>
+<span><span class="co">#&gt; caller: modkit</span></span>
 <span><span class="co">#&gt; min_coverage: 5</span></span></code></pre></div>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Modification types present</span></span>
@@ -344,15 +343,15 @@ the same object with statistical results in <code>rowData</code>.</p>
 <span>                    mod_type <span class="op">=</span> <span class="st">"6mA"</span><span class="op">)</span></span>
 <span><span class="va">cd_dm</span></span>
 <span><span class="co">#&gt; class: commaData</span></span>
-<span><span class="co">#&gt; sites: 588 | samples: 6 </span></span>
-<span><span class="co">#&gt; mod types: 5mC, 6mA </span></span>
-<span><span class="co">#&gt; motifs: CCWGG, GATC </span></span>
-<span><span class="co">#&gt; mod contexts: 5mC_CCWGG, 6mA_GATC </span></span>
-<span><span class="co">#&gt; conditions: control, treatment </span></span>
-<span><span class="co">#&gt; genome: 1 chromosome (100,000 bp total) </span></span>
-<span><span class="co">#&gt; annotation: 5 features </span></span>
-<span><span class="co">#&gt; motif sites: none </span></span>
-<span><span class="co">#&gt; caller: modkit </span></span>
+<span><span class="co">#&gt; sites: 588 | samples: 6</span></span>
+<span><span class="co">#&gt; mod types: 5mC, 6mA</span></span>
+<span><span class="co">#&gt; motifs: CCWGG, GATC</span></span>
+<span><span class="co">#&gt; mod contexts: 5mC_CCWGG, 6mA_GATC</span></span>
+<span><span class="co">#&gt; conditions: control, treatment</span></span>
+<span><span class="co">#&gt; genome: 1 chromosome (100,000 bp total)</span></span>
+<span><span class="co">#&gt; annotation: 5 features</span></span>
+<span><span class="co">#&gt; motif sites: none</span></span>
+<span><span class="co">#&gt; caller: modkit</span></span>
 <span><span class="co">#&gt; min_coverage: 5</span></span></code></pre></div>
 <div class="section level3">
 <h3 id="choosing-a-differential-methylation-backend">Choosing a Differential Methylation Backend<a class="anchor" aria-label="anchor" href="#choosing-a-differential-methylation-backend"></a>
@@ -365,8 +364,8 @@ handling of differential methylation.</p>
 <p><code>method = "quasi_f"</code> is a good general-purpose alternative
 for bacterial methylomes. It uses a quasibinomial model with empirical
 Bayes dispersion shrinkage, keeps multiple-testing correction inside
-<code>comma</code>, and can be a practical first alternative when
-methylKit convergence warnings, zero-variance sites, or runtime become
+commaKit, and can be a practical first alternative when methylKit
+convergence warnings, zero-variance sites, or runtime become
 distracting.</p>
 <p><code>method = "limma"</code> uses limma’s empirical-Bayes linear
 model on M-values. It is most useful when you want a familiar limma
@@ -518,7 +517,7 @@ than using a hard threshold, use GSEA:</p>
 <span><span class="co">#&gt; [1] stats     graphics  grDevices datasets  utils     methods   base     </span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; other attached packages:</span></span>
-<span><span class="co">#&gt; [1] comma_0.2.0      BiocStyle_2.38.0</span></span>
+<span><span class="co">#&gt; [1] commaKit_0.2.0   BiocStyle_2.38.0</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; loaded via a namespace (and not attached):</span></span>
 <span><span class="co">#&gt;   [1] bitops_1.0-9                rlang_1.2.0                </span></span>

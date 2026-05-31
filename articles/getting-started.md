@@ -1,16 +1,16 @@
-# Getting Started with comma
+# Getting Started with commaKit
 
 ## Introduction
 
-`comma` (**Co**mparative **M**ethylomics for **M**icrobial **A**nalysis)
-is an R package for genome-wide analysis of bacterial DNA methylation
-from Oxford Nanopore sequencing data. It supports three modification
-types — N6-methyladenine (6mA), 5-methylcytosine (5mC), and
+`commaKit` (**Com**parative **M**icrobial **M**ethylomics **A**nalysis
+**Kit**) is an R package for genome-wide analysis of bacterial DNA
+methylation from Oxford Nanopore sequencing data. It supports three
+modification types — N6-methyladenine (6mA), 5-methylcytosine (5mC), and
 N4-methylcytosine (4mC) — in a single, unified data container. This
 vignette walks through the complete analysis workflow using the built-in
 `comma_example_data` synthetic dataset.
 
-The typical `comma` workflow has six steps:
+The typical commaKit workflow has six steps:
 
 1.  **Load** per-sample methylation files into a `commaData` object.
 2.  **QC** the data (coverage, beta distributions, PCA).
@@ -23,20 +23,19 @@ The typical `comma` workflow has six steps:
 
 ``` r
 
-if (!requireNamespace("BiocManager", quietly = TRUE))
-    install.packages("BiocManager")
-BiocManager::install("comma")
+devtools::install_github("carl-stone/commaKit")
+# BiocManager::install("commaKit") after Bioconductor release
 ```
 
 ``` r
 
-library(comma)
+library(commaKit)
 ```
 
 ## The `commaData` Object
 
 `commaData` extends `SummarizedExperiment` and is the central data
-container in `comma`. It stores:
+container in commaKit. It stores:
 
 - **methylation** — a sites × samples matrix of beta values (0–1).
 - **coverage** — a sites × samples matrix of read depths.
@@ -57,15 +56,15 @@ treatments (`treat_1`, `treat_2`, `treat_3`).
 data(comma_example_data)
 comma_example_data
 #> class: commaData
-#> sites: 588 | samples: 6 
-#> mod types: 5mC, 6mA 
-#> motifs: CCWGG, GATC 
-#> mod contexts: 5mC_CCWGG, 6mA_GATC 
-#> conditions: control, treatment 
-#> genome: 1 chromosome (100,000 bp total) 
-#> annotation: 5 features 
-#> motif sites: none 
-#> caller: modkit 
+#> sites: 588 | samples: 6
+#> mod types: 5mC, 6mA
+#> motifs: CCWGG, GATC
+#> mod contexts: 5mC_CCWGG, 6mA_GATC
+#> conditions: control, treatment
+#> genome: 1 chromosome (100,000 bp total)
+#> annotation: 5 features
+#> motif sites: none
+#> caller: modkit
 #> min_coverage: 5
 ```
 
@@ -98,7 +97,7 @@ dim(methylation(comma_example_data))
 
 ### Summary Statistics
 
-[`methylomeSummary()`](https://carl-stone.github.io/comma/reference/methylomeSummary.md)
+[`methylomeSummary()`](https://carl-stone.github.io/commaKit/reference/methylomeSummary.md)
 returns a tidy data frame with per-sample distribution statistics:
 
 ``` r
@@ -116,7 +115,7 @@ ms[, c("sample_name", "condition", "mean_beta", "median_beta", "n_covered")]
 
 ### Coverage QC
 
-[`plot_coverage()`](https://carl-stone.github.io/comma/reference/plot_coverage.md)
+[`plot_coverage()`](https://carl-stone.github.io/commaKit/reference/plot_coverage.md)
 shows the distribution of sequencing depth per site, per sample.
 Consistent coverage across samples is an important quality indicator.
 
@@ -132,7 +131,7 @@ Coverage depth distribution per sample.
 
 ### Beta Value Distributions
 
-[`plot_methylation_distribution()`](https://carl-stone.github.io/comma/reference/plot_methylation_distribution.md)
+[`plot_methylation_distribution()`](https://carl-stone.github.io/commaKit/reference/plot_methylation_distribution.md)
 plots the density of methylation levels for each sample. Bacterial
 genomes often show a bimodal distribution (sites are either fully
 methylated or unmethylated).
@@ -161,11 +160,11 @@ Beta value density for 6mA sites only.
 
 ### PCA for Sample-Level QC
 
-[`plot_pca()`](https://carl-stone.github.io/comma/reference/plot_pca.md)
+[`plot_pca()`](https://carl-stone.github.io/commaKit/reference/plot_pca.md)
 performs PCA on per-sample methylation profiles. Samples from the same
 condition should cluster together. Internally, beta values are converted
 to M-values via
-[`mValues()`](https://carl-stone.github.io/comma/reference/mValues.md)
+[`mValues()`](https://carl-stone.github.io/commaKit/reference/mValues.md)
 before PCA, which stabilizes variance across sites near 0 or 1.
 
 ``` r
@@ -193,7 +192,7 @@ attr(pca_df, "percentVar")  # variance explained by PC1 and PC2
 
 ## Annotating Sites
 
-[`annotateSites()`](https://carl-stone.github.io/comma/reference/annotateSites.md)
+[`annotateSites()`](https://carl-stone.github.io/commaKit/reference/annotateSites.md)
 maps methylation sites to genomic features, always computing four
 parallel list columns in `rowData`:
 
@@ -220,7 +219,7 @@ mean(lengths(si$feature_names) > 0)
 #> [1] 0.03401361
 ```
 
-[`plot_metagene()`](https://carl-stone.github.io/comma/reference/plot_metagene.md)
+[`plot_metagene()`](https://carl-stone.github.io/commaKit/reference/plot_metagene.md)
 visualizes the average methylation profile across gene bodies:
 
 ``` r
@@ -235,7 +234,7 @@ Mean methylation profile across gene bodies (TSS to TTS).
 
 ### TSS-Centered Profiles
 
-[`plot_tss_profile()`](https://carl-stone.github.io/comma/reference/plot_tss_profile.md)
+[`plot_tss_profile()`](https://carl-stone.github.io/commaKit/reference/plot_tss_profile.md)
 shows methylation centered on transcription start sites, with optional
 regulatory element coloring:
 
@@ -251,7 +250,7 @@ TSS-centered methylation profile.
 
 ## Genome Track Visualization
 
-[`plot_genome_track()`](https://carl-stone.github.io/comma/reference/plot_genome_track.md)
+[`plot_genome_track()`](https://carl-stone.github.io/commaKit/reference/plot_genome_track.md)
 produces a genome browser–style plot of methylation along a chromosome
 region:
 
@@ -268,7 +267,7 @@ Genome track for the first 50 kb of chr_sim.
 
 ## Differential Methylation
 
-[`diffMethyl()`](https://carl-stone.github.io/comma/reference/diffMethyl.md)
+[`diffMethyl()`](https://carl-stone.github.io/commaKit/reference/diffMethyl.md)
 tests each site for differential methylation between conditions. It is
 modeled on DESeq2’s workflow: pass a `commaData` object and a design
 formula, and receive back the same object with statistical results in
@@ -280,21 +279,21 @@ cd_dm <- diffMethyl(comma_example_data, formula = ~ condition,
                     mod_type = "6mA")
 cd_dm
 #> class: commaData
-#> sites: 588 | samples: 6 
-#> mod types: 5mC, 6mA 
-#> motifs: CCWGG, GATC 
-#> mod contexts: 5mC_CCWGG, 6mA_GATC 
-#> conditions: control, treatment 
-#> genome: 1 chromosome (100,000 bp total) 
-#> annotation: 5 features 
-#> motif sites: none 
-#> caller: modkit 
+#> sites: 588 | samples: 6
+#> mod types: 5mC, 6mA
+#> motifs: CCWGG, GATC
+#> mod contexts: 5mC_CCWGG, 6mA_GATC
+#> conditions: control, treatment
+#> genome: 1 chromosome (100,000 bp total)
+#> annotation: 5 features
+#> motif sites: none
+#> caller: modkit
 #> min_coverage: 5
 ```
 
 ### Choosing a Differential Methylation Backend
 
-[`diffMethyl()`](https://carl-stone.github.io/comma/reference/diffMethyl.md)
+[`diffMethyl()`](https://carl-stone.github.io/commaKit/reference/diffMethyl.md)
 keeps `method = "methylkit"` as the default for compatibility with
 established methylKit workflows and its logistic-regression conventions.
 This is a sensible choice when you already use methylKit elsewhere or
@@ -303,7 +302,7 @@ methylation.
 
 `method = "quasi_f"` is a good general-purpose alternative for bacterial
 methylomes. It uses a quasibinomial model with empirical Bayes
-dispersion shrinkage, keeps multiple-testing correction inside `comma`,
+dispersion shrinkage, keeps multiple-testing correction inside commaKit,
 and can be a practical first alternative when methylKit convergence
 warnings, zero-variance sites, or runtime become distracting.
 
@@ -341,7 +340,7 @@ cat("Significant sites:", nrow(sig), "\n")
 
 ### Volcano Plot
 
-[`plot_volcano()`](https://carl-stone.github.io/comma/reference/plot_volcano.md)
+[`plot_volcano()`](https://carl-stone.github.io/commaKit/reference/plot_volcano.md)
 displays the differential methylation landscape. Sites are colored by
 direction and significance:
 
@@ -357,7 +356,7 @@ Volcano plot: effect size (Δβ) vs. significance (–log10 padj).
 
 ### Heatmap of Top Sites
 
-[`plot_heatmap()`](https://carl-stone.github.io/comma/reference/plot_heatmap.md)
+[`plot_heatmap()`](https://carl-stone.github.io/commaKit/reference/plot_heatmap.md)
 shows methylation beta values for the top differentially methylated
 sites:
 
@@ -373,7 +372,7 @@ Heatmap of top 30 differentially methylated 6mA sites.
 
 ## Enrichment Analysis
 
-[`enrichMethylation()`](https://carl-stone.github.io/comma/reference/enrichMethylation.md)
+[`enrichMethylation()`](https://carl-stone.github.io/commaKit/reference/enrichMethylation.md)
 performs gene set enrichment on differentially methylated genes. It
 supports Gene Ontology (GO) and KEGG ontologies, over-representation
 analysis (ORA) and gene set enrichment analysis (GSEA) methods, and
@@ -383,7 +382,7 @@ and regulator genes (whose products bind near DM sites).
 ### GO Enrichment
 
 Before running enrichment, sites must be annotated with
-[`annotateSites()`](https://carl-stone.github.io/comma/reference/annotateSites.md):
+[`annotateSites()`](https://carl-stone.github.io/commaKit/reference/annotateSites.md):
 
 ``` r
 
@@ -471,7 +470,7 @@ sessionInfo()
 #> [1] stats     graphics  grDevices datasets  utils     methods   base     
 #> 
 #> other attached packages:
-#> [1] comma_0.2.0      BiocStyle_2.38.0
+#> [1] commaKit_0.2.0   BiocStyle_2.38.0
 #> 
 #> loaded via a namespace (and not attached):
 #>   [1] bitops_1.0-9                rlang_1.2.0                

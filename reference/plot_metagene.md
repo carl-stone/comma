@@ -23,7 +23,7 @@ plot_metagene(
 - object:
 
   A
-  [`commaData`](https://carl-stone.github.io/comma/reference/commaData.md)
+  [`commaData`](https://carl-stone.github.io/commaKit/reference/commaData.md)
   object with a non-empty `annotation` slot or a user-supplied
   `features` GRanges.
 
@@ -67,7 +67,7 @@ lines mark the TSS (0) and TTS (1).
 ## Details
 
 Internally calls
-[`annotateSites`](https://carl-stone.github.io/comma/reference/annotateSites.md)`(keep = "metagene")`
+[`annotateSites`](https://carl-stone.github.io/commaKit/reference/annotateSites.md)`(keep = "metagene")`
 to compute normalized positions (0 = TSS, 1 = TTS) for each methylation
 site that overlaps a feature of the requested type. Sites that do not
 overlap any feature are excluded from the plot. The mean beta value is
@@ -75,8 +75,8 @@ then computed within each position bin for each sample.
 
 ## See also
 
-[`annotateSites`](https://carl-stone.github.io/comma/reference/annotateSites.md),
-[`plot_genome_track`](https://carl-stone.github.io/comma/reference/plot_genome_track.md)
+[`annotateSites`](https://carl-stone.github.io/commaKit/reference/annotateSites.md),
+[`plot_genome_track`](https://carl-stone.github.io/commaKit/reference/plot_genome_track.md)
 
 ## Examples
 

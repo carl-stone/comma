@@ -5,7 +5,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>Understanding the commaData object • comma</title>
+<title>Understanding the commaData object • commaKit</title>
 <script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="../deps/bootstrap-5.3.8/bootstrap.min.css" rel="stylesheet">
 <script src="../deps/bootstrap-5.3.8/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
@@ -18,7 +18,7 @@
 
     <nav class="navbar navbar-expand-lg fixed-top bg-light" data-bs-theme="light" aria-label="Site navigation"><div class="container">
 
-    <a class="navbar-brand me-2" href="../index.html">comma</a>
+    <a class="navbar-brand me-2" href="../index.html">commaKit</a>
 
     <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.0</small>
 
@@ -33,7 +33,7 @@
 <li class="active nav-item dropdown">
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
   <ul class="dropdown-menu" aria-labelledby="dropdown-articles">
-<li><a class="dropdown-item" href="../articles/getting-started.html">Getting Started with comma</a></li>
+<li><a class="dropdown-item" href="../articles/getting-started.html">Getting Started with commaKit</a></li>
     <li><a class="dropdown-item" href="../articles/import-troubleshooting.html">Troubleshooting Data Import</a></li>
     <li><a class="dropdown-item" href="../articles/multiple-modification-types.html">Working with Multiple Modification Types</a></li>
     <li><a class="dropdown-item" href="../articles/understanding-commaData.html">Understanding the commaData object</a></li>
@@ -45,7 +45,7 @@
 <li class="nav-item"><form class="form-inline" role="search">
  <input class="form-control" type="search" name="search-input" id="search-input" autocomplete="off" aria-label="Search site" placeholder="Search for" data-search-index="../search.json">
 </form></li>
-<li class="nav-item"><a class="external-link nav-link" href="https://github.com/carl-stone/comma/" aria-label="GitHub"><span class="fa fab fa-github fa-lg"></span></a></li>
+<li class="nav-item"><a class="external-link nav-link" href="https://github.com/carl-stone/commaKit/" aria-label="GitHub"><span class="fa fab fa-github fa-lg"></span></a></li>
       </ul>
 </div>
 
@@ -62,7 +62,7 @@
       <h1>Understanding the commaData object</h1>
             
       
-      <small class="dont-index">Source: <a href="https://github.com/carl-stone/comma/blob/main/vignettes/understanding-commaData.Rmd" class="external-link"><code>vignettes/understanding-commaData.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/carl-stone/commaKit/blob/main/vignettes/understanding-commaData.Rmd" class="external-link"><code>vignettes/understanding-commaData.Rmd</code></a></small>
       <div class="d-none name"><code>understanding-commaData.Rmd</code></div>
     </div>
 
@@ -71,29 +71,28 @@
 <div class="section level2">
 <h2 id="why-commadata-matters">Why <code>commaData</code> matters<a class="anchor" aria-label="anchor" href="#why-commadata-matters"></a>
 </h2>
-<p>Most <code>comma</code> workflow functions start from a
-<code>commaData</code> object, and many return an updated
-<code>commaData</code> object with added analysis layers. Other
-functions expose those layers as tables, plots, or enrichment result
-lists. The object is the stable substrate for the workflow: rows are
-genomic methylation sites, columns are samples, assays store
-measurements, and later analyses add named layers to the same biological
-coordinates.</p>
+<p>Most commaKit workflow functions start from a <code>commaData</code>
+object, and many return an updated <code>commaData</code> object with
+added analysis layers. Other functions expose those layers as tables,
+plots, or enrichment result lists. The object is the stable substrate
+for the workflow: rows are genomic methylation sites, columns are
+samples, assays store measurements, and later analyses add named layers
+to the same biological coordinates.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/carl-stone/comma" class="external-link">comma</a></span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/carl-stone/commaKit" class="external-link">commaKit</a></span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">comma_example_data</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">comma_example_data</span></span>
 <span><span class="co">#&gt; class: commaData</span></span>
-<span><span class="co">#&gt; sites: 588 | samples: 6 </span></span>
-<span><span class="co">#&gt; mod types: 5mC, 6mA </span></span>
-<span><span class="co">#&gt; motifs: CCWGG, GATC </span></span>
-<span><span class="co">#&gt; mod contexts: 5mC_CCWGG, 6mA_GATC </span></span>
-<span><span class="co">#&gt; conditions: control, treatment </span></span>
-<span><span class="co">#&gt; genome: 1 chromosome (100,000 bp total) </span></span>
-<span><span class="co">#&gt; annotation: 5 features </span></span>
-<span><span class="co">#&gt; motif sites: none </span></span>
-<span><span class="co">#&gt; caller: modkit </span></span>
+<span><span class="co">#&gt; sites: 588 | samples: 6</span></span>
+<span><span class="co">#&gt; mod types: 5mC, 6mA</span></span>
+<span><span class="co">#&gt; motifs: CCWGG, GATC</span></span>
+<span><span class="co">#&gt; mod contexts: 5mC_CCWGG, 6mA_GATC</span></span>
+<span><span class="co">#&gt; conditions: control, treatment</span></span>
+<span><span class="co">#&gt; genome: 1 chromosome (100,000 bp total)</span></span>
+<span><span class="co">#&gt; annotation: 5 features</span></span>
+<span><span class="co">#&gt; motif sites: none</span></span>
+<span><span class="co">#&gt; caller: modkit</span></span>
 <span><span class="co">#&gt; min_coverage: 5</span></span></code></pre></div>
 <p>The built-in example data are synthetic, but they exercise the same
 object model used for real data. They contain multiple modification
@@ -272,7 +271,7 @@ reading any external files.</p>
 <div class="section level2">
 <h2 id="analysis-layers">Analysis layers<a class="anchor" aria-label="anchor" href="#analysis-layers"></a>
 </h2>
-<p>A useful way to learn <code>comma</code> is to think in layers:</p>
+<p>A useful way to learn commaKit is to think in layers:</p>
 <ul>
 <li>the measurement layer contains methylation and coverage assays;</li>
 <li>the coordinate layer is <code>rowRanges()</code>;</li>
@@ -371,7 +370,7 @@ the same genomic methylation-site substrate.</p>
 <span><span class="co">#&gt; [1] stats     graphics  grDevices datasets  utils     methods   base     </span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; other attached packages:</span></span>
-<span><span class="co">#&gt; [1] comma_0.2.0      BiocStyle_2.38.0</span></span>
+<span><span class="co">#&gt; [1] commaKit_0.2.0   BiocStyle_2.38.0</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; loaded via a namespace (and not attached):</span></span>
 <span><span class="co">#&gt;  [1] SummarizedExperiment_1.40.0 gtable_0.3.6               </span></span>
@@ -391,10 +390,10 @@ the same genomic methylation-site substrate.</p>
 <span><span class="co">#&gt; [29] Seqinfo_1.0.0               codetools_0.2-20           </span></span>
 <span><span class="co">#&gt; [31] GenomeInfoDb_1.46.2         htmltools_0.5.9            </span></span>
 <span><span class="co">#&gt; [33] sass_0.4.10                 yaml_2.3.12                </span></span>
-<span><span class="co">#&gt; [35] pkgdown_2.2.0               pillar_1.11.1              </span></span>
+<span><span class="co">#&gt; [35] pillar_1.11.1               pkgdown_2.2.0              </span></span>
 <span><span class="co">#&gt; [37] crayon_1.5.3                jquerylib_0.1.4            </span></span>
 <span><span class="co">#&gt; [39] BiocParallel_1.44.0         limma_3.66.0               </span></span>
-<span><span class="co">#&gt; [41] DelayedArray_0.36.1         cachem_1.1.0               </span></span>
+<span><span class="co">#&gt; [41] cachem_1.1.0                DelayedArray_0.36.1        </span></span>
 <span><span class="co">#&gt; [43] abind_1.4-8                 tidyselect_1.2.1           </span></span>
 <span><span class="co">#&gt; [45] digest_0.6.39               dplyr_1.2.1                </span></span>
 <span><span class="co">#&gt; [47] bookdown_0.46               fastmap_1.2.0              </span></span>

@@ -2,7 +2,7 @@
 
 Produces a histogram of sequencing depth (coverage) across sites for
 each sample in a
-[`commaData`](https://carl-stone.github.io/comma/reference/commaData.md)
+[`commaData`](https://carl-stone.github.io/commaKit/reference/commaData.md)
 object. Useful for QC to assess whether coverage is sufficient and
 consistent across samples.
 
@@ -23,7 +23,7 @@ plot_coverage(
 - object:
 
   A
-  [`commaData`](https://carl-stone.github.io/comma/reference/commaData.md)
+  [`commaData`](https://carl-stone.github.io/commaKit/reference/commaData.md)
   object.
 
 - mod_type:
@@ -61,9 +61,9 @@ silently excluded.
 
 ## See also
 
-[`coverageDepth`](https://carl-stone.github.io/comma/reference/coverageDepth.md),
-[`varianceByDepth`](https://carl-stone.github.io/comma/reference/varianceByDepth.md),
-[`plot_methylation_distribution`](https://carl-stone.github.io/comma/reference/plot_methylation_distribution.md)
+[`coverageDepth`](https://carl-stone.github.io/commaKit/reference/coverageDepth.md),
+[`varianceByDepth`](https://carl-stone.github.io/commaKit/reference/varianceByDepth.md),
+[`plot_methylation_distribution`](https://carl-stone.github.io/commaKit/reference/plot_methylation_distribution.md)
 
 ## Examples
 

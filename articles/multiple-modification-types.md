@@ -13,7 +13,7 @@ marks:
 - **4mC** (N4-methylcytosine) — deposited by restriction-modification
   systems at various sequence motifs; protects against foreign DNA.
 
-`comma` stores all modification types in a single `commaData` object,
+commaKit stores all modification types in a single `commaData` object,
 enabling joint analysis, comparison, and visualization across
 modification types.
 
@@ -23,7 +23,7 @@ sites.
 
 ``` r
 
-library(comma)
+library(commaKit)
 data(comma_example_data)
 ```
 
@@ -49,7 +49,7 @@ table(siteInfo(comma_example_data)$mod_type)
 
 ### Per-modification methylation summary
 
-[`methylomeSummary()`](https://carl-stone.github.io/comma/reference/methylomeSummary.md)
+[`methylomeSummary()`](https://carl-stone.github.io/commaKit/reference/methylomeSummary.md)
 reports stats per sample. Combine it with `mod_type` filtering to
 compare distributions:
 
@@ -81,7 +81,7 @@ methylomeSummary(comma_example_data, mod_type = "5mC")[,
 
 ## Distribution Comparison Across Modification Types
 
-[`plot_methylation_distribution()`](https://carl-stone.github.io/comma/reference/plot_methylation_distribution.md)
+[`plot_methylation_distribution()`](https://carl-stone.github.io/commaKit/reference/plot_methylation_distribution.md)
 automatically facets by modification type when multiple types are
 present:
 
@@ -102,7 +102,7 @@ sequences with high efficiency. 5mC patterns can be more variable.
 ## Subsetting by Modification Type
 
 Use
-[`filterSites()`](https://carl-stone.github.io/comma/reference/filterSites.md)
+[`filterSites()`](https://carl-stone.github.io/commaKit/reference/filterSites.md)
 to extract a single modification type:
 
 ``` r
@@ -121,7 +121,7 @@ cat("5mC sites:", nrow(methylation(only_5mc)), "\n")
 ### Test all types in one call
 
 By default,
-[`diffMethyl()`](https://carl-stone.github.io/comma/reference/diffMethyl.md)
+[`diffMethyl()`](https://carl-stone.github.io/commaKit/reference/diffMethyl.md)
 tests all modification types present in the object. Use
 `results(..., mod_type = "6mA")` to extract type-specific results:
 
@@ -166,9 +166,9 @@ if (requireNamespace("patchwork", quietly = TRUE)) {
 
 ## PCA Across Modification Types
 
-[`plot_pca()`](https://carl-stone.github.io/comma/reference/plot_pca.md)
+[`plot_pca()`](https://carl-stone.github.io/commaKit/reference/plot_pca.md)
 converts beta values to M-values via
-[`mValues()`](https://carl-stone.github.io/comma/reference/mValues.md)
+[`mValues()`](https://carl-stone.github.io/commaKit/reference/mValues.md)
 before PCA, which stabilizes variance for sites near 0 or 1. By default
 all sites are used; pass `mod_type` to restrict to one modification
 type:
@@ -216,7 +216,7 @@ attr(pca_df, "percentVar")
 ## Genome Track with Both Modification Types
 
 When `mod_type = NULL`,
-[`plot_genome_track()`](https://carl-stone.github.io/comma/reference/plot_genome_track.md)
+[`plot_genome_track()`](https://carl-stone.github.io/commaKit/reference/plot_genome_track.md)
 displays sites from all modification types, using different colors to
 distinguish them:
 
@@ -234,9 +234,9 @@ Genome track showing 6mA (red) and 5mC (blue) sites.
 ## Heatmaps per Modification Type
 
 Filter the
-[`results()`](https://carl-stone.github.io/comma/reference/results.md)
+[`results()`](https://carl-stone.github.io/commaKit/reference/results.md)
 output to a single modification type before passing it to
-[`plot_heatmap()`](https://carl-stone.github.io/comma/reference/plot_heatmap.md):
+[`plot_heatmap()`](https://carl-stone.github.io/commaKit/reference/plot_heatmap.md):
 
 ``` r
 
@@ -274,7 +274,7 @@ sessionInfo()
 #> [1] stats     graphics  grDevices datasets  utils     methods   base     
 #> 
 #> other attached packages:
-#> [1] comma_0.2.0      BiocStyle_2.38.0
+#> [1] commaKit_0.2.0   BiocStyle_2.38.0
 #> 
 #> loaded via a namespace (and not attached):
 #>   [1] bitops_1.0-9                rlang_1.2.0                

@@ -24,7 +24,7 @@ plot_pca(
 - object:
 
   A
-  [`commaData`](https://carl-stone.github.io/comma/reference/commaData.md)
+  [`commaData`](https://carl-stone.github.io/commaKit/reference/commaData.md)
   object.
 
 - mod_type:
@@ -82,7 +82,7 @@ percentage of variance explained by PC1 and PC2.
 ## Details
 
 Beta values are first converted to M-values via
-[`mValues`](https://carl-stone.github.io/comma/reference/mValues.md)
+[`mValues`](https://carl-stone.github.io/commaKit/reference/mValues.md)
 (using `alpha = 0.5`) before PCA. M-values are variance-stabilized
 relative to raw beta values, making distance-based analyses more
 reliable especially when many sites are near 0 or 1. Sites with any `NA`
@@ -94,8 +94,8 @@ issued if fewer than three samples are present.
 
 ## See also
 
-[`methylomeSummary`](https://carl-stone.github.io/comma/reference/methylomeSummary.md),
-[`plot_methylation_distribution`](https://carl-stone.github.io/comma/reference/plot_methylation_distribution.md)
+[`methylomeSummary`](https://carl-stone.github.io/commaKit/reference/methylomeSummary.md),
+[`plot_methylation_distribution`](https://carl-stone.github.io/commaKit/reference/plot_methylation_distribution.md)
 
 ## Examples
 

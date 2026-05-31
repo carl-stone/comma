@@ -1,7 +1,7 @@
 # Return the modification contexts present in a commaData object
 
 Returns the unique modification contexts stored in a
-[`commaData`](https://carl-stone.github.io/comma/reference/commaData.md)
+[`commaData`](https://carl-stone.github.io/commaKit/reference/commaData.md)
 object. A `mod_context` is a composite string combining modification
 type and sequence motif: `paste(mod_type, motif, sep = "_")` when motif
 information is available (e.g., `"6mA_GATC"`, `"5mC_CCWGG"`), or just
@@ -38,8 +38,8 @@ positions, which is likely artefactual).
 
 ## See also
 
-[`modTypes`](https://carl-stone.github.io/comma/reference/modTypes.md),
-[`motifs`](https://carl-stone.github.io/comma/reference/motifs.md),
+[`modTypes`](https://carl-stone.github.io/commaKit/reference/modTypes.md),
+[`motifs`](https://carl-stone.github.io/commaKit/reference/motifs.md),
 [`subset`](https://rdrr.io/r/base/subset.html)
 
 ## Examples

@@ -1,7 +1,7 @@
 # Accessor for per-sample metadata
 
 Returns the per-sample metadata table from a
-[`commaData`](https://carl-stone.github.io/comma/reference/commaData.md)
+[`commaData`](https://carl-stone.github.io/commaKit/reference/commaData.md)
 object. Equivalent to `colData(object)` but returns a plain `data.frame`
 for ease of use.
 
@@ -28,8 +28,8 @@ columns such as `caller` and `file_path`.
 
 ## See also
 
-[`siteInfo`](https://carl-stone.github.io/comma/reference/siteInfo.md),
-[`modTypes`](https://carl-stone.github.io/comma/reference/modTypes.md)
+[`siteInfo`](https://carl-stone.github.io/commaKit/reference/siteInfo.md),
+[`modTypes`](https://carl-stone.github.io/commaKit/reference/modTypes.md)
 
 ## Examples
 

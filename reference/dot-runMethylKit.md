@@ -2,7 +2,7 @@
 
 An internal wrapper that uses methylKit to test for differential
 methylation. Called by
-[`diffMethyl`](https://carl-stone.github.io/comma/reference/diffMethyl.md)
+[`diffMethyl`](https://carl-stone.github.io/commaKit/reference/diffMethyl.md)
 when `method = "methylkit"`.
 
 ## Usage
@@ -55,7 +55,7 @@ methylKit must be installed (it is listed in `Suggests`). If it is not
 available, this function stops with an informative message.
 
 The wrapper converts the methylation and coverage matrices from a
-[`commaData`](https://carl-stone.github.io/comma/reference/commaData.md)
+[`commaData`](https://carl-stone.github.io/commaKit/reference/commaData.md)
 object into the format expected by
 [`methylKit::methylRawList`](https://rdrr.io/pkg/methylKit/man/methylRawList-class.html),
 runs

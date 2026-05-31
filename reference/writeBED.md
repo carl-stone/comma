@@ -1,7 +1,7 @@
 # Export methylation data as a BED file
 
 Writes per-site methylation beta values for a single sample from a
-[`commaData`](https://carl-stone.github.io/comma/reference/commaData.md)
+[`commaData`](https://carl-stone.github.io/commaKit/reference/commaData.md)
 object to a 9-column BED file (BED9 format), suitable for visualisation
 in IGV, UCSC Genome Browser, or other genome browsers that support the
 `itemRGB` field.
@@ -25,7 +25,7 @@ writeBED(
 - object:
 
   A
-  [`commaData`](https://carl-stone.github.io/comma/reference/commaData.md)
+  [`commaData`](https://carl-stone.github.io/commaKit/reference/commaData.md)
   object.
 
 - file:
@@ -81,8 +81,8 @@ files.
 
 ## See also
 
-[`methylation`](https://carl-stone.github.io/comma/reference/methylation.md),
-[`siteInfo`](https://carl-stone.github.io/comma/reference/siteInfo.md)
+[`methylation`](https://carl-stone.github.io/commaKit/reference/methylation.md),
+[`siteInfo`](https://carl-stone.github.io/commaKit/reference/siteInfo.md)
 
 ## Examples
 

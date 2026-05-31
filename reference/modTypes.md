@@ -1,7 +1,7 @@
 # Return the modification types present in a commaData object
 
 Returns the unique methylation modification types stored in a
-[`commaData`](https://carl-stone.github.io/comma/reference/commaData.md)
+[`commaData`](https://carl-stone.github.io/commaKit/reference/commaData.md)
 object.
 
 ## Usage

@@ -13,7 +13,7 @@ Build a Seqinfo object from a named integer vector of chromosome sizes
 - genome_info:
 
   Named integer vector of chromosome sizes, as returned by
-  [`.validateGenomeInfo()`](https://carl-stone.github.io/comma/reference/dot-validateGenomeInfo.md).
+  [`.validateGenomeInfo()`](https://carl-stone.github.io/commaKit/reference/dot-validateGenomeInfo.md).
 
 - genome_name:
 

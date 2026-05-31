@@ -4,7 +4,7 @@ Reads a Dorado-aligned BAM file containing MM (base modification) and ML
 (modification likelihood) tags, and aggregates per-read modification
 probabilities into per-site beta values. This is an internal function
 called by
-[`commaData`](https://carl-stone.github.io/comma/reference/commaData.md)
+[`commaData`](https://carl-stone.github.io/commaKit/reference/commaData.md)
 when `caller = "dorado"`.
 
 ## Usage
@@ -57,7 +57,7 @@ A `data.frame` with columns:
 
   Always `NA` — Dorado BAM MM/ML tags do not encode sequence context
   motifs. Motif information can be added post-hoc with
-  [`findMotifSites`](https://carl-stone.github.io/comma/reference/findMotifSites.md)
+  [`findMotifSites`](https://carl-stone.github.io/commaKit/reference/findMotifSites.md)
   if needed.
 
 - `beta`:

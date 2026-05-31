@@ -3,7 +3,7 @@
 Returns the
 [`GRanges`](https://rdrr.io/pkg/GenomicRanges/man/GRanges-class.html) of
 genomic features stored in a
-[`commaData`](https://carl-stone.github.io/comma/reference/commaData.md)
+[`commaData`](https://carl-stone.github.io/commaKit/reference/commaData.md)
 object. This is the annotation loaded from a GFF3 or BED file at
 construction time.
 

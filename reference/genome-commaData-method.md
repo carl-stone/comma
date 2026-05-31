@@ -1,7 +1,7 @@
 # Accessor for genome size information
 
 Returns the chromosome sizes stored in a
-[`commaData`](https://carl-stone.github.io/comma/reference/commaData.md)
+[`commaData`](https://carl-stone.github.io/commaKit/reference/commaData.md)
 object. Genome size information is stored in the `Seqinfo` attached to
 `rowRanges(object)`. This accessor returns `seqlengths(object)` for
 backward compatibility.

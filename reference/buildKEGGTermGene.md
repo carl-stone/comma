@@ -3,7 +3,7 @@
 Fetches all KEGG pathway-gene associations for an organism using only
 two API calls (`keggLink` and `keggList`), then returns the result as a
 pair of data frames that can be passed directly to
-[`enrichMethylation()`](https://carl-stone.github.io/comma/reference/enrichMethylation.md)
+[`enrichMethylation()`](https://carl-stone.github.io/commaKit/reference/enrichMethylation.md)
 via the `kegg_term2gene` and `kegg_term2name` arguments. Optionally
 caches the result to an RDS file so that subsequent calls are fully
 offline.
@@ -48,7 +48,7 @@ buildKEGGTermGene(organism, file = NULL, strip_prefix = TRUE, id_map = NULL)
 - id_map:
 
   A `data.frame` with columns `symbol` and `kegg_id` as returned by
-  [`buildKEGGGeneIDMap()`](https://carl-stone.github.io/comma/reference/buildKEGGGeneIDMap.md).
+  [`buildKEGGGeneIDMap()`](https://carl-stone.github.io/commaKit/reference/buildKEGGGeneIDMap.md).
   When provided, the `gene` column of `term2gene` is translated from
   KEGG-internal IDs (e.g. b-numbers) to gene symbols before returning,
   so that genes match the identifiers in your annotation data. KEGG IDs
@@ -70,7 +70,7 @@ A named list with two elements:
   (human-readable pathway description).
 
 Pass these to
-[`enrichMethylation()`](https://carl-stone.github.io/comma/reference/enrichMethylation.md)
+[`enrichMethylation()`](https://carl-stone.github.io/commaKit/reference/enrichMethylation.md)
 as
 `kegg_term2gene = result$term2gene, kegg_term2name = result$term2name`.
 
@@ -86,8 +86,8 @@ pathways. `buildKEGGTermGene` retrieves the same data in two bulk calls
 
 ## See also
 
-[`buildKEGGGeneIDMap`](https://carl-stone.github.io/comma/reference/buildKEGGGeneIDMap.md),
-[`enrichMethylation`](https://carl-stone.github.io/comma/reference/enrichMethylation.md)
+[`buildKEGGGeneIDMap`](https://carl-stone.github.io/commaKit/reference/buildKEGGGeneIDMap.md),
+[`enrichMethylation`](https://carl-stone.github.io/commaKit/reference/enrichMethylation.md)
 
 ## Examples
 
@@ -108,7 +108,7 @@ if (requireNamespace("KEGGREST", quietly = TRUE)) {
   #             kegg_term2gene = kegg$term2gene,
   #             kegg_term2name = kegg$term2name)
 }
-#> Loading KEGG data from cache: /tmp/RtmpIgr4rF/eco_kegg.rds
-#> Loading KEGG data from cache: /tmp/RtmpIgr4rF/eco_kegg.rds
+#> Loading KEGG data from cache: /tmp/Rtmp40KjJ3/eco_kegg.rds
+#> Loading KEGG data from cache: /tmp/Rtmp40KjJ3/eco_kegg.rds
 # }
 ```

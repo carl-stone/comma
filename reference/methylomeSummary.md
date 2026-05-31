@@ -2,7 +2,7 @@
 
 Computes per-sample summary statistics for methylation beta values and
 sequencing coverage in a
-[`commaData`](https://carl-stone.github.io/comma/reference/commaData.md)
+[`commaData`](https://carl-stone.github.io/commaKit/reference/commaData.md)
 object. Returns a tidy `data.frame` suitable for direct use with ggplot2
 or for tabular reporting.
 
@@ -17,7 +17,7 @@ methylomeSummary(object, mod_type = NULL, motif = NULL, mod_context = NULL)
 - object:
 
   A
-  [`commaData`](https://carl-stone.github.io/comma/reference/commaData.md)
+  [`commaData`](https://carl-stone.github.io/commaKit/reference/commaData.md)
   object.
 
 - mod_type:
@@ -38,7 +38,7 @@ methylomeSummary(object, mod_type = NULL, motif = NULL, mod_context = NULL)
   Character vector or `NULL`. If provided, only sites with a matching
   modification context are included (e.g., `"6mA:GATC"`). Applied after
   any `mod_type` and `motif` filters. Use
-  [`modContexts`](https://carl-stone.github.io/comma/reference/modContexts.md)
+  [`modContexts`](https://carl-stone.github.io/commaKit/reference/modContexts.md)
   to see available values.
 
 ## Value
@@ -118,9 +118,9 @@ did not meet the coverage threshold.
 
 ## See also
 
-[`methylation`](https://carl-stone.github.io/comma/reference/methylation.md),
-[`siteCoverage`](https://carl-stone.github.io/comma/reference/siteCoverage.md),
-[`sampleInfo`](https://carl-stone.github.io/comma/reference/sampleInfo.md)
+[`methylation`](https://carl-stone.github.io/commaKit/reference/methylation.md),
+[`siteCoverage`](https://carl-stone.github.io/commaKit/reference/siteCoverage.md),
+[`sampleInfo`](https://carl-stone.github.io/commaKit/reference/sampleInfo.md)
 
 ## Examples
 

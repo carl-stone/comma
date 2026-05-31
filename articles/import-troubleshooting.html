@@ -5,7 +5,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>Troubleshooting Data Import • comma</title>
+<title>Troubleshooting Data Import • commaKit</title>
 <script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="../deps/bootstrap-5.3.8/bootstrap.min.css" rel="stylesheet">
 <script src="../deps/bootstrap-5.3.8/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
@@ -18,7 +18,7 @@
 
     <nav class="navbar navbar-expand-lg fixed-top bg-light" data-bs-theme="light" aria-label="Site navigation"><div class="container">
 
-    <a class="navbar-brand me-2" href="../index.html">comma</a>
+    <a class="navbar-brand me-2" href="../index.html">commaKit</a>
 
     <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.0</small>
 
@@ -33,7 +33,7 @@
 <li class="active nav-item dropdown">
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
   <ul class="dropdown-menu" aria-labelledby="dropdown-articles">
-<li><a class="dropdown-item" href="../articles/getting-started.html">Getting Started with comma</a></li>
+<li><a class="dropdown-item" href="../articles/getting-started.html">Getting Started with commaKit</a></li>
     <li><a class="dropdown-item" href="../articles/import-troubleshooting.html">Troubleshooting Data Import</a></li>
     <li><a class="dropdown-item" href="../articles/multiple-modification-types.html">Working with Multiple Modification Types</a></li>
     <li><a class="dropdown-item" href="../articles/understanding-commaData.html">Understanding the commaData object</a></li>
@@ -45,7 +45,7 @@
 <li class="nav-item"><form class="form-inline" role="search">
  <input class="form-control" type="search" name="search-input" id="search-input" autocomplete="off" aria-label="Search site" placeholder="Search for" data-search-index="../search.json">
 </form></li>
-<li class="nav-item"><a class="external-link nav-link" href="https://github.com/carl-stone/comma/" aria-label="GitHub"><span class="fa fab fa-github fa-lg"></span></a></li>
+<li class="nav-item"><a class="external-link nav-link" href="https://github.com/carl-stone/commaKit/" aria-label="GitHub"><span class="fa fab fa-github fa-lg"></span></a></li>
       </ul>
 </div>
 
@@ -62,7 +62,7 @@
       <h1>Troubleshooting Data Import</h1>
             
       
-      <small class="dont-index">Source: <a href="https://github.com/carl-stone/comma/blob/main/vignettes/import-troubleshooting.Rmd" class="external-link"><code>vignettes/import-troubleshooting.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/carl-stone/commaKit/blob/main/vignettes/import-troubleshooting.Rmd" class="external-link"><code>vignettes/import-troubleshooting.Rmd</code></a></small>
       <div class="d-none name"><code>import-troubleshooting.Rmd</code></div>
     </div>
 
@@ -86,7 +86,7 @@ unexpected file extension.</li>
 caller and that the sample names are identical across <code>files</code>
 and <code>colData</code>.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/carl-stone/comma" class="external-link">comma</a></span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/carl-stone/commaKit" class="external-link">commaKit</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">files</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span></span>
 <span>    ctrl_1 <span class="op">=</span> <span class="st">"ctrl_1.modkit.bed"</span>,</span>
@@ -112,15 +112,15 @@ and <code>colData</code>.</p>
 <p>Use <code>caller = "modkit"</code> for modkit pileup BED files. This
 is the recommended path for most Dorado-based workflows: call bases with
 Dorado, run <code>modkit pileup</code>, then import the resulting BED
-files into <code>comma</code>.</p>
-<p>Use <code>caller = "dorado"</code> only when you want
-<code>comma</code> to parse an aligned BAM file with MM/ML base
-modification tags directly. The BAM must contain modification tags and
-should be indexed. Direct BAM parsing does not provide motif context, so
-per-site <code>motif</code> values will be <code>NA</code>.</p>
+files into commaKit.</p>
+<p>Use <code>caller = "dorado"</code> only when you want commaKit to
+parse an aligned BAM file with MM/ML base modification tags directly.
+The BAM must contain modification tags and should be indexed. Direct BAM
+parsing does not provide motif context, so per-site <code>motif</code>
+values will be <code>NA</code>.</p>
 <p>Use <code>caller = "megalodon"</code> for legacy Megalodon per-read
 modification BED files. Megalodon files do not encode the modification
-type in a way <code>comma</code> can infer, so provide exactly one
+type in a way commaKit can infer, so provide exactly one
 <code>mod_type</code> value.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Recommended path for Dorado runs after modkit pileup</span></span>
@@ -140,9 +140,8 @@ type in a way <code>comma</code> can infer, so provide exactly one
 <div class="section level2">
 <h2 id="modkit-bed-format-problems">Modkit BED Format Problems<a class="anchor" aria-label="anchor" href="#modkit-bed-format-problems"></a>
 </h2>
-<p><code>comma</code> expects modkit pileup bedMethyl output with at
-least 18 columns and no header row. The parser uses the first 18
-fields:</p>
+<p>commaKit expects modkit pileup bedMethyl output with at least 18
+columns and no header row. The parser uses the first 18 fields:</p>
 <ul>
 <li>columns 1 to 3: chromosome, 0-based start, and end</li>
 <li>column 4: modification code, often
@@ -197,7 +196,7 @@ strand, modification type, and motif.</td>
 </tbody>
 </table>
 <p>If the modkit <code>mod_code</code> field includes motif context,
-such as <code>a,GATC,1</code>, <code>comma</code> stores
+such as <code>a,GATC,1</code>, commaKit stores
 <code>mod_type = "6mA"</code> and <code>motif = "GATC"</code>. Older or
 derived files without motif context can still import, but
 <code>motif</code> will be <code>NA</code>.</p>
@@ -244,8 +243,8 @@ forms:</p>
 <span><span class="va">genome</span> <span class="op">&lt;-</span> <span class="fu">BSgenome.Ecoli.NCBI.20080805</span><span class="fu">::</span><span class="va">BSgenome.Ecoli.NCBI.20080805</span></span></code></pre></div>
 <p>Do not pass a single unnamed sequence such as
 <code>BSgenomeObject$NC_000913</code>. That creates a
-<code>DNAString</code> without a chromosome name, so <code>comma</code>
-cannot attach the sequence length to methylation sites. Use the whole
+<code>DNAString</code> without a chromosome name, so commaKit cannot
+attach the sequence length to methylation sites. Use the whole
 <code>BSgenome</code> object or a named vector instead.</p>
 <p>Chromosome names must match the methylation files. If the BED file
 uses <code>chr1</code> but the genome vector is named
@@ -263,9 +262,9 @@ in the methylation data.</p>
 <p>Annotation is optional. Use <code>annotation = NULL</code> while
 debugging methylation file import, then add annotation once the
 <code>commaData</code> object can be constructed.</p>
-<p><code>comma</code> accepts annotation as a <code>GRanges</code>
-object or as a GFF, GFF3, or BED file path. Loading annotation files
-requires the Bioconductor package <code>rtracklayer</code>.</p>
+<p>commaKit accepts annotation as a <code>GRanges</code> object or as a
+GFF, GFF3, or BED file path. Loading annotation files requires the
+Bioconductor package <code>rtracklayer</code>.</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/ns-load.html" class="external-link">requireNamespace</a></span><span class="op">(</span><span class="st">"rtracklayer"</span>, quietly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
 <span>    <span class="va">genes</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/loadAnnotation.html">loadAnnotation</a></span><span class="op">(</span><span class="st">"genes.gff3"</span>, feature_types <span class="op">=</span> <span class="st">"gene"</span><span class="op">)</span></span>

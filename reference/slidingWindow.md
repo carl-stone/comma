@@ -2,7 +2,7 @@
 
 Computes a per-position sliding window statistic (median or mean) of
 methylation beta values for each sample in a
-[`commaData`](https://carl-stone.github.io/comma/reference/commaData.md)
+[`commaData`](https://carl-stone.github.io/commaKit/reference/commaData.md)
 object. The genome size for each chromosome is read from
 `genome(object)`, so no organism-specific values are ever hardcoded.
 Circular genome wrap-around is controlled by the `isCircular` values
@@ -27,7 +27,7 @@ slidingWindow(
 - object:
 
   A
-  [`commaData`](https://carl-stone.github.io/comma/reference/commaData.md)
+  [`commaData`](https://carl-stone.github.io/commaKit/reference/commaData.md)
   object. Must have genome size information in `genome(object)` (i.e.,
   it must have been constructed with a `genome` argument).
 
@@ -105,8 +105,8 @@ remain `NA` in the output.
 
 ## See also
 
-[`methylation`](https://carl-stone.github.io/comma/reference/methylation.md),
-[`methylomeSummary`](https://carl-stone.github.io/comma/reference/methylomeSummary.md)
+[`methylation`](https://carl-stone.github.io/commaKit/reference/methylation.md),
+[`methylomeSummary`](https://carl-stone.github.io/commaKit/reference/methylomeSummary.md)
 
 ## Examples
 

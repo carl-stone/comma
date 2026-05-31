@@ -2,7 +2,7 @@
 
 ## Why `commaData` matters
 
-Most `comma` workflow functions start from a `commaData` object, and
+Most commaKit workflow functions start from a `commaData` object, and
 many return an updated `commaData` object with added analysis layers.
 Other functions expose those layers as tables, plots, or enrichment
 result lists. The object is the stable substrate for the workflow: rows
@@ -12,20 +12,20 @@ coordinates.
 
 ``` r
 
-library(comma)
+library(commaKit)
 data(comma_example_data)
 
 comma_example_data
 #> class: commaData
-#> sites: 588 | samples: 6 
-#> mod types: 5mC, 6mA 
-#> motifs: CCWGG, GATC 
-#> mod contexts: 5mC_CCWGG, 6mA_GATC 
-#> conditions: control, treatment 
-#> genome: 1 chromosome (100,000 bp total) 
-#> annotation: 5 features 
-#> motif sites: none 
-#> caller: modkit 
+#> sites: 588 | samples: 6
+#> mod types: 5mC, 6mA
+#> motifs: CCWGG, GATC
+#> mod contexts: 5mC_CCWGG, 6mA_GATC
+#> conditions: control, treatment
+#> genome: 1 chromosome (100,000 bp total)
+#> annotation: 5 features
+#> motif sites: none
+#> caller: modkit
 #> min_coverage: 5
 ```
 
@@ -78,7 +78,7 @@ siteCoverage(comma_example_data)[1:5, 1:3]
 ```
 
 Sample metadata live in `colData()` and are also available through
-[`sampleInfo()`](https://carl-stone.github.io/comma/reference/sampleInfo.md).
+[`sampleInfo()`](https://carl-stone.github.io/commaKit/reference/sampleInfo.md).
 
 ``` r
 
@@ -118,7 +118,7 @@ GenomeInfoDb::seqinfo(rr)
 ```
 
 For human-readable inspection,
-[`siteInfo()`](https://carl-stone.github.io/comma/reference/siteInfo.md)
+[`siteInfo()`](https://carl-stone.github.io/commaKit/reference/siteInfo.md)
 reconstructs a flat table from `rowRanges()` and its metadata columns.
 
 ``` r
@@ -184,7 +184,7 @@ context_table[order(context_table$mod_context), ]
 When a caller does not provide motif information, `motif` may be `NA`
 and the computed `mod_context` falls back to the modification type
 alone. Code that uses
-[`modContexts()`](https://carl-stone.github.io/comma/reference/modContexts.md)
+[`modContexts()`](https://carl-stone.github.io/commaKit/reference/modContexts.md)
 rather than hard-coded labels remains compatible with single-context,
 multi-context, and future-context data sets.
 
@@ -219,7 +219,7 @@ vapply(md, function(x) paste(class(x), collapse = "/"), character(1))
 
 ## Analysis layers
 
-A useful way to learn `comma` is to think in layers:
+A useful way to learn commaKit is to think in layers:
 
 - the measurement layer contains methylation and coverage assays;
 - the coordinate layer is `rowRanges()`;
@@ -258,7 +258,7 @@ identical(dim(annotated), dim(annotated_again))
 ```
 
 Differential methylation adds a statistical result layer. By default,
-[`diffMethyl()`](https://carl-stone.github.io/comma/reference/diffMethyl.md)
+[`diffMethyl()`](https://carl-stone.github.io/commaKit/reference/diffMethyl.md)
 works over the modification contexts present in the object, which keeps
 distinct modification-plus-context units separate.
 
@@ -278,7 +278,7 @@ S4Vectors::metadata(dm)$diffMethyl_params[c("method", "p_adjust_method")]
 #> [1] "BH"
 ```
 
-[`results()`](https://carl-stone.github.io/comma/reference/results.md)
+[`results()`](https://carl-stone.github.io/commaKit/reference/results.md)
 exposes that layer as a tidy data frame while preserving the site
 metadata needed to interpret each row.
 
@@ -334,7 +334,7 @@ sessionInfo()
 #> [1] stats     graphics  grDevices datasets  utils     methods   base     
 #> 
 #> other attached packages:
-#> [1] comma_0.2.0      BiocStyle_2.38.0
+#> [1] commaKit_0.2.0   BiocStyle_2.38.0
 #> 
 #> loaded via a namespace (and not attached):
 #>  [1] SummarizedExperiment_1.40.0 gtable_0.3.6               
@@ -354,10 +354,10 @@ sessionInfo()
 #> [29] Seqinfo_1.0.0               codetools_0.2-20           
 #> [31] GenomeInfoDb_1.46.2         htmltools_0.5.9            
 #> [33] sass_0.4.10                 yaml_2.3.12                
-#> [35] pkgdown_2.2.0               pillar_1.11.1              
+#> [35] pillar_1.11.1               pkgdown_2.2.0              
 #> [37] crayon_1.5.3                jquerylib_0.1.4            
 #> [39] BiocParallel_1.44.0         limma_3.66.0               
-#> [41] DelayedArray_0.36.1         cachem_1.1.0               
+#> [41] cachem_1.1.0                DelayedArray_0.36.1        
 #> [43] abind_1.4-8                 tidyselect_1.2.1           
 #> [45] digest_0.6.39               dplyr_1.2.1                
 #> [47] bookdown_0.46               fastmap_1.2.0              

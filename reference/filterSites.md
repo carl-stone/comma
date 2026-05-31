@@ -1,7 +1,7 @@
 # Filter a commaData object by condition, modification type, or chromosome
 
 A convenience function for filtering a
-[`commaData`](https://carl-stone.github.io/comma/reference/commaData.md)
+[`commaData`](https://carl-stone.github.io/commaKit/reference/commaData.md)
 object by common criteria. For arbitrary index-based subsetting, use
 `[`. This package-specific name avoids exporting a broad
 [`subset()`](https://rdrr.io/r/base/subset.html) generic that masks
@@ -47,8 +47,8 @@ filterSites(
   Character vector or `NULL`. If provided, only sites with a matching
   sequence context motif are kept (e.g., `"GATC"`). Sites with `NA`
   motif values are excluded when this filter is active. Use
-  [`motifs`](https://carl-stone.github.io/comma/reference/motifs.md) to
-  see which motifs are present.
+  [`motifs`](https://carl-stone.github.io/commaKit/reference/motifs.md)
+  to see which motifs are present.
 
 - mod_context:
 
@@ -56,7 +56,7 @@ filterSites(
   modification context are kept (e.g., `"6mA_GATC"`, `"5mC_CCWGG"`). A
   `mod_context` value is `paste(mod_type, motif, sep = "_")` when motif
   is available, or just `mod_type` for Dorado/Megalodon data. Use
-  [`modContexts`](https://carl-stone.github.io/comma/reference/modContexts.md)
+  [`modContexts`](https://carl-stone.github.io/commaKit/reference/modContexts.md)
   to see which contexts are present. When provided, this filter is
   applied in addition to (ANDed with) any `mod_type` or `motif` filters.
 

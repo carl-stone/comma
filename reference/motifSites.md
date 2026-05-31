@@ -4,7 +4,7 @@ Returns the
 [`GRanges`](https://rdrr.io/pkg/GenomicRanges/man/GRanges-class.html) of
 all instances of the user-specified sequence motif in the genome, as
 computed by
-[`findMotifSites`](https://carl-stone.github.io/comma/reference/findMotifSites.md)
+[`findMotifSites`](https://carl-stone.github.io/commaKit/reference/findMotifSites.md)
 during object construction.
 
 ## Usage

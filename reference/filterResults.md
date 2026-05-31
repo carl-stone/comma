@@ -1,7 +1,7 @@
 # Filter differential methylation results by significance thresholds
 
 A convenience wrapper around
-[`results`](https://carl-stone.github.io/comma/reference/results.md)
+[`results`](https://carl-stone.github.io/commaKit/reference/results.md)
 that filters sites by adjusted p-value and absolute effect size.
 
 ## Usage
@@ -26,9 +26,9 @@ filterResults(
 - object:
 
   A
-  [`commaData`](https://carl-stone.github.io/comma/reference/commaData.md)
+  [`commaData`](https://carl-stone.github.io/commaKit/reference/commaData.md)
   object on which
-  [`diffMethyl`](https://carl-stone.github.io/comma/reference/diffMethyl.md)
+  [`diffMethyl`](https://carl-stone.github.io/commaKit/reference/diffMethyl.md)
   has been run.
 
 - ...:
@@ -49,33 +49,33 @@ filterResults(
 - mod_type:
 
   Character vector or `NULL`. Passed to
-  [`results`](https://carl-stone.github.io/comma/reference/results.md)
+  [`results`](https://carl-stone.github.io/commaKit/reference/results.md)
   for optional modification type filtering.
 
 - motif:
 
   Character vector or `NULL`. Passed to
-  [`results`](https://carl-stone.github.io/comma/reference/results.md)
+  [`results`](https://carl-stone.github.io/commaKit/reference/results.md)
   for optional sequence context motif filtering.
 
 - mod_context:
 
   Character vector or `NULL`. Passed to
-  [`results`](https://carl-stone.github.io/comma/reference/results.md)
+  [`results`](https://carl-stone.github.io/commaKit/reference/results.md)
   for optional modification context filtering (e.g., `"6mA_GATC"`).
 
 ## Value
 
 A `data.frame` (same format as
-[`results`](https://carl-stone.github.io/comma/reference/results.md))
+[`results`](https://carl-stone.github.io/commaKit/reference/results.md))
 containing only sites where `dm_padj <= padj` **and**
 `abs(dm_delta_beta) >= delta_beta`. Sites with `NA` values in either
 column are excluded.
 
 ## See also
 
-[`diffMethyl`](https://carl-stone.github.io/comma/reference/diffMethyl.md),
-[`results`](https://carl-stone.github.io/comma/reference/results.md)
+[`diffMethyl`](https://carl-stone.github.io/commaKit/reference/diffMethyl.md),
+[`results`](https://carl-stone.github.io/commaKit/reference/results.md)
 
 ## Examples
 

@@ -16,7 +16,7 @@ varianceByDepth(object, coverage_bins = NULL, mod_type = NULL, motif = NULL)
 - object:
 
   A
-  [`commaData`](https://carl-stone.github.io/comma/reference/commaData.md)
+  [`commaData`](https://carl-stone.github.io/commaKit/reference/commaData.md)
   object.
 
 - coverage_bins:
@@ -59,8 +59,8 @@ A `data.frame` with one row per (coverage level, sample), containing:
 
 ## See also
 
-[`coverageDepth`](https://carl-stone.github.io/comma/reference/coverageDepth.md),
-[`methylomeSummary`](https://carl-stone.github.io/comma/reference/methylomeSummary.md)
+[`coverageDepth`](https://carl-stone.github.io/commaKit/reference/coverageDepth.md),
+[`methylomeSummary`](https://carl-stone.github.io/commaKit/reference/methylomeSummary.md)
 
 ## Examples
 

@@ -12,7 +12,7 @@ analysis, and visualization.
 - **Language:** R (\>= 4.3.0)
 - **CI:** R 4.5 on Ubuntu (pinned — S4Vectors C API breaks in R 4.6.0)
 - **Package system:** Bioconductor conventions (not CRAN)
-- **R package namespace:** `comma` (rename to `commaKit` planned)
+- **R package namespace:** `commaKit`
 - **Version:** 0.2.0
 - **License:** MIT
 
@@ -117,7 +117,7 @@ input - Use
 [`GenomicRanges::findOverlaps()`](https://rdrr.io/pkg/IRanges/man/findOverlaps-methods.html)
 for interval overlap — never nested for-loops - All `plot_*()` return
 ggplot/patchwork objects (except
-[`plot_heatmap()`](https://carl-stone.github.io/comma/reference/plot_heatmap.md)
+[`plot_heatmap()`](https://carl-stone.github.io/commaKit/reference/plot_heatmap.md)
 -\> ComplexHeatmap) - Genome size from `seqlengths(object)` (Seqinfo),
 never hardcoded - Document every exported function with roxygen2:
 `@param`, `@return`, `@examples` - Import `dplyr` and `tidyr`
@@ -147,16 +147,16 @@ explicitly -
 [`mclust::map()`](https://mclust-org.github.io/mclust/reference/map.html)
 collision — use [`lapply()`](https://rdrr.io/r/base/lapply.html) +
 [`purrr::list_rbind()`](https://purrr.tidyverse.org/reference/list_c.html) -
-methylKit crashes on zero-variance sites — comma wraps this, assigns
+methylKit crashes on zero-variance sites — commaKit wraps this, assigns
 p=1 - `org.EcK12.eg.db` requires `::` syntax in examples - Non-ASCII
 characters (e.g., x) cause R CMD check notes
 
 **Core design decisions:** -
-[`diffMethyl()`](https://carl-stone.github.io/comma/reference/diffMethyl.md)
+[`diffMethyl()`](https://carl-stone.github.io/commaKit/reference/diffMethyl.md)
 loops by `mod_context`, not `mod_type` — prevents spurious pooling -
 Effect sizes always on beta scale (0-1), not M-value scale - Multiple
 testing correction is genome-wide across all mod_contexts -
-[`annotateSites()`](https://carl-stone.github.io/comma/reference/annotateSites.md)
+[`annotateSites()`](https://carl-stone.github.io/commaKit/reference/annotateSites.md)
 uses list-columns (CharacterList/IntegerList/NumericList) — do not
 revert to single-match - `commaData` extends
 `RangedSummarizedExperiment` — genomic positions in `rowRanges()`

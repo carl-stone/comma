@@ -3,7 +3,7 @@
 `coverage(commaData)` is deprecated because `coverage()` is an
 established IRanges/GenomicRanges generic for computing genomic
 coverage, not for retrieving an assay matrix. Use
-[`siteCoverage`](https://carl-stone.github.io/comma/reference/siteCoverage.md)
+[`siteCoverage`](https://carl-stone.github.io/commaKit/reference/siteCoverage.md)
 instead.
 
 ## Usage

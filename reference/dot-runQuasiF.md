@@ -3,7 +3,7 @@
 An internal wrapper that combines the per-site quasibinomial GLM of
 `.betaBinomialTest` with empirical Bayes shrinkage of the per-site
 dispersion estimates. Called by
-[`diffMethyl`](https://carl-stone.github.io/comma/reference/diffMethyl.md)
+[`diffMethyl`](https://carl-stone.github.io/commaKit/reference/diffMethyl.md)
 when `method = "quasi_f"`.
 
 ## Usage

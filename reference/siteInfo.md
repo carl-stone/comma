@@ -1,7 +1,7 @@
 # Accessor for per-site metadata
 
 Returns the per-site metadata table from a
-[`commaData`](https://carl-stone.github.io/comma/reference/commaData.md)
+[`commaData`](https://carl-stone.github.io/commaKit/reference/commaData.md)
 object. Reconstructs a flat `DataFrame` from the `rowRanges()` GRanges,
 combining genomic coordinates (chrom, position, strand) with the mcols
 columns (mod_type, motif, mod_context, plus any annotation/result
@@ -33,14 +33,14 @@ context, e.g., `"6mA_GATC"`), and `site_key` (a human-readable label
 with fixed `"chrom:position:strand:mod_type:motif"` fields, e.g.,
 `"chr1:512:+:6mA:GATC"`; computed on demand, not used for internal
 matching). May contain additional annotation columns added by
-[`annotateSites()`](https://carl-stone.github.io/comma/reference/annotateSites.md)
+[`annotateSites()`](https://carl-stone.github.io/commaKit/reference/annotateSites.md)
 or result columns from
-[`diffMethyl()`](https://carl-stone.github.io/comma/reference/diffMethyl.md).
+[`diffMethyl()`](https://carl-stone.github.io/commaKit/reference/diffMethyl.md).
 
 ## See also
 
-[`methylation`](https://carl-stone.github.io/comma/reference/methylation.md),
-[`modTypes`](https://carl-stone.github.io/comma/reference/modTypes.md)
+[`methylation`](https://carl-stone.github.io/commaKit/reference/methylation.md),
+[`modTypes`](https://carl-stone.github.io/commaKit/reference/modTypes.md)
 
 ## Examples
 

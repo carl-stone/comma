@@ -16,18 +16,18 @@ plot_heatmap(results, object, n_sites = 50L, annotation_cols = NULL)
 - results:
 
   A `data.frame` returned by
-  [`results()`](https://carl-stone.github.io/comma/reference/results.md),
+  [`results()`](https://carl-stone.github.io/commaKit/reference/results.md),
   containing at minimum the columns `chrom`, `position`, `strand`,
   `mod_type`, `dm_padj`, and `dm_delta_beta`. Row names of the selected
   rows must be non-missing integer row indices into `object`, as
   produced by
-  [`results`](https://carl-stone.github.io/comma/reference/results.md)
+  [`results`](https://carl-stone.github.io/commaKit/reference/results.md)
   and preserved by ordinary data-frame subsetting and sorting.
 
 - object:
 
   A
-  [`commaData`](https://carl-stone.github.io/comma/reference/commaData.md)
+  [`commaData`](https://carl-stone.github.io/commaKit/reference/commaData.md)
   object that was used to produce `results`. Used to extract the
   methylation matrix for selected sites.
 
@@ -62,9 +62,9 @@ calling this function.
 
 ## See also
 
-[`diffMethyl`](https://carl-stone.github.io/comma/reference/diffMethyl.md),
-[`results`](https://carl-stone.github.io/comma/reference/results.md),
-[`plot_volcano`](https://carl-stone.github.io/comma/reference/plot_volcano.md)
+[`diffMethyl`](https://carl-stone.github.io/commaKit/reference/diffMethyl.md),
+[`results`](https://carl-stone.github.io/commaKit/reference/results.md),
+[`plot_volcano`](https://carl-stone.github.io/commaKit/reference/plot_volcano.md)
 
 ## Examples
 

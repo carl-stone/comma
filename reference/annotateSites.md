@@ -1,7 +1,7 @@
 # Annotate methylation sites relative to genomic features
 
 Assigns genomic feature annotations to methylation sites stored in a
-[`commaData`](https://carl-stone.github.io/comma/reference/commaData.md)
+[`commaData`](https://carl-stone.github.io/commaKit/reference/commaData.md)
 object using
 [`findOverlaps`](https://rdrr.io/pkg/IRanges/man/findOverlaps-methods.html).
 
@@ -24,7 +24,7 @@ annotateSites(
 - object:
 
   A
-  [`commaData`](https://carl-stone.github.io/comma/reference/commaData.md)
+  [`commaData`](https://carl-stone.github.io/commaKit/reference/commaData.md)
   object.
 
 - features:
@@ -85,7 +85,7 @@ annotateSites(
 ## Value
 
 A
-[`commaData`](https://carl-stone.github.io/comma/reference/commaData.md)
+[`commaData`](https://carl-stone.github.io/commaKit/reference/commaData.md)
 object identical to `object` except that `rowData` has been extended
 with annotation list columns. With `keep = "all"` (default):
 

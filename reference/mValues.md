@@ -16,7 +16,7 @@ mValues(object, alpha = 0.5, mod_type = NULL, motif = NULL, mod_context = NULL)
 - object:
 
   A
-  [`commaData`](https://carl-stone.github.io/comma/reference/commaData.md)
+  [`commaData`](https://carl-stone.github.io/commaKit/reference/commaData.md)
   object containing methylation beta values and coverage (read depth)
   assays.
 
@@ -72,9 +72,9 @@ values in the output.
 
 ## See also
 
-[`methylation`](https://carl-stone.github.io/comma/reference/methylation.md),
+[`methylation`](https://carl-stone.github.io/commaKit/reference/methylation.md),
 [`coverage`](https://rdrr.io/pkg/IRanges/man/coverage-methods.html),
-[`plot_pca`](https://carl-stone.github.io/comma/reference/plot_pca.md)
+[`plot_pca`](https://carl-stone.github.io/commaKit/reference/plot_pca.md)
 
 ## Examples
 

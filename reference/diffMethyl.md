@@ -1,8 +1,8 @@
 # Identify differentially methylated sites between conditions
 
-The main function for differential methylation analysis in comma.
+The main function for differential methylation analysis in commaKit.
 Analogous to `DESeq2::DESeq()`, `diffMethyl()` accepts a
-[`commaData`](https://carl-stone.github.io/comma/reference/commaData.md)
+[`commaData`](https://carl-stone.github.io/commaKit/reference/commaData.md)
 object, fits a statistical model to each methylation site, and returns
 the same object enriched with per-site test results stored as new
 columns in `rowData`.
@@ -30,7 +30,7 @@ diffMethyl(
 - object:
 
   A
-  [`commaData`](https://carl-stone.github.io/comma/reference/commaData.md)
+  [`commaData`](https://carl-stone.github.io/commaKit/reference/commaData.md)
   object with at least two samples in distinct conditions.
 
 - formula:
@@ -75,7 +75,7 @@ diffMethyl(
   `"6mA_GATC"`, `c("6mA_GATC", "5mC_CCWGG")`). A `mod_context` value is
   `paste(mod_type, motif, sep = "_")` when motif information is
   available, or just `mod_type` for Dorado/Megalodon data. Use
-  [`modContexts`](https://carl-stone.github.io/comma/reference/modContexts.md)`(object)`
+  [`modContexts`](https://carl-stone.github.io/commaKit/reference/modContexts.md)`(object)`
   to see which contexts are present. If `NULL` (default), all contexts
   present in `object` are tested independently. When provided, takes
   precedence over the `mod_type` and `motif` arguments.
@@ -91,8 +91,8 @@ diffMethyl(
 
   Character vector or `NULL`. If provided, only sites with matching
   sequence context motif(s) are tested (e.g., `"GATC"`). Uses
-  [`motifs`](https://carl-stone.github.io/comma/reference/motifs.md) to
-  validate the requested values. If `NULL` (default), all motifs
+  [`motifs`](https://carl-stone.github.io/commaKit/reference/motifs.md)
+  to validate the requested values. If `NULL` (default), all motifs
   (including `NA`) are included. Ignored when `mod_context` is provided.
 
 - min_coverage:
@@ -161,8 +161,8 @@ results that closely follow methylKit's logistic-regression conventions.
 Use `"quasi_f"` as a good general-purpose alternative for bacterial
 methylomes when you want a count-aware model with empirical Bayes
 dispersion shrinkage and genome-wide multiple-testing correction handled
-entirely inside comma. It is often a good first alternative if methylKit
-convergence warnings, zero-variance sites, or runtime become
+entirely inside commaKit. It is often a good first alternative if
+methylKit convergence warnings, zero-variance sites, or runtime become
 distracting. Use `"limma"` when you want the familiar limma
 empirical-Bayes linear-model workflow on M-values, especially for
 complete datasets with few replicates per group. All three backends
@@ -209,9 +209,9 @@ Analysis parameters and result column names are stored in
 
 ## See also
 
-[`results`](https://carl-stone.github.io/comma/reference/results.md) to
-extract the test results as a tidy `data.frame`;
-[`filterResults`](https://carl-stone.github.io/comma/reference/filterResults.md)
+[`results`](https://carl-stone.github.io/commaKit/reference/results.md)
+to extract the test results as a tidy `data.frame`;
+[`filterResults`](https://carl-stone.github.io/commaKit/reference/filterResults.md)
 to filter by significance thresholds.
 
 ## Examples

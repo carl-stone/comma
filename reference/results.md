@@ -1,7 +1,7 @@
 # Extract differential methylation results as a tidy data frame
 
 Retrieves the per-site differential methylation statistics added by
-[`diffMethyl`](https://carl-stone.github.io/comma/reference/diffMethyl.md)
+[`diffMethyl`](https://carl-stone.github.io/commaKit/reference/diffMethyl.md)
 and returns them as a tidy `data.frame` suitable for downstream analysis
 and plotting.
 
@@ -19,9 +19,9 @@ results(object, mod_type = NULL, motif = NULL, mod_context = NULL, ...)
 - object:
 
   A
-  [`commaData`](https://carl-stone.github.io/comma/reference/commaData.md)
+  [`commaData`](https://carl-stone.github.io/commaKit/reference/commaData.md)
   object on which
-  [`diffMethyl`](https://carl-stone.github.io/comma/reference/diffMethyl.md)
+  [`diffMethyl`](https://carl-stone.github.io/commaKit/reference/diffMethyl.md)
   has been run.
 
 - ...:
@@ -44,7 +44,7 @@ results(object, mod_type = NULL, motif = NULL, mod_context = NULL, ...)
 
   Character vector or `NULL`. If provided, only sites with a matching
   modification context (e.g., `"6mA_GATC"`) are returned. Use
-  [`modContexts`](https://carl-stone.github.io/comma/reference/modContexts.md)`(object)`
+  [`modContexts`](https://carl-stone.github.io/commaKit/reference/modContexts.md)`(object)`
   to see available values. Applied in addition to any `mod_type` or
   `motif` filters.
 
@@ -86,13 +86,13 @@ A `data.frame` with one row per methylation site, containing:
   One column per condition level with per-group mean beta values.
 
 Any other annotation columns present in `rowData(object)` (e.g., from
-[`annotateSites`](https://carl-stone.github.io/comma/reference/annotateSites.md))
+[`annotateSites`](https://carl-stone.github.io/commaKit/reference/annotateSites.md))
 are also included.
 
 ## See also
 
-[`diffMethyl`](https://carl-stone.github.io/comma/reference/diffMethyl.md),
-[`filterResults`](https://carl-stone.github.io/comma/reference/filterResults.md)
+[`diffMethyl`](https://carl-stone.github.io/commaKit/reference/diffMethyl.md),
+[`filterResults`](https://carl-stone.github.io/commaKit/reference/filterResults.md)
 
 ## Examples
 

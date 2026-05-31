@@ -2,7 +2,7 @@
 
 Produces a density plot of methylation beta values (0–1) for each sample
 in a
-[`commaData`](https://carl-stone.github.io/comma/reference/commaData.md)
+[`commaData`](https://carl-stone.github.io/commaKit/reference/commaData.md)
 object. Useful for QC and for comparing methylation level distributions
 across samples and modification types.
 
@@ -23,7 +23,7 @@ plot_methylation_distribution(
 - object:
 
   A
-  [`commaData`](https://carl-stone.github.io/comma/reference/commaData.md)
+  [`commaData`](https://carl-stone.github.io/commaKit/reference/commaData.md)
   object.
 
 - mod_type:
@@ -62,8 +62,8 @@ excluded.
 
 ## See also
 
-[`methylomeSummary`](https://carl-stone.github.io/comma/reference/methylomeSummary.md),
-[`plot_coverage`](https://carl-stone.github.io/comma/reference/plot_coverage.md)
+[`methylomeSummary`](https://carl-stone.github.io/commaKit/reference/methylomeSummary.md),
+[`plot_coverage`](https://carl-stone.github.io/commaKit/reference/plot_coverage.md)
 
 ## Examples
 
