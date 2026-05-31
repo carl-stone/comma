@@ -175,6 +175,16 @@ test_that("slidingWindow: circular=NULL treats missing Seqinfo circularity as ci
     expect_equal(r_default, r_explicit)
 })
 
+test_that("slidingWindow: example data is circular by default", {
+    data(comma_example_data)
+    expect_true(all(GenomeInfoDb::isCircular(GenomeInfoDb::seqinfo(comma_example_data))))
+
+    obj <- comma_example_data[, 1L]
+    r_default <- slidingWindow(obj, window = 100L, circular = NULL)
+    r_circular <- slidingWindow(obj, window = 100L, circular = TRUE)
+    expect_equal(r_default, r_circular)
+})
+
 test_that("slidingWindow: circular must be TRUE, FALSE, or NULL", {
     expect_error(
         slidingWindow(tiny_data, window = W, circular = NA),

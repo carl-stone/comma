@@ -227,6 +227,25 @@ annotateSites <- function(object,
                              feat_starts - site_pos))  # positive: downstream on -
     rel_pos <- as.integer(ifelse(feat_strand == "-", neg_signed, pos_signed))
 
+    seq_info <- GenomeInfoDb::seqinfo(sites_gr)
+    seq_lengths <- GenomeInfoDb::seqlengths(seq_info)
+    seq_circular <- GenomeInfoDb::isCircular(seq_info)
+    hit_seqnames <- as.character(GenomicRanges::seqnames(sites_gr))[q_idx]
+    hit_lengths <- as.integer(seq_lengths[hit_seqnames])
+    hit_circular <- seq_circular[hit_seqnames]
+    circular_hits <- !inside & !is.na(hit_lengths) & hit_lengths > 0L &
+        !is.na(hit_circular) & hit_circular
+
+    if (any(circular_hits)) {
+        rel_pos[circular_hits] <- .circularFeatureRelPosition(
+            site_pos = site_pos[circular_hits],
+            feat_start = feat_starts[circular_hits],
+            feat_end = feat_ends[circular_hits],
+            feat_strand = feat_strand[circular_hits],
+            genome_size = hit_lengths[circular_hits]
+        )
+    }
+
     # ── frac_position: [0, 1] inside features, NA outside ────────────────────
     # TSS = 0, TTS = 1 (strand-aware).
     # For 1-bp features: pmax(..., 1L) avoids division by zero.
@@ -255,6 +274,25 @@ annotateSites <- function(object,
     }
 
     rd
+}
+
+.circularFeatureRelPosition <- function(site_pos, feat_start, feat_end,
+                                        feat_strand, genome_size) {
+    dist_site_to_start <- (feat_start - site_pos) %% genome_size
+    dist_end_to_site <- (site_pos - feat_end) %% genome_size
+
+    plus_like <- feat_strand != "-"
+    rel_pos <- integer(length(site_pos))
+
+    upstream_plus <- dist_site_to_start <= dist_end_to_site
+    rel_pos[plus_like & upstream_plus] <- -dist_site_to_start[plus_like & upstream_plus]
+    rel_pos[plus_like & !upstream_plus] <- dist_end_to_site[plus_like & !upstream_plus]
+
+    upstream_minus <- dist_end_to_site <= dist_site_to_start
+    rel_pos[!plus_like & upstream_minus] <- -dist_end_to_site[!plus_like & upstream_minus]
+    rel_pos[!plus_like & !upstream_minus] <- dist_site_to_start[!plus_like & !upstream_minus]
+
+    as.integer(rel_pos)
 }
 
 # ── Internal: post-annotation keep filter ─────────────────────────────────────
