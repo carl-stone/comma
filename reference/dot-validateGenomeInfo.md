@@ -13,8 +13,8 @@ sizes
 
 - genome:
 
-  A BSgenome object, path to a FASTA file, or named integer vector of
-  chromosome sizes (e.g., `c(chr1 = 1000000L)`).
+  A BSgenome object, path to a FASTA file, named `DNAStringSet`, or
+  named integer vector of chromosome sizes (e.g., `c(chr1 = 1000000L)`).
 
 ## Value
 

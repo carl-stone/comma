@@ -71,13 +71,13 @@ commaData(
   locate in the genome using
   [`findMotifSites`](https://carl-stone.github.io/comma/reference/findMotifSites.md).
   The results are stored in the `motifSites` slot as a genome-wide
-  `GRanges` of all motif instances. Requires `genome` to be a FASTA path
-  or `BSgenome` object (not a named integer vector). If `NULL`, the
-  `motifSites` slot is left empty. *Note:* this argument is distinct
-  from `rowData(object)$motif`, which stores the per-site sequence
-  context extracted automatically from the modkit `mod_code` field
-  (e.g., `"a,GATC,1"` → `motif = "GATC"`) and is `NA` for Dorado and
-  Megalodon callers.
+  `GRanges` of all motif instances. Requires `genome` to be a FASTA
+  path, `DNAStringSet`, or `BSgenome` object (not a named integer
+  vector). If `NULL`, the `motifSites` slot is left empty. *Note:* this
+  argument is distinct from `rowData(object)$motif`, which stores the
+  per-site sequence context extracted automatically from the modkit
+  `mod_code` field (e.g., `"a,GATC,1"` → `motif = "GATC"`) and is `NA`
+  for Dorado and Megalodon callers.
 
 - expected_mod_contexts:
 

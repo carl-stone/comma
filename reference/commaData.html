@@ -117,8 +117,9 @@ types to retain (e.g., <code>"6mA"</code> or <code>c("6mA", "5mC")</code>). If
 <code>"GATC"</code>) to locate in the genome using <code><a href="findMotifSites.html">findMotifSites</a></code>.
 The results are stored in the <code>motifSites</code> slot as a genome-wide
 <code>GRanges</code> of all motif instances. Requires <code>genome</code> to be a
-FASTA path or <code>BSgenome</code> object (not a named integer vector). If
-<code>NULL</code>, the <code>motifSites</code> slot is left empty. <em>Note:</em> this
+FASTA path, <code>DNAStringSet</code>, or <code>BSgenome</code> object (not a named
+integer vector). If <code>NULL</code>, the <code>motifSites</code> slot is left empty.
+<em>Note:</em> this
 argument is distinct from <code>rowData(object)$motif</code>, which stores the
 per-site sequence context extracted automatically from the modkit
 <code>mod_code</code> field (e.g., <code>"a,GATC,1"</code> → <code>motif = "GATC"</code>)

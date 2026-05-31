@@ -1,6 +1,7 @@
-# Load genome sequences from a FASTA path or BSgenome object
+# Load genome sequences from a FASTA path, BSgenome object, or DNAStringSet
 
-Load genome sequences from a FASTA path or BSgenome object
+Load genome sequences from a FASTA path, BSgenome object, or
+DNAStringSet
 
 ## Usage
 
@@ -8,6 +9,12 @@ Load genome sequences from a FASTA path or BSgenome object
 .loadGenomeSequences(genome)
 ```
 
+## Arguments
+
+- genome:
+
+  A character FASTA path, `BSgenome` object, or named `DNAStringSet`.
+
 ## Value
 
-A `DNAStringSet` with one element per chromosome.
+A named `DNAStringSet` with one element per chromosome.
