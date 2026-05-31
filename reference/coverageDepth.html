@@ -115,6 +115,10 @@ with no sites have <code>depth = NA</code>.</p>
 sized to fit the chromosomes exactly (the last window may be smaller than
 <code>window</code>). If genome information is absent, only the range spanned by
 observed sites is covered.</p>
+<p><code>coverageDepth()</code> always uses fixed genomic coordinate bins and does
+not wrap bins across the origin, even when <code>seqinfo(object)</code> marks a
+chromosome as circular. For circular smoothing across chromosome boundaries,
+use <code><a href="slidingWindow.html">slidingWindow()</a></code>.</p>
     </div>
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>

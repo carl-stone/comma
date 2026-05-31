@@ -75,6 +75,12 @@ sized to fit the chromosomes exactly (the last window may be smaller
 than `window`). If genome information is absent, only the range spanned
 by observed sites is covered.
 
+`coverageDepth()` always uses fixed genomic coordinate bins and does not
+wrap bins across the origin, even when `seqinfo(object)` marks a
+chromosome as circular. For circular smoothing across chromosome
+boundaries, use
+[`slidingWindow()`](https://carl-stone.github.io/comma/reference/slidingWindow.md).
+
 ## See also
 
 [`varianceByDepth`](https://carl-stone.github.io/comma/reference/varianceByDepth.md),
