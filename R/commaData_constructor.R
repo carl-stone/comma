@@ -374,11 +374,7 @@ commaData <- function(files,
 
     # ── Attach Seqinfo to rowRanges ──────────────────────────────────────
     if (!is.null(genome_info)) {
-        GenomeInfoDb::seqinfo(site_gr) <- GenomeInfoDb::Seqinfo(
-            seqnames = names(genome_info),
-            seqlengths = genome_info,
-            isCircular = rep(FALSE, length(genome_info))
-        )
+        GenomeInfoDb::seqinfo(site_gr) <- .makeSeqinfo(genome_info)
     }
 
     # ── Build colData ───────────────────────────────────────────────────────
