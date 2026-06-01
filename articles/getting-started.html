@@ -112,29 +112,36 @@ conditions.</li>
 <div class="section level2">
 <h2 id="the-commadata-object">The <code>commaData</code> Object<a class="anchor" aria-label="anchor" href="#the-commadata-object"></a>
 </h2>
-<p><code>commaData</code> extends <code>SummarizedExperiment</code> and
-is the central data container in commaKit. It stores:</p>
+<p><code>commaData</code> extends Bioconductor’s
+<code>RangedSummarizedExperiment</code> and is the central data
+container in commaKit. It stores:</p>
 <ul>
 <li>
 <strong>methylation</strong> — a sites × samples matrix of beta
 values (0–1).</li>
 <li>
-<strong>coverage</strong> — a sites × samples matrix of read
+<strong>siteCoverage</strong> — a sites × samples matrix of read
 depths.</li>
 <li>
-<strong>rowData</strong> — per-site metadata: chromosome, position,
-strand, mod_type, mod_context.</li>
+<strong>rowRanges</strong> — one 1-bp <code>GRanges</code> range per
+methylation site, with <code>mod_type</code> and <code>motif</code>
+metadata.</li>
+<li>
+<strong>mod_context</strong> — computed on demand from
+<code>mod_type</code> and <code>motif</code> by
+<code><a href="../reference/modContexts.html">modContexts()</a></code> and <code><a href="../reference/siteInfo.html">siteInfo()</a></code>.</li>
 <li>
 <strong>colData</strong> — per-sample metadata: sample_name,
 condition, replicate.</li>
 <li>
-<strong>genomeInfo</strong> — chromosome names and lengths.</li>
+<strong>Seqinfo</strong> — chromosome names, lengths, and
+circularity metadata.</li>
 <li>
 <strong>annotation</strong> — genomic features as a
-<code>GRanges</code> object.</li>
+<code>GRanges</code> object in <code>metadata()</code>.</li>
 <li>
 <strong>motifSites</strong> — motif instances as a
-<code>GRanges</code> object.</li>
+<code>GRanges</code> object in <code>metadata()</code>.</li>
 </ul>
 <p>The built-in <code>comma_example_data</code> contains 588 synthetic
 methylation sites (393 × 6mA, 195 × 5mC) on a simulated 100 kb
