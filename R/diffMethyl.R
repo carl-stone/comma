@@ -221,6 +221,15 @@ diffMethyl <- function(
             "' already exists. Use a new 'result_name' or set overwrite = TRUE."
         )
     }
+    if (isTRUE(overwrite) && !isTRUE(make_default) &&
+            identical(result_name, .diffMethylDefaultResultName(object))) {
+        stop(
+            "Cannot overwrite the active differential methylation result layer ",
+            "with make_default = FALSE because the rowData dm_* mirror would ",
+            "no longer match the active result. Use make_default = TRUE or ",
+            "write to a different result_name."
+        )
+    }
 
     if (!is.numeric(min_coverage) || length(min_coverage) != 1L ||
             is.na(min_coverage) || min_coverage < 0L) {

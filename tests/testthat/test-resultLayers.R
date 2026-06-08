@@ -74,6 +74,32 @@ test_that("diffMethyl() protects explicit result layer names unless overwrite is
     expect_true(all(is.na(results(dm2, result_name = "quasi_f.v1")$dm_pvalue)))
 })
 
+
+
+test_that("cannot overwrite active result while keeping stale default mirror", {
+    skip_if_not_installed("limma")
+    obj <- .make_diff_methyl_fixture(n_sites = 8L, n_ctrl = 2L, n_treat = 2L)
+    dm <- diffMethyl(
+        obj,
+        formula = ~ condition,
+        method = "quasi_f",
+        result_name = "quasi_f.active"
+    )
+
+    expect_error(
+        diffMethyl(
+            dm,
+            formula = ~ condition,
+            method = "quasi_f",
+            result_name = "quasi_f.active",
+            min_coverage = 1000L,
+            overwrite = TRUE,
+            make_default = FALSE
+        ),
+        "Cannot overwrite the active"
+    )
+})
+
 test_that("make_default = FALSE keeps the active result unchanged", {
     skip_if_not_installed("limma")
     obj <- .make_diff_methyl_fixture(n_sites = 10L, n_ctrl = 2L, n_treat = 2L)
