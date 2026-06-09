@@ -23,8 +23,10 @@ to access them.
 
 Genome size information is stored in the `Seqinfo` attached to
 `rowRanges(object)`, accessible via `seqlengths(object)` or
-`seqinfo(object)`. The `genome()` accessor returns the same named
-integer vector for backward compatibility.
+`seqinfo(object)`. Use
+[`genomeSizes`](https://carl-stone.github.io/commaKit/reference/genomeSizes.md)
+for chromosome sizes; `genome()` is retained only as a
+backward-compatible size-vector method.
 
 The class stores methylation data in assay matrices (accessible via
 [`assay`](https://rdrr.io/pkg/SummarizedExperiment/man/SummarizedExperiment-class.html)):

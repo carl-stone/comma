@@ -459,7 +459,9 @@ coli* K-12 reveals methylation patterns associated with gene regulation.
 - [`findMotifSites()`](https://carl-stone.github.io/commaKit/reference/findMotifSites.md)
   : Find all instances of a sequence motif in a genome
 - [`genome(`*`<commaData>`*`)`](https://carl-stone.github.io/commaKit/reference/genome-commaData-method.md)
-  : Accessor for genome size information
+  : GenomeInfoDb genome accessor compatibility method for commaData
+- [`genomeSizes()`](https://carl-stone.github.io/commaKit/reference/genomeSizes.md)
+  : Accessor for chromosome size information
 - [`loadAnnotation()`](https://carl-stone.github.io/commaKit/reference/loadAnnotation.md)
   : Load genomic feature annotations from a GFF3 or BED file
 - [`mValues()`](https://carl-stone.github.io/commaKit/reference/mValues.md)

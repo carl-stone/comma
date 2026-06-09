@@ -31,7 +31,7 @@ plot_genome_track(
 - chromosome:
 
   Character string. The chromosome (sequence name) to plot. Must be
-  present in `names(genome(object))`.
+  present in `names(genomeSizes(object))`.
 
 - start:
 

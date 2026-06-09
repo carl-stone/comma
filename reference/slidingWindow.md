@@ -4,9 +4,9 @@ Computes a per-position sliding window statistic (median or mean) of
 methylation beta values for each sample in a
 [`commaData`](https://carl-stone.github.io/commaKit/reference/commaData.md)
 object. The genome size for each chromosome is read from
-`genome(object)`, so no organism-specific values are ever hardcoded.
-Circular genome wrap-around is controlled by the `isCircular` values
-stored in `seqinfo(object)` unless `circular` is explicitly set.
+`genomeSizes(object)`, so no organism-specific values are ever
+hardcoded. Circular genome wrap-around is controlled by the `isCircular`
+values stored in `seqinfo(object)` unless `circular` is explicitly set.
 
 ## Usage
 
@@ -28,8 +28,8 @@ slidingWindow(
 
   A
   [`commaData`](https://carl-stone.github.io/commaKit/reference/commaData.md)
-  object. Must have genome size information in `genome(object)` (i.e.,
-  it must have been constructed with a `genome` argument).
+  object. Must have genome size information in `genomeSizes(object)`
+  (i.e., it must have been constructed with a `genome` argument).
 
 - window:
 

@@ -1,10 +1,11 @@
-# Accessor for genome size information
+# GenomeInfoDb genome accessor compatibility method for commaData
 
-Returns the chromosome sizes stored in a
-[`commaData`](https://carl-stone.github.io/commaKit/reference/commaData.md)
-object. Genome size information is stored in the `Seqinfo` attached to
-`rowRanges(object)`. This accessor returns `seqlengths(object)` for
-backward compatibility.
+Historically, `genome(commaData)` returned chromosome sizes. New code
+should use
+[`genomeSizes`](https://carl-stone.github.io/commaKit/reference/genomeSizes.md)
+for chromosome lengths and `GenomeInfoDb::genome(seqinfo(object))` for
+genome build/name metadata. This method preserves the historical
+size-vector behavior for compatibility.
 
 ## Usage
 
@@ -21,8 +22,8 @@ genome(x)
 
 ## Value
 
-A named integer vector of chromosome sizes (chromosome name -\> length
-in bp), or `NULL` if no genome information was provided at construction.
+A named integer vector of chromosome sizes, or `NULL` if no size
+information was provided at construction.
 
 ## Examples
 

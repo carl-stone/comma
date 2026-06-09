@@ -70,8 +70,8 @@ A `data.frame` with one row per (chromosome window, sample), containing:
 Depth is computed only at positions with observed methylation sites.
 Windows with no sites have `depth = NA`.
 
-If genome size information is stored in `genome(object)`, windows are
-sized to fit the chromosomes exactly (the last window may be smaller
+If genome size information is stored in `genomeSizes(object)`, windows
+are sized to fit the chromosomes exactly (the last window may be smaller
 than `window`). If genome information is absent, only the range spanned
 by observed sites is covered.
 
