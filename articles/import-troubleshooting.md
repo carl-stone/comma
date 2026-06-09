@@ -262,13 +262,13 @@ sessionInfo()
 #> 
 #> loaded via a namespace (and not attached):
 #>  [1] digest_0.6.39       desc_1.4.3          R6_2.6.1           
-#>  [4] bookdown_0.46       fastmap_1.2.0       xfun_0.57          
+#>  [4] bookdown_0.46       fastmap_1.2.0       xfun_0.58          
 #>  [7] cachem_1.1.0        knitr_1.51          htmltools_0.5.9    
 #> [10] rmarkdown_2.31      lifecycle_1.0.5     cli_3.6.6          
 #> [13] sass_0.4.10         pkgdown_2.2.0       textshaping_1.0.5  
 #> [16] jquerylib_0.1.4     renv_1.1.8          systemfonts_1.3.2  
 #> [19] compiler_4.5.3      tools_4.5.3         ragg_1.5.2         
 #> [22] bslib_0.11.0        evaluate_1.0.5      yaml_2.3.12        
-#> [25] BiocManager_1.30.27 jsonlite_2.0.0      htmlwidgets_1.6.4  
-#> [28] rlang_1.2.0         fs_2.1.0
+#> [25] otel_0.2.0          BiocManager_1.30.27 jsonlite_2.0.0     
+#> [28] htmlwidgets_1.6.4   rlang_1.2.0         fs_2.1.0
 ```

@@ -60,7 +60,9 @@ t-test to identify differentially methylated sites. Called by
 <span>  <span class="va">formula</span>,</span>
 <span>  alpha <span class="op">=</span> <span class="fl">0.5</span>,</span>
 <span>  ref_level <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  design_info <span class="op">=</span> <span class="cn">NULL</span></span>
+<span>  design_info <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  mod_counts_mat <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  canonical_counts_mat <span class="op">=</span> <span class="cn">NULL</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
 
@@ -75,6 +77,17 @@ t-test to identify differentially methylated sites. Called by
 
 <dt id="arg-coverage-mat">coverage_mat<a class="anchor" aria-label="anchor" href="#arg-coverage-mat"></a></dt>
 <dd><p>Integer matrix (sites × samples) of read depths.</p></dd>
+
+
+<dt id="arg-mod-counts-mat">mod_counts_mat<a class="anchor" aria-label="anchor" href="#arg-mod-counts-mat"></a></dt>
+<dd><p>Optional integer matrix of observed modified-read
+counts. If supplied, these counts are preferred over reconstructing from
+beta values.</p></dd>
+
+
+<dt id="arg-canonical-counts-mat">canonical_counts_mat<a class="anchor" aria-label="anchor" href="#arg-canonical-counts-mat"></a></dt>
+<dd><p>Optional integer matrix of observed
+canonical-read counts.</p></dd>
 
 
 <dt id="arg-site-df">site_df<a class="anchor" aria-label="anchor" href="#arg-site-df"></a></dt>
@@ -95,6 +108,15 @@ RHS variable in <code>formula</code> (typically <code>condition</code>).</p></dd
 <dt id="arg-alpha">alpha<a class="anchor" aria-label="anchor" href="#arg-alpha"></a></dt>
 <dd><p>Positive numeric pseudocount added to modified and unmodified
 read counts before log-transformation. Default <code>0.5</code>.</p></dd>
+
+
+<dt id="arg-ref-level">ref_level<a class="anchor" aria-label="anchor" href="#arg-ref-level"></a></dt>
+<dd><p>Optional reference level for the two-level contrast.</p></dd>
+
+
+<dt id="arg-design-info">design_info<a class="anchor" aria-label="anchor" href="#arg-design-info"></a></dt>
+<dd><p>Optional precomputed design information from
+<code><a href="dot-resolveDiffMethylDesign.html">.resolveDiffMethylDesign()</a></code>.</p></dd>
 
 </dl></div>
     <div class="section level2">

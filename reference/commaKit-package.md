@@ -63,9 +63,17 @@ CoMMA.
 - [`commaData`](https://carl-stone.github.io/commaKit/reference/commaData.md):
 
   The central S4 data container, extending `SummarizedExperiment`.
-  Stores methylation (beta) and coverage matrices, per-site and
-  per-sample metadata, genome information, genomic annotation, and motif
-  site locations.
+  Stores methylation (beta), coverage, modified-count, and
+  canonical-count matrices, per-site and per-sample metadata, genome
+  information, genomic annotation, and motif site locations.
+
+- [`assayLayers`](https://carl-stone.github.io/commaKit/reference/assayLayers.md):
+
+  Tabular registry of assay layers, provenance, and default roles.
+
+- [`resultLayers`](https://carl-stone.github.io/commaKit/reference/resultLayers.md):
+
+  Tabular registry of named differential methylation result runs.
 
 ## Package options
 

@@ -322,6 +322,20 @@ Extract the results as a tidy data frame:
 
 ``` r
 
+resultLayers(cd_dm)
+#> DataFrame with 1 row and 18 columns
+#>          name        role                   type      source is_default
+#>   <character> <character>            <character> <character>  <logical>
+#> 1  diffMethyl  diffMethyl differential_methyla..  diffMethyl       TRUE
+#>        method     formula   reference   treatment     mod_context
+#>   <character> <character> <character> <character> <CharacterList>
+#> 1   methylkit  ~condition     control   treatment                
+#>          mod_type           motif p_adjust_method min_coverage     alpha
+#>   <CharacterList> <CharacterList>     <character>    <integer> <numeric>
+#> 1             6mA                              BH            5       0.5
+#>                           result_cols              timestamp package_version
+#>                       <CharacterList>            <character>     <character>
+#> 1 dm_pvalue,dm_padj,dm_delta_beta,... 2026-06-09 04:49:02 ..           0.2.0
 res <- results(cd_dm)
 # Top sites by adjusted p-value
 head(res[order(res$dm_padj),
@@ -480,59 +494,59 @@ sessionInfo()
 #> 
 #> loaded via a namespace (and not attached):
 #>   [1] bitops_1.0-9                rlang_1.2.0                
-#>   [3] magrittr_2.0.5              matrixStats_1.5.0          
-#>   [5] compiler_4.5.3              mgcv_1.9-4                 
-#>   [7] systemfonts_1.3.2           vctrs_0.7.3                
-#>   [9] reshape2_1.4.5              stringr_1.6.0              
-#>  [11] pkgconfig_2.0.3             crayon_1.5.3               
-#>  [13] fastmap_1.2.0               XVector_0.50.0             
-#>  [15] labeling_0.4.3              Rsamtools_2.26.0           
-#>  [17] rmarkdown_2.31              UCSC.utils_1.6.1           
-#>  [19] ragg_1.5.2                  xfun_0.57                  
-#>  [21] cachem_1.1.0                cigarillo_1.0.0            
-#>  [23] GenomeInfoDb_1.46.2         jsonlite_2.0.0             
-#>  [25] DelayedArray_0.36.1         BiocParallel_1.44.0        
-#>  [27] parallel_4.5.3              R6_2.6.1                   
-#>  [29] bslib_0.11.0                stringi_1.8.7              
-#>  [31] RColorBrewer_1.1-3          limma_3.66.0               
-#>  [33] rtracklayer_1.70.1          GenomicRanges_1.62.1       
-#>  [35] jquerylib_0.1.4             numDeriv_2016.8-1.1        
-#>  [37] Rcpp_1.1.1-1.1              Seqinfo_1.0.0              
-#>  [39] bookdown_0.46               SummarizedExperiment_1.40.0
-#>  [41] knitr_1.51                  zoo_1.8-15                 
-#>  [43] R.utils_2.13.0              IRanges_2.44.0             
-#>  [45] Matrix_1.7-4                splines_4.5.3              
-#>  [47] tidyselect_1.2.1            qvalue_2.42.0              
-#>  [49] abind_1.4-8                 yaml_2.3.12                
-#>  [51] codetools_0.2-20            curl_7.1.0                 
-#>  [53] lattice_0.22-9              tibble_3.3.1               
-#>  [55] plyr_1.8.9                  Biobase_2.70.0             
-#>  [57] withr_3.0.2                 S7_0.2.2                   
-#>  [59] coda_0.19-4.1               evaluate_1.0.5             
-#>  [61] desc_1.4.3                  mclust_6.1.2               
-#>  [63] Biostrings_2.78.0           pillar_1.11.1              
-#>  [65] BiocManager_1.30.27         MatrixGenerics_1.22.0      
-#>  [67] renv_1.1.8                  stats4_4.5.3               
-#>  [69] generics_0.1.4              RCurl_1.98-1.18            
-#>  [71] emdbook_1.3.14              S4Vectors_0.48.1           
-#>  [73] ggplot2_4.0.3               scales_1.4.0               
-#>  [75] gtools_3.9.5                glue_1.8.1                 
-#>  [77] tools_4.5.3                 BiocIO_1.20.0              
-#>  [79] data.table_1.18.4           GenomicAlignments_1.46.0   
-#>  [81] fs_2.1.0                    mvtnorm_1.4-0              
-#>  [83] XML_3.99-0.23               grid_4.5.3                 
-#>  [85] bbmle_1.0.25.1              bdsmatrix_1.3-7            
-#>  [87] nlme_3.1-168                patchwork_1.3.2            
-#>  [89] restfulr_0.0.16             cli_3.6.6                  
-#>  [91] textshaping_1.0.5           fastseg_1.56.0             
-#>  [93] S4Arrays_1.10.1             methylKit_1.36.0           
-#>  [95] dplyr_1.2.1                 gtable_0.3.6               
-#>  [97] R.methodsS3_1.8.2           sass_0.4.10                
-#>  [99] digest_0.6.39               BiocGenerics_0.56.0        
-#> [101] SparseArray_1.10.10         rjson_0.2.23               
-#> [103] htmlwidgets_1.6.4           farver_2.1.2               
-#> [105] htmltools_0.5.9             pkgdown_2.2.0              
-#> [107] R.oo_1.27.1                 lifecycle_1.0.5            
-#> [109] httr_1.4.8                  statmod_1.5.2              
-#> [111] MASS_7.3-65
+#>   [3] magrittr_2.0.5              otel_0.2.0                 
+#>   [5] matrixStats_1.5.0           compiler_4.5.3             
+#>   [7] mgcv_1.9-4                  systemfonts_1.3.2          
+#>   [9] vctrs_0.7.3                 reshape2_1.4.5             
+#>  [11] stringr_1.6.0               pkgconfig_2.0.3            
+#>  [13] crayon_1.5.3                fastmap_1.2.0              
+#>  [15] XVector_0.50.0              labeling_0.4.3             
+#>  [17] Rsamtools_2.26.0            rmarkdown_2.31             
+#>  [19] UCSC.utils_1.6.1            ragg_1.5.2                 
+#>  [21] xfun_0.58                   cachem_1.1.0               
+#>  [23] cigarillo_1.0.0             GenomeInfoDb_1.46.2        
+#>  [25] jsonlite_2.0.0              DelayedArray_0.36.1        
+#>  [27] BiocParallel_1.44.0         parallel_4.5.3             
+#>  [29] R6_2.6.1                    bslib_0.11.0               
+#>  [31] stringi_1.8.7               RColorBrewer_1.1-3         
+#>  [33] limma_3.66.0                rtracklayer_1.70.1         
+#>  [35] GenomicRanges_1.62.1        jquerylib_0.1.4            
+#>  [37] numDeriv_2016.8-1.1         Rcpp_1.1.1-1.1             
+#>  [39] Seqinfo_1.0.0               bookdown_0.46              
+#>  [41] SummarizedExperiment_1.40.0 knitr_1.51                 
+#>  [43] zoo_1.8-15                  R.utils_2.13.0             
+#>  [45] IRanges_2.44.0              Matrix_1.7-4               
+#>  [47] splines_4.5.3               tidyselect_1.2.1           
+#>  [49] qvalue_2.42.0               abind_1.4-8                
+#>  [51] yaml_2.3.12                 codetools_0.2-20           
+#>  [53] curl_7.1.0                  lattice_0.22-9             
+#>  [55] tibble_3.3.1                plyr_1.8.9                 
+#>  [57] Biobase_2.70.0              withr_3.0.2                
+#>  [59] S7_0.2.2                    coda_0.19-4.1              
+#>  [61] evaluate_1.0.5              desc_1.4.3                 
+#>  [63] mclust_6.1.2                Biostrings_2.78.0          
+#>  [65] pillar_1.11.1               BiocManager_1.30.27        
+#>  [67] MatrixGenerics_1.22.0       renv_1.1.8                 
+#>  [69] stats4_4.5.3                generics_0.1.4             
+#>  [71] RCurl_1.98-1.19             emdbook_1.3.14             
+#>  [73] S4Vectors_0.48.1            ggplot2_4.0.3              
+#>  [75] scales_1.4.0                gtools_3.9.5               
+#>  [77] glue_1.8.1                  tools_4.5.3                
+#>  [79] BiocIO_1.20.0               data.table_1.18.4          
+#>  [81] GenomicAlignments_1.46.0    fs_2.1.0                   
+#>  [83] mvtnorm_1.4-1               XML_3.99-0.23              
+#>  [85] grid_4.5.3                  bbmle_1.0.25.1             
+#>  [87] bdsmatrix_1.3-7             nlme_3.1-168               
+#>  [89] patchwork_1.3.2             restfulr_0.0.16            
+#>  [91] cli_3.6.6                   textshaping_1.0.5          
+#>  [93] fastseg_1.56.0              S4Arrays_1.10.1            
+#>  [95] methylKit_1.36.0            dplyr_1.2.1                
+#>  [97] gtable_0.3.6                R.methodsS3_1.8.2          
+#>  [99] sass_0.4.10                 digest_0.6.39              
+#> [101] BiocGenerics_0.56.0         SparseArray_1.10.10        
+#> [103] rjson_0.2.23                htmlwidgets_1.6.4          
+#> [105] farver_2.1.2                htmltools_0.5.9            
+#> [107] pkgdown_2.2.0               R.oo_1.27.1                
+#> [109] lifecycle_1.0.5             httr_1.4.8                 
+#> [111] statmod_1.5.2               MASS_7.3-65
 ```

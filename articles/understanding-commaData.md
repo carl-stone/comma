@@ -53,7 +53,7 @@ package:
 dim(comma_example_data)
 #> [1] 588   6
 SummarizedExperiment::assayNames(comma_example_data)
-#> [1] "methylation" "coverage"
+#> [1] "methylation"      "coverage"         "mod_counts"       "canonical_counts"
 ```
 
 The main package accessors expose the two required assay matrices. Beta
@@ -203,7 +203,8 @@ external files.
 
 md <- S4Vectors::metadata(comma_example_data)
 names(md)
-#> [1] "annotation"   "motifSites"   "caller"       "min_coverage"
+#> [1] "annotation"       "motifSites"       "caller"           "min_coverage"    
+#> [5] "assay_defaults"   "assay_provenance"
 
 c(
     annotation_features = length(annotation(comma_example_data)),
@@ -213,8 +214,10 @@ c(
 #>                   5                   0
 
 vapply(md, function(x) paste(class(x), collapse = "/"), character(1))
-#>   annotation   motifSites       caller min_coverage 
-#>    "GRanges"    "GRanges"  "character"    "integer"
+#>       annotation       motifSites           caller     min_coverage 
+#>        "GRanges"        "GRanges"      "character"        "integer" 
+#>   assay_defaults assay_provenance 
+#>           "list"           "list"
 ```
 
 ## Analysis layers
@@ -244,9 +247,10 @@ identical(dim(comma_example_data), dim(annotated))
 #> [1] TRUE
 ```
 
-Layering is intended to be idempotent: rerunning the same layer with the
-same arguments recomputes the named layer columns rather than creating a
-second copy of the biological rows.
+Layering is intended to be explicit: rerunning an unnamed compatibility
+layer updates the active/default view, while explicitly named layers can
+coexist for comparison. In either case, commaKit never creates a second
+copy of the biological rows.
 
 ``` r
 
@@ -276,11 +280,26 @@ S4Vectors::metadata(dm)$diffMethyl_params[c("method", "p_adjust_method")]
 #> 
 #> $p_adjust_method
 #> [1] "BH"
+resultLayers(dm)
+#> DataFrame with 1 row and 18 columns
+#>          name        role                   type      source is_default
+#>   <character> <character>            <character> <character>  <logical>
+#> 1  diffMethyl  diffMethyl differential_methyla..  diffMethyl       TRUE
+#>        method     formula   reference   treatment     mod_context
+#>   <character> <character> <character> <character> <CharacterList>
+#> 1     quasi_f  ~condition     control   treatment                
+#>          mod_type           motif p_adjust_method min_coverage     alpha
+#>   <CharacterList> <CharacterList>     <character>    <integer> <numeric>
+#> 1                                              BH            5       0.5
+#>                           result_cols              timestamp package_version
+#>                       <CharacterList>            <character>     <character>
+#> 1 dm_pvalue,dm_padj,dm_delta_beta,... 2026-06-09 04:49:39 ..           0.2.0
 ```
 
 [`results()`](https://carl-stone.github.io/commaKit/reference/results.md)
-exposes that layer as a tidy data frame while preserving the site
-metadata needed to interpret each row.
+exposes the active result layer as a tidy data frame while preserving
+the site metadata needed to interpret each row. When you keep multiple
+named runs, pass `result` or `result_name` to retrieve an older layer.
 
 ``` r
 
@@ -338,7 +357,7 @@ sessionInfo()
 #> 
 #> loaded via a namespace (and not attached):
 #>  [1] SummarizedExperiment_1.40.0 gtable_0.3.6               
-#>  [3] xfun_0.57                   bslib_0.11.0               
+#>  [3] xfun_0.58                   bslib_0.11.0               
 #>  [5] ggplot2_4.0.3               htmlwidgets_1.6.4          
 #>  [7] Biobase_2.70.0              lattice_0.22-9             
 #>  [9] vctrs_0.7.3                 tools_4.5.3                
@@ -366,13 +385,13 @@ sessionInfo()
 #> [53] S4Arrays_1.10.1             UCSC.utils_1.6.1           
 #> [55] scales_1.4.0                rmarkdown_2.31             
 #> [57] XVector_0.50.0              httr_1.4.8                 
-#> [59] matrixStats_1.5.0           zoo_1.8-15                 
-#> [61] ragg_1.5.2                  evaluate_1.0.5             
-#> [63] knitr_1.51                  GenomicRanges_1.62.1       
-#> [65] IRanges_2.44.0              rlang_1.2.0                
-#> [67] glue_1.8.1                  BiocManager_1.30.27        
-#> [69] renv_1.1.8                  BiocGenerics_0.56.0        
-#> [71] jsonlite_2.0.0              R6_2.6.1                   
-#> [73] MatrixGenerics_1.22.0       systemfonts_1.3.2          
-#> [75] fs_2.1.0
+#> [59] matrixStats_1.5.0           otel_0.2.0                 
+#> [61] zoo_1.8-15                  ragg_1.5.2                 
+#> [63] evaluate_1.0.5              knitr_1.51                 
+#> [65] GenomicRanges_1.62.1        IRanges_2.44.0             
+#> [67] rlang_1.2.0                 glue_1.8.1                 
+#> [69] BiocManager_1.30.27         renv_1.1.8                 
+#> [71] BiocGenerics_0.56.0         jsonlite_2.0.0             
+#> [73] R6_2.6.1                    MatrixGenerics_1.22.0      
+#> [75] systemfonts_1.3.2           fs_2.1.0
 ```

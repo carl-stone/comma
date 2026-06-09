@@ -60,11 +60,11 @@ The M-value for a site in one sample is computed as:
 \$\$M = \log_2\\\left(\frac{M\_{\mathrm{reads}} +
 \alpha}{U\_{\mathrm{reads}} + \alpha}\right)\$\$
 
-where \\M\_{\mathrm{reads}} = \mathrm{round}(\beta \times
-\mathrm{coverage})\\ is the estimated number of methylated reads,
-\\U\_{\mathrm{reads}} = \mathrm{coverage} - M\_{\mathrm{reads}}\\ is the
-estimated number of unmethylated reads, and \\\alpha\\ is the
-pseudocount offset.
+where \\M\_{\mathrm{reads}}\\ and \\U\_{\mathrm{reads}}\\ are observed
+modified and canonical/unmodified read counts when count assays are
+available. For legacy or probability-only objects, counts are
+reconstructed from `round(beta * coverage)` as a documented fallback.
+The pseudocount offset is \\\alpha\\.
 
 Sites with zero coverage or `NA` beta values are returned as `NA`. The
 pseudocount `alpha` must be strictly positive to avoid `-Inf` or `NaN`
@@ -73,7 +73,9 @@ values in the output.
 ## See also
 
 [`methylation`](https://carl-stone.github.io/commaKit/reference/methylation.md),
-[`coverage`](https://rdrr.io/pkg/IRanges/man/coverage-methods.html),
+[`siteCoverage`](https://carl-stone.github.io/commaKit/reference/siteCoverage.md),
+[`modCounts`](https://carl-stone.github.io/commaKit/reference/modCounts.md),
+[`canonicalCounts`](https://carl-stone.github.io/commaKit/reference/canonicalCounts.md),
 [`plot_pca`](https://carl-stone.github.io/commaKit/reference/plot_pca.md)
 
 ## Examples

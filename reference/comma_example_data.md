@@ -31,6 +31,16 @@ A `commaData` object with:
 
   :   Integer read depth (10–150 per site).
 
+  `mod_counts`
+
+  :   Integer modified-read counts reconstructed from the simulated beta
+      and coverage values.
+
+  `canonical_counts`
+
+  :   Integer canonical-read counts reconstructed as
+      `coverage - mod_counts`.
+
 - **rowRanges**:
 
   GRanges with 1-bp ranges per site. mcols include `mod_type`, `motif`,

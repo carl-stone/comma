@@ -231,7 +231,8 @@ chr_sim](reference/figures/README-plot-track-1.png)
 [`diffMethyl()`](https://carl-stone.github.io/commaKit/reference/diffMethyl.md)
 tests each site for differential methylation between conditions. It is
 modeled on DESeq2’s workflow: pass a `commaData` object and a design
-formula, get back the same object with per-site statistics in `rowData`:
+formula, get back the same object with per-site statistics in an active
+result layer mirrored to `rowData`:
 
 ``` r
 
@@ -243,6 +244,7 @@ Extract results as a tidy data frame and filter to significant sites:
 
 ``` r
 
+resultLayers(cd_dm)
 res <- results(cd_dm)
 sig <- filterResults(cd_dm, padj = 0.05, delta_beta = 0.2)
 cat("Total 6mA sites tested:", nrow(res), "\n")

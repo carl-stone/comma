@@ -26,7 +26,7 @@ Genome size information is stored in the `Seqinfo` attached to
 `seqinfo(object)`. The `genome()` accessor returns the same named
 integer vector for backward compatibility.
 
-The class stores methylation data in two assay matrices (accessible via
+The class stores methylation data in assay matrices (accessible via
 [`assay`](https://rdrr.io/pkg/SummarizedExperiment/man/SummarizedExperiment-class.html)):
 
 - `"methylation"`:
@@ -37,6 +37,16 @@ The class stores methylation data in two assay matrices (accessible via
 - `"coverage"`:
 
   Integer read depth at each site.
+
+- `"mod_counts"`:
+
+  Observed reads called as the target modification, when available from
+  the caller.
+
+- `"canonical_counts"`:
+
+  Observed reads called canonical or unmodified, when available from the
+  caller.
 
 Genomic positions are stored in `rowRanges(object)`, a
 [`GRanges`](https://rdrr.io/pkg/GenomicRanges/man/GRanges-class.html)
@@ -71,12 +81,29 @@ The methylation caller and minimum coverage threshold are stored in
 and
 [`minCoverage`](https://carl-stone.github.io/commaKit/reference/minCoverage.md)`(object)`.
 
+Assay-layer provenance and defaults are stored in
+`metadata(object)$assay_provenance` and
+`metadata(object)$assay_defaults`. Use
+[`assayLayers`](https://carl-stone.github.io/commaKit/reference/assayLayers.md)
+for a tabular summary.
+
+Differential methylation result layers are stored in
+`metadata(object)$diffMethyl_results` with provenance in
+`metadata(object)$diffMethyl_result_layers`. Use
+[`resultLayers`](https://carl-stone.github.io/commaKit/reference/resultLayers.md)
+to list named result runs.
+
 ## See also
 
 [`commaData`](https://carl-stone.github.io/commaKit/reference/commaData.md)
 for the constructor,
 [`methylation`](https://carl-stone.github.io/commaKit/reference/methylation.md),
-[`coverage`](https://rdrr.io/pkg/IRanges/man/coverage-methods.html),
+[`siteCoverage`](https://carl-stone.github.io/commaKit/reference/siteCoverage.md),
+[`modCounts`](https://carl-stone.github.io/commaKit/reference/modCounts.md),
+[`canonicalCounts`](https://carl-stone.github.io/commaKit/reference/canonicalCounts.md),
+[`assayLayers`](https://carl-stone.github.io/commaKit/reference/assayLayers.md),
+[`assayProvenance`](https://carl-stone.github.io/commaKit/reference/assayProvenance.md),
+[`resultLayers`](https://carl-stone.github.io/commaKit/reference/resultLayers.md),
 [`sampleInfo`](https://carl-stone.github.io/commaKit/reference/sampleInfo.md),
 [`siteInfo`](https://carl-stone.github.io/commaKit/reference/siteInfo.md),
 [`modTypes`](https://carl-stone.github.io/commaKit/reference/modTypes.md),

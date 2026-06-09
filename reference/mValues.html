@@ -105,17 +105,19 @@ to a beta value of approximately 0.5.</p>
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
     <p>The M-value for a site in one sample is computed as:</p>
 <p>$$M = \log_2\!\left(\frac{M_{\mathrm{reads}} + \alpha}{U_{\mathrm{reads}} + \alpha}\right)$$</p>
-<p>where \(M_{\mathrm{reads}} = \mathrm{round}(\beta \times \mathrm{coverage})\)
-is the estimated number of methylated reads, \(U_{\mathrm{reads}} =
-\mathrm{coverage} - M_{\mathrm{reads}}\) is the estimated number of
-unmethylated reads, and \(\alpha\) is the pseudocount offset.</p>
+<p>where \(M_{\mathrm{reads}}\) and \(U_{\mathrm{reads}}\) are observed
+modified and canonical/unmodified read counts when count assays are
+available. For legacy or probability-only objects, counts are reconstructed
+from <code>round(beta * coverage)</code> as a documented fallback. The
+pseudocount offset is \(\alpha\).</p>
 <p>Sites with zero coverage or <code>NA</code> beta values are returned as <code>NA</code>.
 The pseudocount <code>alpha</code> must be strictly positive to avoid <code>-Inf</code>
 or <code>NaN</code> values in the output.</p>
     </div>
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
-    <div class="dont-index"><p><code><a href="methylation.html">methylation</a></code>, <code><a href="https://rdrr.io/pkg/IRanges/man/coverage-methods.html" class="external-link">coverage</a></code>,
+    <div class="dont-index"><p><code><a href="methylation.html">methylation</a></code>, <code><a href="siteCoverage.html">siteCoverage</a></code>,
+<code><a href="modCounts.html">modCounts</a></code>, <code><a href="canonicalCounts.html">canonicalCounts</a></code>,
 <code><a href="plot_pca.html">plot_pca</a></code></p></div>
     </div>
 

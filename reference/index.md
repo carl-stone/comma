@@ -6,12 +6,18 @@
   : Annotate methylation sites relative to genomic features
 - [`annotation(`*`<commaData>`*`)`](https://carl-stone.github.io/commaKit/reference/annotation-commaData-method.md)
   : Accessor for genomic feature annotation
+- [`assayLayers()`](https://carl-stone.github.io/commaKit/reference/assayLayers.md)
+  : List assay layers and defaults
+- [`assayProvenance()`](https://carl-stone.github.io/commaKit/reference/assayProvenance.md)
+  : Accessor for assay provenance metadata
 - [`buildKEGGGeneIDMap()`](https://carl-stone.github.io/commaKit/reference/buildKEGGGeneIDMap.md)
   : Build a KEGG gene ID map for symbol translation
 - [`buildKEGGTermGene()`](https://carl-stone.github.io/commaKit/reference/buildKEGGTermGene.md)
   : Build a KEGG term-to-gene mapping for use with enrichMethylation()
 - [`caller()`](https://carl-stone.github.io/commaKit/reference/caller.md)
   : Accessor for the methylation caller
+- [`canonicalCounts()`](https://carl-stone.github.io/commaKit/reference/canonicalCounts.md)
+  : Accessor for observed canonical-read counts
 - [`commaData-class`](https://carl-stone.github.io/commaKit/reference/commaData-class.md)
   : commaData: the central data object for the commaKit package
 - [`commaData()`](https://carl-stone.github.io/commaKit/reference/commaData.md)
@@ -51,6 +57,8 @@
   : Accessor for the minimum coverage threshold
 - [`modContexts()`](https://carl-stone.github.io/commaKit/reference/modContexts.md)
   : Return the modification contexts present in a commaData object
+- [`modCounts()`](https://carl-stone.github.io/commaKit/reference/modCounts.md)
+  : Accessor for observed modified-read counts
 - [`modTypes()`](https://carl-stone.github.io/commaKit/reference/modTypes.md)
   : Return the modification types present in a commaData object
 - [`motifSites()`](https://carl-stone.github.io/commaKit/reference/motifSites.md)
@@ -73,6 +81,8 @@
   : TSS-centered methylation profile
 - [`plot_volcano()`](https://carl-stone.github.io/commaKit/reference/plot_volcano.md)
   : Volcano plot for differential methylation results
+- [`resultLayers()`](https://carl-stone.github.io/commaKit/reference/resultLayers.md)
+  : List differential methylation result layers
 - [`results()`](https://carl-stone.github.io/commaKit/reference/results.md)
   : Extract differential methylation results as a tidy data frame
 - [`sampleInfo()`](https://carl-stone.github.io/commaKit/reference/sampleInfo.md)

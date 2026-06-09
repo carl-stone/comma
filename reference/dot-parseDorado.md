@@ -68,6 +68,14 @@ A `data.frame` with columns:
 
   Total read depth at this site (integer).
 
+- `mod_counts`:
+
+  Reads called modified using the ML probability threshold.
+
+- `canonical_counts`:
+
+  Reads not called modified using the ML probability threshold.
+
 ## Details
 
 The function reads the BAM using

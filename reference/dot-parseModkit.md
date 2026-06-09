@@ -66,3 +66,11 @@ A `data.frame` with columns:
 - `coverage`:
 
   Total read depth at this site (integer).
+
+- `mod_counts`:
+
+  Observed reads called as this modification.
+
+- `canonical_counts`:
+
+  Observed reads called canonical/unmodified.

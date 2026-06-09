@@ -126,14 +126,26 @@ The constructor uses a parse-then-merge strategy:
 4.  Beta values and coverage are arranged into sites \\\times\\ samples
     matrices, with `NA` for samples that do not cover a given site.
 
-5.  Sites where coverage is below `min_coverage` in a sample have their
+5.  Observed modified and canonical read counts are preserved as
+    `mod_counts` and `canonical_counts` assays when reported by the
+    caller; probability-only callers store `NA` in those assays.
+
+6.  Assay-layer provenance and default roles are recorded in
+    `metadata(object)$assay_provenance` and
+    `metadata(object)$assay_defaults`.
+
+7.  Sites where coverage is below `min_coverage` in a sample have their
     beta value set to `NA` (but coverage is preserved).
 
 ## See also
 
 [`commaData-class`](https://carl-stone.github.io/commaKit/reference/commaData-class.md),
 [`methylation`](https://carl-stone.github.io/commaKit/reference/methylation.md),
-[`coverage`](https://carl-stone.github.io/commaKit/reference/coverage-commaData-method.md),
+[`siteCoverage`](https://carl-stone.github.io/commaKit/reference/siteCoverage.md),
+[`modCounts`](https://carl-stone.github.io/commaKit/reference/modCounts.md),
+[`canonicalCounts`](https://carl-stone.github.io/commaKit/reference/canonicalCounts.md),
+[`assayLayers`](https://carl-stone.github.io/commaKit/reference/assayLayers.md),
+[`assayProvenance`](https://carl-stone.github.io/commaKit/reference/assayProvenance.md),
 [`sampleInfo`](https://carl-stone.github.io/commaKit/reference/sampleInfo.md),
 [`siteInfo`](https://carl-stone.github.io/commaKit/reference/siteInfo.md),
 [`modTypes`](https://carl-stone.github.io/commaKit/reference/modTypes.md),

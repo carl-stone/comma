@@ -69,6 +69,9 @@ as new columns in <code>rowData</code>.</p>
 <span>  min_coverage <span class="op">=</span> <span class="fl">5L</span>,</span>
 <span>  alpha <span class="op">=</span> <span class="fl">0.5</span>,</span>
 <span>  p_adjust_method <span class="op">=</span> <span class="st">"BH"</span>,</span>
+<span>  result_name <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  overwrite <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  make_default <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  <span class="va">...</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
@@ -162,6 +165,27 @@ passed to <code><a href="https://rdrr.io/r/stats/p.adjust.html" class="external-
 <code>"BY"</code>, <code>"none"</code>.</p></dd>
 
 
+<dt id="arg-result-name">result_name<a class="anchor" aria-label="anchor" href="#arg-result-name"></a></dt>
+<dd><p>Character string or <code>NULL</code>. Name for the
+differential methylation result layer. If <code>NULL</code> (default), results
+are written to the compatibility layer <code>"diffMethyl"</code>, replacing that
+layer on repeated unnamed calls. Provide explicit names such as
+<code>"quasi_f.min5"</code> or <code>"limma.alpha05"</code> to keep multiple runs.</p></dd>
+
+
+<dt id="arg-overwrite">overwrite<a class="anchor" aria-label="anchor" href="#arg-overwrite"></a></dt>
+<dd><p>Logical or <code>NULL</code>. Whether an existing named result
+layer may be replaced. If <code>NULL</code> (default), unnamed compatibility
+runs may replace <code>"diffMethyl"</code>, while explicit <code>result_name</code>
+values must be unique unless <code>overwrite = TRUE</code>.</p></dd>
+
+
+<dt id="arg-make-default">make_default<a class="anchor" aria-label="anchor" href="#arg-make-default"></a></dt>
+<dd><p>Logical. If <code>TRUE</code> (default), the new result layer
+becomes the default used by <code><a href="results.html">results()</a></code> and is mirrored into
+<code>rowData</code> as bare <code>dm_*</code> columns.</p></dd>
+
+
 <dt id="arg--">...<a class="anchor" aria-label="anchor" href="#arg--"></a></dt>
 <dd><p>Additional arguments (reserved for future use).</p></dd>
 
@@ -171,8 +195,8 @@ passed to <code><a href="https://rdrr.io/r/stats/p.adjust.html" class="external-
     <p>The input <code>commaData</code> object with additional columns in
 <code>rowData</code>: <code>dm_pvalue</code>, <code>dm_padj</code>, <code>dm_delta_beta</code>,
 and one <code>dm_mean_beta_&lt;condition&gt;</code> column per condition level. The
-<code>metadata</code> slot is updated with analysis parameters and result
-column names.</p>
+<code>metadata</code> slot is updated with analysis parameters, result column
+names, and a named result layer registry.</p>
     </div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
@@ -241,7 +265,12 @@ mean beta value for each site.</p></dd>
 
 </dl><p>Analysis parameters and result column names are stored in
 <code>metadata(object)$diffMethyl_params</code> and
-<code>metadata(object)$diffMethyl_result_cols</code>.</p>
+<code>metadata(object)$diffMethyl_result_cols</code>.
+Named result layers are stored in
+<code>metadata(object)$diffMethyl_results</code> and listed by
+<code><a href="resultLayers.html">resultLayers()</a></code>. By default, the active result layer is also
+mirrored into the legacy <code>dm_*</code> columns in <code>rowData</code> so existing
+<code><a href="results.html">results()</a></code> and plotting workflows keep working.</p>
     </div>
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>

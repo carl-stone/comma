@@ -18,6 +18,9 @@ subset(
   mod_context = NULL,
   ...
 )
+
+# S4 method for class 'commaData'
+subset(x, ...)
 ```
 
 ## Arguments

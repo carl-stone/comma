@@ -122,7 +122,7 @@ parameters.</li>
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/dim.html" class="external-link">dim</a></span><span class="op">(</span><span class="va">comma_example_data</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] 588   6</span></span>
 <span><span class="fu">SummarizedExperiment</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/SummarizedExperiment/man/SummarizedExperiment-class.html" class="external-link">assayNames</a></span><span class="op">(</span><span class="va">comma_example_data</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] "methylation" "coverage"</span></span></code></pre></div>
+<span><span class="co">#&gt; [1] "methylation"      "coverage"         "mod_counts"       "canonical_counts"</span></span></code></pre></div>
 <p>The main package accessors expose the two required assay matrices.
 Beta values are proportions in <code>[0, 1]</code>; coverage values are
 read depths.</p>
@@ -255,7 +255,8 @@ reading any external files.</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">md</span> <span class="op">&lt;-</span> <span class="fu">S4Vectors</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/S4Vectors/man/Annotated-class.html" class="external-link">metadata</a></span><span class="op">(</span><span class="va">comma_example_data</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">md</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] "annotation"   "motifSites"   "caller"       "min_coverage"</span></span>
+<span><span class="co">#&gt; [1] "annotation"       "motifSites"       "caller"           "min_coverage"    </span></span>
+<span><span class="co">#&gt; [5] "assay_defaults"   "assay_provenance"</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span></span>
 <span>    annotation_features <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="fu">annotation</span><span class="op">(</span><span class="va">comma_example_data</span><span class="op">)</span><span class="op">)</span>,</span>
@@ -265,8 +266,10 @@ reading any external files.</p>
 <span><span class="co">#&gt;                   5                   0</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">vapply</a></span><span class="op">(</span><span class="va">md</span>, <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/class.html" class="external-link">class</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span>, collapse <span class="op">=</span> <span class="st">"/"</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/character.html" class="external-link">character</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">#&gt;   annotation   motifSites       caller min_coverage </span></span>
-<span><span class="co">#&gt;    "GRanges"    "GRanges"  "character"    "integer"</span></span></code></pre></div>
+<span><span class="co">#&gt;       annotation       motifSites           caller     min_coverage </span></span>
+<span><span class="co">#&gt;        "GRanges"        "GRanges"      "character"        "integer" </span></span>
+<span><span class="co">#&gt;   assay_defaults assay_provenance </span></span>
+<span><span class="co">#&gt;           "list"           "list"</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="analysis-layers">Analysis layers<a class="anchor" aria-label="anchor" href="#analysis-layers"></a>
@@ -293,9 +296,10 @@ while layers are added or recomputed.</p>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/identical.html" class="external-link">identical</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/dim.html" class="external-link">dim</a></span><span class="op">(</span><span class="va">comma_example_data</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/dim.html" class="external-link">dim</a></span><span class="op">(</span><span class="va">annotated</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] TRUE</span></span></code></pre></div>
-<p>Layering is intended to be idempotent: rerunning the same layer with
-the same arguments recomputes the named layer columns rather than
-creating a second copy of the biological rows.</p>
+<p>Layering is intended to be explicit: rerunning an unnamed
+compatibility layer updates the active/default view, while explicitly
+named layers can coexist for comparison. In either case, commaKit never
+creates a second copy of the biological rows.</p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">annotated_again</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/annotateSites.html">annotateSites</a></span><span class="op">(</span><span class="va">annotated</span>, keep <span class="op">=</span> <span class="st">"overlap"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/identical.html" class="external-link">identical</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">colnames</a></span><span class="op">(</span><span class="fu"><a href="../reference/siteInfo.html">siteInfo</a></span><span class="op">(</span><span class="va">annotated</span><span class="op">)</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">colnames</a></span><span class="op">(</span><span class="fu"><a href="../reference/siteInfo.html">siteInfo</a></span><span class="op">(</span><span class="va">annotated_again</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
@@ -318,9 +322,25 @@ separate.</p>
 <span><span class="co">#&gt; [1] "quasi_f"</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; $p_adjust_method</span></span>
-<span><span class="co">#&gt; [1] "BH"</span></span></code></pre></div>
-<p><code><a href="../reference/results.html">results()</a></code> exposes that layer as a tidy data frame while
-preserving the site metadata needed to interpret each row.</p>
+<span><span class="co">#&gt; [1] "BH"</span></span>
+<span><span class="fu"><a href="../reference/resultLayers.html">resultLayers</a></span><span class="op">(</span><span class="va">dm</span><span class="op">)</span></span>
+<span><span class="co">#&gt; DataFrame with 1 row and 18 columns</span></span>
+<span><span class="co">#&gt;          name        role                   type      source is_default</span></span>
+<span><span class="co">#&gt;   &lt;character&gt; &lt;character&gt;            &lt;character&gt; &lt;character&gt;  &lt;logical&gt;</span></span>
+<span><span class="co">#&gt; 1  diffMethyl  diffMethyl differential_methyla..  diffMethyl       TRUE</span></span>
+<span><span class="co">#&gt;        method     formula   reference   treatment     mod_context</span></span>
+<span><span class="co">#&gt;   &lt;character&gt; &lt;character&gt; &lt;character&gt; &lt;character&gt; &lt;CharacterList&gt;</span></span>
+<span><span class="co">#&gt; 1     quasi_f  ~condition     control   treatment                </span></span>
+<span><span class="co">#&gt;          mod_type           motif p_adjust_method min_coverage     alpha</span></span>
+<span><span class="co">#&gt;   &lt;CharacterList&gt; &lt;CharacterList&gt;     &lt;character&gt;    &lt;integer&gt; &lt;numeric&gt;</span></span>
+<span><span class="co">#&gt; 1                                              BH            5       0.5</span></span>
+<span><span class="co">#&gt;                           result_cols              timestamp package_version</span></span>
+<span><span class="co">#&gt;                       &lt;CharacterList&gt;            &lt;character&gt;     &lt;character&gt;</span></span>
+<span><span class="co">#&gt; 1 dm_pvalue,dm_padj,dm_delta_beta,... 2026-06-09 04:49:39 ..           0.2.0</span></span></code></pre></div>
+<p><code><a href="../reference/results.html">results()</a></code> exposes the active result layer as a tidy data
+frame while preserving the site metadata needed to interpret each row.
+When you keep multiple named runs, pass <code>result</code> or
+<code>result_name</code> to retrieve an older layer.</p>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">res</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/results.html">results</a></span><span class="op">(</span><span class="va">dm</span><span class="op">)</span></span>
 <span><span class="va">res</span> <span class="op">&lt;-</span> <span class="va">res</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/order.html" class="external-link">order</a></span><span class="op">(</span><span class="va">res</span><span class="op">$</span><span class="va">dm_padj</span><span class="op">)</span>, <span class="op">]</span></span>
@@ -374,7 +394,7 @@ the same genomic methylation-site substrate.</p>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; loaded via a namespace (and not attached):</span></span>
 <span><span class="co">#&gt;  [1] SummarizedExperiment_1.40.0 gtable_0.3.6               </span></span>
-<span><span class="co">#&gt;  [3] xfun_0.57                   bslib_0.11.0               </span></span>
+<span><span class="co">#&gt;  [3] xfun_0.58                   bslib_0.11.0               </span></span>
 <span><span class="co">#&gt;  [5] ggplot2_4.0.3               htmlwidgets_1.6.4          </span></span>
 <span><span class="co">#&gt;  [7] Biobase_2.70.0              lattice_0.22-9             </span></span>
 <span><span class="co">#&gt;  [9] vctrs_0.7.3                 tools_4.5.3                </span></span>
@@ -402,15 +422,15 @@ the same genomic methylation-site substrate.</p>
 <span><span class="co">#&gt; [53] S4Arrays_1.10.1             UCSC.utils_1.6.1           </span></span>
 <span><span class="co">#&gt; [55] scales_1.4.0                rmarkdown_2.31             </span></span>
 <span><span class="co">#&gt; [57] XVector_0.50.0              httr_1.4.8                 </span></span>
-<span><span class="co">#&gt; [59] matrixStats_1.5.0           zoo_1.8-15                 </span></span>
-<span><span class="co">#&gt; [61] ragg_1.5.2                  evaluate_1.0.5             </span></span>
-<span><span class="co">#&gt; [63] knitr_1.51                  GenomicRanges_1.62.1       </span></span>
-<span><span class="co">#&gt; [65] IRanges_2.44.0              rlang_1.2.0                </span></span>
-<span><span class="co">#&gt; [67] glue_1.8.1                  BiocManager_1.30.27        </span></span>
-<span><span class="co">#&gt; [69] renv_1.1.8                  BiocGenerics_0.56.0        </span></span>
-<span><span class="co">#&gt; [71] jsonlite_2.0.0              R6_2.6.1                   </span></span>
-<span><span class="co">#&gt; [73] MatrixGenerics_1.22.0       systemfonts_1.3.2          </span></span>
-<span><span class="co">#&gt; [75] fs_2.1.0</span></span></code></pre></div>
+<span><span class="co">#&gt; [59] matrixStats_1.5.0           otel_0.2.0                 </span></span>
+<span><span class="co">#&gt; [61] zoo_1.8-15                  ragg_1.5.2                 </span></span>
+<span><span class="co">#&gt; [63] evaluate_1.0.5              knitr_1.51                 </span></span>
+<span><span class="co">#&gt; [65] GenomicRanges_1.62.1        IRanges_2.44.0             </span></span>
+<span><span class="co">#&gt; [67] rlang_1.2.0                 glue_1.8.1                 </span></span>
+<span><span class="co">#&gt; [69] BiocManager_1.30.27         renv_1.1.8                 </span></span>
+<span><span class="co">#&gt; [71] BiocGenerics_0.56.0         jsonlite_2.0.0             </span></span>
+<span><span class="co">#&gt; [73] R6_2.6.1                    MatrixGenerics_1.22.0      </span></span>
+<span><span class="co">#&gt; [75] systemfonts_1.3.2           fs_2.1.0</span></span></code></pre></div>
 </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside>

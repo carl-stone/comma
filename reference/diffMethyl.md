@@ -21,6 +21,9 @@ diffMethyl(
   min_coverage = 5L,
   alpha = 0.5,
   p_adjust_method = "BH",
+  result_name = NULL,
+  overwrite = NULL,
+  make_default = TRUE,
   ...
 )
 ```
@@ -115,6 +118,28 @@ diffMethyl(
   (Benjamini-Hochberg). Other options: `"bonferroni"`, `"holm"`, `"BY"`,
   `"none"`.
 
+- result_name:
+
+  Character string or `NULL`. Name for the differential methylation
+  result layer. If `NULL` (default), results are written to the
+  compatibility layer `"diffMethyl"`, replacing that layer on repeated
+  unnamed calls. Provide explicit names such as `"quasi_f.min5"` or
+  `"limma.alpha05"` to keep multiple runs.
+
+- overwrite:
+
+  Logical or `NULL`. Whether an existing named result layer may be
+  replaced. If `NULL` (default), unnamed compatibility runs may replace
+  `"diffMethyl"`, while explicit `result_name` values must be unique
+  unless `overwrite = TRUE`.
+
+- make_default:
+
+  Logical. If `TRUE` (default), the new result layer becomes the default
+  used by
+  [`results()`](https://carl-stone.github.io/commaKit/reference/results.md)
+  and is mirrored into `rowData` as bare `dm_*` columns.
+
 - ...:
 
   Additional arguments (reserved for future use).
@@ -124,7 +149,8 @@ diffMethyl(
 The input `commaData` object with additional columns in `rowData`:
 `dm_pvalue`, `dm_padj`, `dm_delta_beta`, and one
 `dm_mean_beta_<condition>` column per condition level. The `metadata`
-slot is updated with analysis parameters and result column names.
+slot is updated with analysis parameters, result column names, and a
+named result layer registry.
 
 ## Details
 
@@ -205,7 +231,13 @@ extremely low statistical power. Treat such results as exploratory only.
 
 Analysis parameters and result column names are stored in
 `metadata(object)$diffMethyl_params` and
-`metadata(object)$diffMethyl_result_cols`.
+`metadata(object)$diffMethyl_result_cols`. Named result layers are
+stored in `metadata(object)$diffMethyl_results` and listed by
+[`resultLayers()`](https://carl-stone.github.io/commaKit/reference/resultLayers.md).
+By default, the active result layer is also mirrored into the legacy
+`dm_*` columns in `rowData` so existing
+[`results()`](https://carl-stone.github.io/commaKit/reference/results.md)
+and plotting workflows keep working.
 
 ## See also
 

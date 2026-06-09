@@ -16,7 +16,9 @@ when `method = "limma"`.
   formula,
   alpha = 0.5,
   ref_level = NULL,
-  design_info = NULL
+  design_info = NULL,
+  mod_counts_mat = NULL,
+  canonical_counts_mat = NULL
 )
 ```
 
@@ -30,6 +32,15 @@ when `method = "limma"`.
 - coverage_mat:
 
   Integer matrix (sites × samples) of read depths.
+
+- mod_counts_mat:
+
+  Optional integer matrix of observed modified-read counts. If supplied,
+  these counts are preferred over reconstructing from beta values.
+
+- canonical_counts_mat:
+
+  Optional integer matrix of observed canonical-read counts.
 
 - site_df:
 
@@ -49,6 +60,15 @@ when `method = "limma"`.
 
   Positive numeric pseudocount added to modified and unmodified read
   counts before log-transformation. Default `0.5`.
+
+- ref_level:
+
+  Optional reference level for the two-level contrast.
+
+- design_info:
+
+  Optional precomputed design information from
+  [`.resolveDiffMethylDesign()`](https://carl-stone.github.io/commaKit/reference/dot-resolveDiffMethylDesign.md).
 
 ## Value
 

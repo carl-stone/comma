@@ -38,7 +38,9 @@ constructor. This is an internal function called when
 
 A `data.frame` with columns: `chrom`, `position` (1-based), `strand`,
 `mod_type`, `motif` (always `NA` — Megalodon files do not encode motif
-context), `beta`, `coverage`.
+context), `beta`, `coverage`, `mod_counts`, and `canonical_counts`.
+Count columns are `NA_integer_` because this parser aggregates per-read
+probabilities rather than caller-reported count calls.
 
 ## Details
 

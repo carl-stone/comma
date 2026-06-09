@@ -206,13 +206,14 @@
 <div class="section level3">
 <h3 id="step-4--differential-methylation">Step 4 — Differential Methylation<a class="anchor" aria-label="anchor" href="#step-4--differential-methylation"></a>
 </h3>
-<p><code><a href="reference/diffMethyl.html">diffMethyl()</a></code> tests each site for differential methylation between conditions. It is modeled on DESeq2’s workflow: pass a <code>commaData</code> object and a design formula, get back the same object with per-site statistics in <code>rowData</code>:</p>
+<p><code><a href="reference/diffMethyl.html">diffMethyl()</a></code> tests each site for differential methylation between conditions. It is modeled on DESeq2’s workflow: pass a <code>commaData</code> object and a design formula, get back the same object with per-site statistics in an active result layer mirrored to <code>rowData</code>:</p>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">cd_dm</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/diffMethyl.html">diffMethyl</a></span><span class="op">(</span><span class="va">comma_example_data</span>, formula <span class="op">=</span> <span class="op">~</span> <span class="va">condition</span>,</span>
 <span>                    mod_type <span class="op">=</span> <span class="st">"6mA"</span><span class="op">)</span></span></code></pre></div>
 <p>Extract results as a tidy data frame and filter to significant sites:</p>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">res</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/results.html">results</a></span><span class="op">(</span><span class="va">cd_dm</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="fu"><a href="reference/resultLayers.html">resultLayers</a></span><span class="op">(</span><span class="va">cd_dm</span><span class="op">)</span></span>
+<span><span class="va">res</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/results.html">results</a></span><span class="op">(</span><span class="va">cd_dm</span><span class="op">)</span></span>
 <span><span class="va">sig</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/filterResults.html">filterResults</a></span><span class="op">(</span><span class="va">cd_dm</span>, padj <span class="op">=</span> <span class="fl">0.05</span>, delta_beta <span class="op">=</span> <span class="fl">0.2</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="st">"Total 6mA sites tested:"</span>, <span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">res</span><span class="op">)</span>, <span class="st">"\n"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Total 6mA sites tested: 588</span></span>

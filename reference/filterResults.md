@@ -2,7 +2,9 @@
 
 A convenience wrapper around
 [`results`](https://carl-stone.github.io/commaKit/reference/results.md)
-that filters sites by adjusted p-value and absolute effect size.
+that filters sites by adjusted p-value and absolute effect size. When
+multiple named result layers are present, `result` or `result_name`
+selects which layer to filter.
 
 ## Usage
 
@@ -17,6 +19,8 @@ filterResults(
   mod_type = NULL,
   motif = NULL,
   mod_context = NULL,
+  result = NULL,
+  result_name = NULL,
   ...
 )
 ```
@@ -63,6 +67,18 @@ filterResults(
   Character vector or `NULL`. Passed to
   [`results`](https://carl-stone.github.io/commaKit/reference/results.md)
   for optional modification context filtering (e.g., `"6mA_GATC"`).
+
+- result:
+
+  Character string or `NULL`. Name of a differential methylation result
+  layer to filter. If `NULL` (default), the active default layer is
+  used.
+
+- result_name:
+
+  Character string or `NULL`. Alias for `result`; provided for
+  consistency with
+  [`diffMethyl()`](https://carl-stone.github.io/commaKit/reference/diffMethyl.md).
 
 ## Value
 
