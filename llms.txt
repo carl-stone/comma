@@ -229,10 +229,12 @@ chr_sim](reference/figures/README-plot-track-1.png)
 ### Step 4 — Differential Methylation
 
 [`diffMethyl()`](https://carl-stone.github.io/commaKit/reference/diffMethyl.md)
-tests each site for differential methylation between conditions. It is
-modeled on DESeq2’s workflow: pass a `commaData` object and a design
-formula, get back the same object with per-site statistics in an active
-result layer mirrored to `rowData`:
+tests each site for differential methylation between conditions. For v1,
+the formula must name one two-level comparison variable
+(e.g. `~ condition`); multi-factor formulas such as
+`~ condition + batch` are not interpreted yet. The result is the same
+object with per-site statistics in an active result layer mirrored to
+`rowData`:
 
 ``` r
 

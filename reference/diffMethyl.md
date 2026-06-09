@@ -38,11 +38,13 @@ diffMethyl(
 
 - formula:
 
-  A one-sided formula specifying the design. The first RHS variable must
-  match a column in `sampleInfo(object)` and must have exactly 2
-  distinct levels. Multi-level variables are not currently supported in
-  a single `diffMethyl()` call; subset to the two groups to compare.
-  Default is `~ condition`.
+  A one-sided formula specifying one two-level comparison variable, e.g.
+  `~ condition`. The RHS variable must match a column in
+  `sampleInfo(object)` and must have exactly 2 distinct levels.
+  Multi-factor formulas, interactions, offsets, transformed terms, and
+  continuous covariates are intentionally not interpreted in v1; subset
+  or define one two-group comparison per `diffMethyl()` call. Default is
+  `~ condition`.
 
 - reference:
 

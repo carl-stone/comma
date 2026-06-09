@@ -274,10 +274,14 @@ Genome track for the first 50 kb of chr_sim.
 ## Differential Methylation
 
 [`diffMethyl()`](https://carl-stone.github.io/commaKit/reference/diffMethyl.md)
-tests each site for differential methylation between conditions. It is
-modeled on DESeq2’s workflow: pass a `commaData` object and a design
-formula, and receive back the same object with statistical results in
-`rowData`.
+tests each site for differential methylation between conditions. For v1,
+pass a one-sided formula with exactly one two-level comparison variable,
+such as `~ condition`. Multi-factor formulas (`~ condition + batch`),
+interactions, offsets, and continuous covariates are not interpreted
+yet; run one two-group comparison per
+[`diffMethyl()`](https://carl-stone.github.io/commaKit/reference/diffMethyl.md)
+call. The result is the same object with statistical results in
+`rowData` and in the active result layer.
 
 ``` r
 
@@ -335,7 +339,7 @@ resultLayers(cd_dm)
 #> 1             6mA                              BH            5       0.5
 #>                           result_cols              timestamp package_version
 #>                       <CharacterList>            <character>     <character>
-#> 1 dm_pvalue,dm_padj,dm_delta_beta,... 2026-06-09 09:11:02 ..           0.2.0
+#> 1 dm_pvalue,dm_padj,dm_delta_beta,... 2026-06-09 13:40:43 ..           0.2.0
 res <- results(cd_dm)
 # Top sites by adjusted p-value
 head(res[order(res$dm_padj),
