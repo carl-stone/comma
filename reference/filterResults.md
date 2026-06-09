@@ -2,9 +2,7 @@
 
 A convenience wrapper around
 [`results`](https://carl-stone.github.io/commaKit/reference/results.md)
-that filters sites by adjusted p-value and absolute effect size. When
-multiple named result layers are present, `result`, `name`, or
-`result_name` selects which layer to filter.
+that filters sites by adjusted p-value and absolute effect size.
 
 ## Usage
 

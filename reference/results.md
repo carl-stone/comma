@@ -3,9 +3,7 @@
 Retrieves the per-site differential methylation statistics added by
 [`diffMethyl`](https://carl-stone.github.io/commaKit/reference/diffMethyl.md)
 and returns them as a tidy `data.frame` suitable for downstream analysis
-and plotting. When multiple named differential methylation result layers
-are present, `result`, `name`, or `result_name` selects which layer to
-extract.
+and plotting.
 
 ## Usage
 
@@ -21,6 +19,7 @@ results(
   result = NULL,
   name = NULL,
   result_name = NULL,
+  as = c("data.frame", "GRanges"),
   ...
 )
 ```
@@ -75,6 +74,12 @@ results(
   Character string or `NULL`. Alias for `result`; provided for
   consistency with
   [`diffMethyl()`](https://carl-stone.github.io/commaKit/reference/diffMethyl.md).
+
+- as:
+
+  Character string. Output format: `"data.frame"` (default) or
+  `"GRanges"`. `"GRanges"` returns filtered `rowRanges(object)` with the
+  selected result columns in `mcols`.
 
 ## Value
 
