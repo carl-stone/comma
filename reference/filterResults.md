@@ -3,8 +3,8 @@
 A convenience wrapper around
 [`results`](https://carl-stone.github.io/commaKit/reference/results.md)
 that filters sites by adjusted p-value and absolute effect size. When
-multiple named result layers are present, `result` or `result_name`
-selects which layer to filter.
+multiple named result layers are present, `result`, `name`, or
+`result_name` selects which layer to filter.
 
 ## Usage
 
@@ -20,6 +20,7 @@ filterResults(
   motif = NULL,
   mod_context = NULL,
   result = NULL,
+  name = NULL,
   result_name = NULL,
   ...
 )
@@ -73,6 +74,11 @@ filterResults(
   Character string or `NULL`. Name of a differential methylation result
   layer to filter. If `NULL` (default), the active default layer is
   used.
+
+- name:
+
+  Character string or `NULL`. Alias for `result`; provided for concise
+  layer selection.
 
 - result_name:
 
