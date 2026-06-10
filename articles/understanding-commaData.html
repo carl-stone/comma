@@ -285,7 +285,32 @@ reading any external files.</p>
 layers.</li>
 </ul>
 <p>The object dimensions stay anchored to the same sites and samples
-while layers are added or recomputed.</p>
+while layers are added or recomputed. The v1 policy is deliberately
+small and strong:</p>
+<ul>
+<li>
+<strong>Raw evidence assays are canonical.</strong>
+<code>methylation</code>, <code>coverage</code>,
+<code>mod_counts</code>, <code>canonical_counts</code>, and
+<code>other_mod_counts</code> store caller or reconstructed evidence.
+commaKit functions do not mutate these raw assays in place. Users can
+still edit assays manually with standard
+<code>SummarizedExperiment</code> tools, but package-level
+transformations should not silently rewrite the raw evidence layer.</li>
+<li>
+<strong>Transformations are named layers.</strong> Normalized beta
+values, M-values, or future Seurat-like transformations should be added
+as explicit assay layers with provenance and parent assays, rather than
+replacing the raw assays.</li>
+<li>
+<strong>Filtering returns subset objects.</strong>
+<code><a href="../reference/filterSites.html">filterSites()</a></code> and <code>[</code> follow Bioconductor
+subsetting semantics: they return a <code>commaData</code> object with
+assay layers subset to the requested rows or samples. Site-level result
+layers are trimmed for row filters; sample filters keep those site-level
+results attached to the remaining sites. commaKit does not create hidden
+lazy views.</li>
+</ul>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">base_cols</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">colnames</a></span><span class="op">(</span><span class="fu"><a href="../reference/siteInfo.html">siteInfo</a></span><span class="op">(</span><span class="va">comma_example_data</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
@@ -336,7 +361,7 @@ separate.</p>
 <span><span class="co">#&gt; 1                                              BH            5       0.5</span></span>
 <span><span class="co">#&gt;                           result_cols              timestamp package_version</span></span>
 <span><span class="co">#&gt;                       &lt;CharacterList&gt;            &lt;character&gt;     &lt;character&gt;</span></span>
-<span><span class="co">#&gt; 1 dm_pvalue,dm_padj,dm_delta_beta,... 2026-06-10 21:15:51 ..           0.2.0</span></span></code></pre></div>
+<span><span class="co">#&gt; 1 dm_pvalue,dm_padj,dm_delta_beta,... 2026-06-10 22:32:25 ..           0.2.0</span></span></code></pre></div>
 <p><code><a href="../reference/results.html">results()</a></code> exposes the active result layer as a tidy data
 frame while preserving the site metadata needed to interpret each row.
 When you keep multiple named runs, pass <code>result</code> or

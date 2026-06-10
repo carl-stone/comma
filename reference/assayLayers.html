@@ -86,6 +86,19 @@ columns <code>assay</code>, <code>role</code>, <code>type</code>, <code>source</
 <code>method</code>, <code>timestamp</code>, and <code>package_version</code>.</p>
     </div>
     <div class="section level2">
+    <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
+    <p>commaKit's v1 layer policy is intentionally minimal:</p><ul><li><p>Raw evidence assays such as <code>methylation</code>, <code>coverage</code>,
+<code>mod_counts</code>, <code>canonical_counts</code>, and
+<code>other_mod_counts</code> are canonical input evidence. Package APIs do
+not mutate them in place, though users may still edit assays manually
+through normal <code>SummarizedExperiment</code> mechanisms.</p></li>
+<li><p>Transformations should be stored as explicitly named derived assay
+layers with provenance and parent assays rather than replacing raw
+assays.</p></li>
+<li><p>Filtering returns a subset <code>commaData</code> object with all assay
+layers subset to the same rows/samples. There are no hidden lazy views.</p></li>
+</ul></div>
+    <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
     <div class="dont-index"><p><code><a href="assayProvenance.html">assayProvenance</a></code>, <code><a href="methylation.html">methylation</a></code>,
 <code><a href="siteCoverage.html">siteCoverage</a></code>, <code><a href="modCounts.html">modCounts</a></code>,

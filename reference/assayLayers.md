@@ -31,6 +31,23 @@ with one row per assay and columns `assay`, `role`, `type`, `source`,
 `is_default`, `default_for`, `parent_assays`, `method`, `timestamp`, and
 `package_version`.
 
+## Details
+
+commaKit's v1 layer policy is intentionally minimal:
+
+- Raw evidence assays such as `methylation`, `coverage`, `mod_counts`,
+  `canonical_counts`, and `other_mod_counts` are canonical input
+  evidence. Package APIs do not mutate them in place, though users may
+  still edit assays manually through normal `SummarizedExperiment`
+  mechanisms.
+
+- Transformations should be stored as explicitly named derived assay
+  layers with provenance and parent assays rather than replacing raw
+  assays.
+
+- Filtering returns a subset `commaData` object with all assay layers
+  subset to the same rows/samples. There are no hidden lazy views.
+
 ## See also
 
 [`assayProvenance`](https://carl-stone.github.io/commaKit/reference/assayProvenance.md),

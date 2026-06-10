@@ -232,7 +232,26 @@ A useful way to learn commaKit is to think in layers:
 - plotting, filtering, and enrichment functions interpret those layers.
 
 The object dimensions stay anchored to the same sites and samples while
-layers are added or recomputed.
+layers are added or recomputed. The v1 policy is deliberately small and
+strong:
+
+- **Raw evidence assays are canonical.** `methylation`, `coverage`,
+  `mod_counts`, `canonical_counts`, and `other_mod_counts` store caller
+  or reconstructed evidence. commaKit functions do not mutate these raw
+  assays in place. Users can still edit assays manually with standard
+  `SummarizedExperiment` tools, but package-level transformations should
+  not silently rewrite the raw evidence layer.
+- **Transformations are named layers.** Normalized beta values,
+  M-values, or future Seurat-like transformations should be added as
+  explicit assay layers with provenance and parent assays, rather than
+  replacing the raw assays.
+- **Filtering returns subset objects.**
+  [`filterSites()`](https://carl-stone.github.io/commaKit/reference/filterSites.md)
+  and `[` follow Bioconductor subsetting semantics: they return a
+  `commaData` object with assay layers subset to the requested rows or
+  samples. Site-level result layers are trimmed for row filters; sample
+  filters keep those site-level results attached to the remaining sites.
+  commaKit does not create hidden lazy views.
 
 ``` r
 
@@ -293,7 +312,7 @@ resultLayers(dm)
 #> 1                                              BH            5       0.5
 #>                           result_cols              timestamp package_version
 #>                       <CharacterList>            <character>     <character>
-#> 1 dm_pvalue,dm_padj,dm_delta_beta,... 2026-06-10 21:15:51 ..           0.2.0
+#> 1 dm_pvalue,dm_padj,dm_delta_beta,... 2026-06-10 22:32:25 ..           0.2.0
 ```
 
 [`results()`](https://carl-stone.github.io/commaKit/reference/results.md)
