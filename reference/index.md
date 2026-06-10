@@ -67,6 +67,8 @@
   : Accessor for motif site positions
 - [`motifs()`](https://carl-stone.github.io/commaKit/reference/motifs.md)
   : Accessor for sequence context motifs present in a commaData object
+- [`otherModCounts()`](https://carl-stone.github.io/commaKit/reference/otherModCounts.md)
+  : Accessor for observed non-target modified-read counts
 - [`plot_coverage()`](https://carl-stone.github.io/commaKit/reference/plot_coverage.md)
   : Plot coverage depth distribution
 - [`plot_genome_track()`](https://carl-stone.github.io/commaKit/reference/plot_genome_track.md)

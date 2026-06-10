@@ -74,3 +74,9 @@ A `data.frame` with columns:
 - `canonical_counts`:
 
   Observed reads called canonical/unmodified.
+
+- `other_mod_counts`:
+
+  Observed reads called as a non-target modification. Together,
+  `mod_counts + canonical_counts + other_mod_counts` is the modkit
+  `Nvalid_cov` denominator used for `coverage`.

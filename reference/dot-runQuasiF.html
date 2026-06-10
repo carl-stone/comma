@@ -64,7 +64,8 @@ dispersion estimates. Called by <code><a href="diffMethyl.html">diffMethyl</a></
 <span>  ref_level <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  design_info <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  mod_counts_mat <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  canonical_counts_mat <span class="op">=</span> <span class="cn">NULL</span></span>
+<span>  canonical_counts_mat <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  other_mod_counts_mat <span class="op">=</span> <span class="cn">NULL</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
 
@@ -90,6 +91,12 @@ beta values.</p></dd>
 <dt id="arg-canonical-counts-mat">canonical_counts_mat<a class="anchor" aria-label="anchor" href="#arg-canonical-counts-mat"></a></dt>
 <dd><p>Optional integer matrix of observed
 canonical-read counts.</p></dd>
+
+
+<dt id="arg-other-mod-counts-mat">other_mod_counts_mat<a class="anchor" aria-label="anchor" href="#arg-other-mod-counts-mat"></a></dt>
+<dd><p>Optional integer matrix of observed non-target
+modified-read counts. When present with <code>canonical_counts_mat</code>, these
+counts are included in the non-target denominator so it matches coverage.</p></dd>
 
 
 <dt id="arg-site-df">site_df<a class="anchor" aria-label="anchor" href="#arg-site-df"></a></dt>

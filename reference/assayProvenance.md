@@ -29,6 +29,7 @@ provenance metadata.
 [`assayLayers`](https://carl-stone.github.io/commaKit/reference/assayLayers.md),
 [`modCounts`](https://carl-stone.github.io/commaKit/reference/modCounts.md),
 [`canonicalCounts`](https://carl-stone.github.io/commaKit/reference/canonicalCounts.md),
+[`otherModCounts`](https://carl-stone.github.io/commaKit/reference/otherModCounts.md),
 [`methylation`](https://carl-stone.github.io/commaKit/reference/methylation.md)
 
 ## Examples

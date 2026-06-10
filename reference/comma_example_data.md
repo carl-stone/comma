@@ -41,6 +41,11 @@ A `commaData` object with:
   :   Integer canonical-read counts reconstructed as
       `coverage - mod_counts`.
 
+  `other_mod_counts`
+
+  :   Not present in this legacy simulated dataset; newly constructed
+      modkit objects include this assay when `Nother_mod` is available.
+
 - **rowRanges**:
 
   GRanges with 1-bp ranges per site. mcols include `mod_type`, `motif`,

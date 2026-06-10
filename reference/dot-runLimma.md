@@ -18,7 +18,8 @@ when `method = "limma"`.
   ref_level = NULL,
   design_info = NULL,
   mod_counts_mat = NULL,
-  canonical_counts_mat = NULL
+  canonical_counts_mat = NULL,
+  other_mod_counts_mat = NULL
 )
 ```
 
@@ -41,6 +42,12 @@ when `method = "limma"`.
 - canonical_counts_mat:
 
   Optional integer matrix of observed canonical-read counts.
+
+- other_mod_counts_mat:
+
+  Optional integer matrix of observed non-target modified-read counts.
+  When present with `canonical_counts_mat`, these counts are included in
+  the non-target denominator so it matches coverage.
 
 - site_df:
 

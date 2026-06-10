@@ -50,6 +50,12 @@ The class stores methylation data in assay matrices (accessible via
   Observed reads called canonical or unmodified, when available from the
   caller.
 
+- `"other_mod_counts"`:
+
+  Observed reads called as non-target modifications, when available from
+  the caller. For modkit pileup, `coverage` is the valid denominator
+  `mod_counts + canonical_counts + other_mod_counts`.
+
 Genomic positions are stored in `rowRanges(object)`, a
 [`GRanges`](https://rdrr.io/pkg/GenomicRanges/man/GRanges-class.html)
 with one 1-bp range per methylation site. Per-site metadata is in the

@@ -172,9 +172,10 @@ strand) plus modification type and motif context.</p></li>
 <code>findOverlaps()</code> for alignment.</p></li>
 <li><p>Beta values and coverage are arranged into sites \(\times\) samples
 matrices, with <code>NA</code> for samples that do not cover a given site.</p></li>
-<li><p>Observed modified and canonical read counts are preserved as
-<code>mod_counts</code> and <code>canonical_counts</code> assays when reported by
-the caller; probability-only callers store <code>NA</code> in those assays.</p></li>
+<li><p>Observed modified, canonical, and non-target modified read counts
+are preserved as <code>mod_counts</code>, <code>canonical_counts</code>, and
+<code>other_mod_counts</code> assays when reported by the caller;
+probability-only callers store <code>NA</code> in those assays.</p></li>
 <li><p>Assay-layer provenance and default roles are recorded in
 <code>metadata(object)$assay_provenance</code> and
 <code>metadata(object)$assay_defaults</code>.</p></li>

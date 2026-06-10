@@ -86,9 +86,9 @@ supplied explicitly.</p></dd>
     <p>A <code>data.frame</code> with columns: <code>chrom</code>, <code>position</code>
 (1-based), <code>strand</code>, <code>mod_type</code>, <code>motif</code> (always
 <code>NA</code> — Megalodon files do not encode motif context), <code>beta</code>,
-<code>coverage</code>, <code>mod_counts</code>, and <code>canonical_counts</code>. Count
-columns are <code>NA_integer_</code> because this parser aggregates per-read
-probabilities rather than caller-reported count calls.</p>
+<code>coverage</code>, <code>mod_counts</code>, <code>canonical_counts</code>, and
+<code>other_mod_counts</code>. Count columns are <code>NA</code> because this parser
+aggregates probabilities rather than observed calls.</p>
     </div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>

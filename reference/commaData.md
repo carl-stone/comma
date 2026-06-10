@@ -129,9 +129,10 @@ The constructor uses a parse-then-merge strategy:
 4.  Beta values and coverage are arranged into sites \\\times\\ samples
     matrices, with `NA` for samples that do not cover a given site.
 
-5.  Observed modified and canonical read counts are preserved as
-    `mod_counts` and `canonical_counts` assays when reported by the
-    caller; probability-only callers store `NA` in those assays.
+5.  Observed modified, canonical, and non-target modified read counts
+    are preserved as `mod_counts`, `canonical_counts`, and
+    `other_mod_counts` assays when reported by the caller;
+    probability-only callers store `NA` in those assays.
 
 6.  Assay-layer provenance and default roles are recorded in
     `metadata(object)$assay_provenance` and

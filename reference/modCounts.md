@@ -28,6 +28,7 @@ columns corresponding to samples.
 ## See also
 
 [`canonicalCounts`](https://carl-stone.github.io/commaKit/reference/canonicalCounts.md),
+[`otherModCounts`](https://carl-stone.github.io/commaKit/reference/otherModCounts.md),
 [`siteCoverage`](https://carl-stone.github.io/commaKit/reference/siteCoverage.md),
 [`methylation`](https://carl-stone.github.io/commaKit/reference/methylation.md)
 

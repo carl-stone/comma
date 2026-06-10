@@ -76,6 +76,11 @@ A `data.frame` with columns:
 
   Reads not called modified using the ML probability threshold.
 
+- `other_mod_counts`:
+
+  Always `NA`; direct Dorado BAM parsing does not decompose non-target
+  modified-read classes.
+
 ## Details
 
 The function reads the BAM using
