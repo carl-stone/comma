@@ -75,7 +75,11 @@ returns a flat `DataFrame` combining the genomic coordinates (chrom,
 position, strand) with the mcols columns.
 
 Per-sample metadata is in `colData(object)` and includes at minimum:
-`sample_name`, `condition`, `replicate`.
+`sample_name` and `replicate`. A `condition` column is optional
+container metadata; functions that need a grouping/design variable (such
+as
+[`diffMethyl`](https://carl-stone.github.io/commaKit/reference/diffMethyl.md))
+validate that requirement locally.
 
 The methylation caller and minimum coverage threshold are stored in
 `metadata(object)` and accessible via

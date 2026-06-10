@@ -51,8 +51,8 @@ A `data.frame` with one row per sample, containing:
 
 - `condition`:
 
-  Experimental condition, from the `condition` column in
-  `sampleInfo(object)`.
+  Experimental condition, from the optional `condition` column in
+  `sampleInfo(object)`, or `NA` when that metadata is absent.
 
 - `mod_type`:
 

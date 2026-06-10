@@ -111,7 +111,9 @@ methylation events.</p>
 <code>DataFrame</code> combining the genomic coordinates (chrom, position,
 strand) with the mcols columns.</p>
 <p>Per-sample metadata is in <code>colData(object)</code> and includes at minimum:
-<code>sample_name</code>, <code>condition</code>, <code>replicate</code>.</p>
+<code>sample_name</code> and <code>replicate</code>. A <code>condition</code> column is
+optional container metadata; functions that need a grouping/design variable
+(such as <code><a href="diffMethyl.html">diffMethyl</a></code>) validate that requirement locally.</p>
 <p>The methylation caller and minimum coverage threshold are stored in
 <code>metadata(object)</code> and accessible via <code><a href="caller.html">caller</a>(object)</code>
 and <code><a href="minCoverage.html">minCoverage</a>(object)</code>.</p>

@@ -49,7 +49,9 @@ plot_pca(
 
   Character string naming a column in `sampleInfo(object)` to use for
   point color. When `return_data = TRUE`, this column is validated and
-  included in the returned data. Default `"condition"`.
+  included in the returned data. Default `"condition"`; if `condition`
+  is absent, the default falls back to `"sample_name"` so QC-only
+  objects still plot.
 
 - shape_by:
 

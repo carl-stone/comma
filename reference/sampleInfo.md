@@ -23,8 +23,8 @@ sampleInfo(object)
 ## Value
 
 A `data.frame` with one row per sample. Always contains columns
-`sample_name`, `condition`, and `replicate`. May contain additional
-columns such as `caller` and `file_path`.
+`sample_name` and `replicate`. May contain optional columns such as
+`condition`, `caller`, and `file_path`.
 
 ## See also
 

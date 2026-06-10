@@ -80,7 +80,9 @@ Names must match <code>colData$sample_name</code>. Example:
 
 <dt id="arg-coldata">colData<a class="anchor" aria-label="anchor" href="#arg-coldata"></a></dt>
 <dd><p>A <code>data.frame</code> with one row per sample. Must contain
-columns <code>sample_name</code>, <code>condition</code>, and <code>replicate</code>.
+columns <code>sample_name</code> and <code>replicate</code>. A <code>condition</code>
+column is optional and is used by design-aware functions such as
+<code><a href="diffMethyl.html">diffMethyl</a></code> when requested in their formula.
 Additional columns (e.g., <code>file_path</code>, <code>batch</code>) are preserved.</p></dd>
 
 

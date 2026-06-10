@@ -34,7 +34,10 @@ commaData(
 - colData:
 
   A `data.frame` with one row per sample. Must contain columns
-  `sample_name`, `condition`, and `replicate`. Additional columns (e.g.,
+  `sample_name` and `replicate`. A `condition` column is optional and is
+  used by design-aware functions such as
+  [`diffMethyl`](https://carl-stone.github.io/commaKit/reference/diffMethyl.md)
+  when requested in their formula. Additional columns (e.g.,
   `file_path`, `batch`) are preserved.
 
 - genome:
