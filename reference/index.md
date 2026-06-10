@@ -99,6 +99,8 @@
   : Subset a commaData object by sites and/or samples
 - [`subset(`*`<commaData>`*`)`](https://carl-stone.github.io/commaKit/reference/subset.commaData.md)
   : Deprecated subset method for commaData objects
+- [`summarizeRegions()`](https://carl-stone.github.io/commaKit/reference/summarizeRegions.md)
+  : Summarize methylation counts over genomic regions
 - [`varianceByDepth()`](https://carl-stone.github.io/commaKit/reference/varianceByDepth.md)
   : Methylation variance as a function of sequencing depth
 - [`writeBED()`](https://carl-stone.github.io/commaKit/reference/writeBED.md)
