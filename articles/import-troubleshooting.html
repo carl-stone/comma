@@ -209,9 +209,10 @@ derived files without motif context can still import, but
 <h2 id="sample-metadata-problems">Sample Metadata Problems<a class="anchor" aria-label="anchor" href="#sample-metadata-problems"></a>
 </h2>
 <p><code>files</code> must be a named character vector, and its names
-must match <code>colData$sample_name</code>. The constructor also
-requires <code>sample_name</code>, <code>condition</code>, and
-<code>replicate</code> columns in <code>colData</code>.</p>
+must match <code>colData$sample_name</code>. The constructor requires
+<code>sample_name</code> and <code>replicate</code> columns in
+<code>colData</code>; <code>condition</code> is optional sample metadata
+used by grouping and design workflows when present.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/sets.html" class="external-link">setdiff</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">files</span><span class="op">)</span>, <span class="va">col_data</span><span class="op">$</span><span class="va">sample_name</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/sets.html" class="external-link">setdiff</a></span><span class="op">(</span><span class="va">col_data</span><span class="op">$</span><span class="va">sample_name</span>, <span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">files</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>

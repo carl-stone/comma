@@ -107,7 +107,7 @@ plot_pca(comma_example_data)
 
 
 # Color by condition, shape by replicate
-plot_pca(comma_example_data, color_by = "condition")
+plot_pca(comma_example_data, color_by = "condition", shape_by = "replicate")
 
 
 # Only 6mA sites

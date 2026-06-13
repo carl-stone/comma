@@ -339,7 +339,7 @@ resultLayers(cd_dm)
 #> 1             6mA                              BH            5       0.5
 #>                           result_cols              timestamp package_version
 #>                       <CharacterList>            <character>     <character>
-#> 1 dm_pvalue,dm_padj,dm_delta_beta,... 2026-06-10 22:31:47 ..           0.2.0
+#> 1 dm_pvalue,dm_padj,dm_delta_beta,... 2026-06-13 20:28:52 ..           0.2.0
 res <- results(cd_dm)
 # Top sites by adjusted p-value
 head(res[order(res$dm_padj),
@@ -541,7 +541,7 @@ sessionInfo()
 #>  [83] mvtnorm_1.4-1               XML_3.99-0.23              
 #>  [85] grid_4.5.3                  bbmle_1.0.25.1             
 #>  [87] bdsmatrix_1.3-7             nlme_3.1-168               
-#>  [89] patchwork_1.3.2             restfulr_0.0.16            
+#>  [89] patchwork_1.3.2             restfulr_0.0.17            
 #>  [91] cli_3.6.6                   textshaping_1.0.5          
 #>  [93] fastseg_1.56.0              S4Arrays_1.10.1            
 #>  [95] methylKit_1.36.0            dplyr_1.2.1                
