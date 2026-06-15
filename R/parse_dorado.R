@@ -230,8 +230,15 @@ NULL
     ops_raw <- regmatches(cigar_str, matches)[[1L]]
     if (length(ops_raw) == 0L) return(NULL)
 
+    # Reject malformed CIGAR strings instead of silently using any valid-looking
+    # operation substrings. gregexpr() returns partial matches, so without this
+    # check a string such as "5Mbogus" would be treated as "5M" and produce an
+    # apparently valid but truncated coordinate map.
+    if (!identical(paste0(ops_raw, collapse = ""), cigar_str)) return(NULL)
+
     ops <- sub("^([0-9]+)([MIDNSHP=X])$", "\\2", ops_raw)
     lens <- as.integer(sub("^([0-9]+)([MIDNSHP=X])$", "\\1", ops_raw))
+    if (any(is.na(lens)) || any(lens <= 0L)) return(NULL)
 
     # Map each read position to its reference position
     ref_pos_map <- integer(read_len)
@@ -245,11 +252,18 @@ NULL
         len <- lens[[k]]
 
         if (op %in% c("M", "=", "X")) {
-            # Match/mismatch: advances both read and reference
+            # Match/mismatch: advances both read and reference. If the CIGAR
+            # consumes more read bases than are present in seq_bases, map the
+            # available prefix and then stop; do not let read_cur:read_end create
+            # a decreasing index sequence after the read is exhausted.
+            if (read_cur > read_len) break
             read_end <- read_cur + len - 1L
             if (read_end > read_len) read_end <- read_len
             n_use <- read_end - read_cur + 1L
-            ref_pos_map[read_cur:read_end] <- seq(ref_cur, by = 1L, length.out = n_use)
+            if (n_use > 0L) {
+                ref_pos_map[read_cur:read_end] <-
+                    seq(ref_cur, by = 1L, length.out = n_use)
+            }
             ref_cur  <- ref_cur  + len
             read_cur <- read_cur + len
 
